@@ -6,10 +6,43 @@
    <description>Recent content in Posts on Bigdata Engineer &amp; Analyst Story</description>
    <generator>Hugo -- gohugo.io</generator>
    <copyright>Copyright &amp;copy; 2020 - Sungwoon Yoon</copyright>
-   <lastBuildDate>Wed, 11 Nov 2020 12:35:31 +0900</lastBuildDate>
+   <lastBuildDate>Sat, 14 Nov 2020 12:30:39 +0900</lastBuildDate>
    
        <atom:link href="https://ynebula.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
    
+   
+     <item>
+       <title>Hugo Install Markdown</title>
+       <link>https://ynebula.github.io/posts/hugo/hugo-install-markdown/</link>
+       <pubDate>Sat, 14 Nov 2020 12:30:39 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/hugo/hugo-install-markdown/</guid>
+       <description>&lt;h2 id=&#34;hugo-설치&#34;&gt;Hugo 설치&lt;/h2&gt;
+&lt;p&gt;참고사이트&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://gohugo.io/getting-started/installing&#34;&gt;Install Hugo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://gohugo.io/getting-started/quick-start/&#34;&gt;Quick Start&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;설치-환경&#34;&gt;설치 환경&lt;/h4&gt;
+&lt;p&gt;Windows 10
+Github&lt;/p&gt;
+&lt;h4 id=&#34;github-설치&#34;&gt;Github 설치&lt;/h4&gt;
+&lt;h4 id=&#34;download--install&#34;&gt;Download &amp;amp; Install&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/gohugoio/hugo/releases&#34;&gt;Hugo Download&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;C:\Hugo\bin 디렉토리 생성 후 내려받은 파일을 bin 디렉토리 안에 넣습니다.&lt;/p&gt;
+&lt;h4 id=&#34;create-a-new-site&#34;&gt;Create a New Site&lt;/h4&gt;
+&lt;h4 id=&#34;add-a-theme&#34;&gt;Add a Theme&lt;/h4&gt;
+&lt;h4 id=&#34;add-some-content&#34;&gt;Add Some Content&lt;/h4&gt;
+&lt;p&gt;명령어 실행 위치: 
+hugo new posts/hugo/hugo-install-markdown.md&lt;/p&gt;
+&lt;h4 id=&#34;start-the-hugo-server&#34;&gt;Start the Hugo server&lt;/h4&gt;
+&lt;h4 id=&#34;github&#34;&gt;Github&lt;/h4&gt;
+&lt;h4 id=&#34;hugo&#34;&gt;Hugo&lt;/h4&gt;
+&lt;h2 id=&#34;hugo-마크다운&#34;&gt;Hugo 마크다운&lt;/h2&gt;
+&lt;p&gt;참고사이트
+&lt;a href=&#34;https://gohugo.io/content-management/formats/#learn-markdown&#34;&gt;Hugo Learn Markdown&lt;/a&gt;&lt;/p&gt;
+</description>
+     </item>
    
      <item>
        <title>My First Post</title>
@@ -23,6 +56,16 @@
 &lt;p&gt;여기까지 Hugo를 이용한 웹 페이지 꾸미기를 실행하다가 투자되는 시간 대비 너무 다른 길로 새는 느낌이 들어 곧바로 글과 그림을 올리고 퍼블리슁할 수 있는 Gitbook에 글을 올리기 시작했다.
 친숙한 UI와 편리한 기능 제공으로 나에게는 안성맞춤이지만 이게 문서에 특화된 플랫폼이라 그런지 게시글이 사이드바에  추가되어 영 블로그느낌이 아닌 매뉴얼 느낌이 나는게 문제다.
 더군다나 글을 쓰고 완성하지 못한 채로 Merge를 하게 되면 미된 미완성된 글과 뒤죽박죽인 카테고리를 누가 볼 수도 있어 영 찜찜하다.&lt;/p&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>My First Post</title>
+       <link>https://ynebula.github.io/posts/my-second-post/</link>
+       <pubDate>Wed, 11 Nov 2020 12:35:31 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/my-second-post/</guid>
+       <description>&lt;p&gt;asasasaaa&lt;/p&gt;
 </description>
      </item>
    
