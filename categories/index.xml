@@ -28,7 +28,7 @@
 &lt;h3 id=&#34;download--install&#34;&gt;Download &amp;amp; Install&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/gohugoio/hugo/releases&#34;&gt;Hugo Download&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;C:\Hugo\bin 디렉토리 생성 후 내려받은 파일을 bin 디렉토리 안에 넣습니다.
-&lt;img src=&#34;https://github.com/ynebula/ynebula.github.io/blob/main/posts/hugo/img/HugoInstall.png?raw=true&#34; alt=&#34;alt text&#34; title=&#34;Hugo Binary File Location&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoInstall.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo Binary File Location&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;create-a-new-site&#34;&gt;Create a New Site&lt;/h3&gt;
 &lt;h4 id=&#34;add-a-theme&#34;&gt;Add a Theme&lt;/h4&gt;
 &lt;h4 id=&#34;add-some-content&#34;&gt;Add Some Content&lt;/h4&gt;
