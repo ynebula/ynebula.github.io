@@ -17,21 +17,20 @@
        <pubDate>Sat, 14 Nov 2020 12:30:39 +0900</pubDate>
        
        <guid>https://ynebula.github.io/posts/hugo/hugo-install-markdown/</guid>
-       <description>&lt;h2 id=&#34;hugo-설치&#34;&gt;Hugo 설치&lt;/h2&gt;
-&lt;h4 id=&#34;참고사이트&#34;&gt;참고사이트&lt;/h4&gt;
+       <description>&lt;h3 id=&#34;참고사이트&#34;&gt;참고사이트&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://gohugo.io/getting-started/installing&#34;&gt;Install Hugo&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://gohugo.io/getting-started/quick-start/&#34;&gt;Quick Start&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h4 id=&#34;설치-환경&#34;&gt;설치 환경&lt;/h4&gt;
-&lt;p&gt;Windows 10
-Github&lt;/p&gt;
-&lt;h4 id=&#34;github-설치&#34;&gt;Github 설치&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;https://git-scm.com/download/win&#34;&gt;https://git-scm.com/download/win&lt;/a&gt;&lt;/p&gt;
-&lt;h4 id=&#34;download--install&#34;&gt;Download &amp;amp; Install&lt;/h4&gt;
+&lt;h3 id=&#34;설치-환경&#34;&gt;설치 환경&lt;/h3&gt;
+&lt;p&gt;Windows 10, Github&lt;/p&gt;
+&lt;h3 id=&#34;github-설치&#34;&gt;Github 설치&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://git-scm.com/download/win&#34;&gt;Github Download&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;download--install&#34;&gt;Download &amp;amp; Install&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/gohugoio/hugo/releases&#34;&gt;Hugo Download&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;C:\Hugo\bin 디렉토리 생성 후 내려받은 파일을 bin 디렉토리 안에 넣습니다.&lt;/p&gt;
-&lt;h4 id=&#34;create-a-new-site&#34;&gt;Create a New Site&lt;/h4&gt;
+&lt;p&gt;C:\Hugo\bin 디렉토리 생성 후 내려받은 파일을 bin 디렉토리 안에 넣습니다.
+&lt;img src=&#34;https://github.com/ynebula/ynebula.github.io/blob/main/posts/hugo/img/HugoInstall.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo Binary File Location&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;create-a-new-site&#34;&gt;Create a New Site&lt;/h3&gt;
 &lt;h4 id=&#34;add-a-theme&#34;&gt;Add a Theme&lt;/h4&gt;
 &lt;h4 id=&#34;add-some-content&#34;&gt;Add Some Content&lt;/h4&gt;
 &lt;p&gt;명령어 실행 위치: 
