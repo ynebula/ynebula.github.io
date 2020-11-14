@@ -17,7 +17,7 @@
        
        <guid>https://ynebula.github.io/posts/hugo/hugo-install-markdown/</guid>
        <description>&lt;h2 id=&#34;hugo-설치&#34;&gt;Hugo 설치&lt;/h2&gt;
-&lt;p&gt;참고사이트&lt;/p&gt;
+&lt;h4 id=&#34;참고사이트&#34;&gt;참고사이트&lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://gohugo.io/getting-started/installing&#34;&gt;Install Hugo&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://gohugo.io/getting-started/quick-start/&#34;&gt;Quick Start&lt;/a&gt;&lt;/li&gt;
@@ -26,6 +26,7 @@
 &lt;p&gt;Windows 10
 Github&lt;/p&gt;
 &lt;h4 id=&#34;github-설치&#34;&gt;Github 설치&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://git-scm.com/download/win&#34;&gt;https://git-scm.com/download/win&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id=&#34;download--install&#34;&gt;Download &amp;amp; Install&lt;/h4&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/gohugoio/hugo/releases&#34;&gt;Hugo Download&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;C:\Hugo\bin 디렉토리 생성 후 내려받은 파일을 bin 디렉토리 안에 넣습니다.&lt;/p&gt;
