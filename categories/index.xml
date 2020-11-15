@@ -96,7 +96,7 @@ config 파일을 열어 운영 사이트에 맞게 수정합니다.&lt;/p&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h3 id=&#34;start-the-hugo-server&#34;&gt;Start the Hugo server&lt;/h3&gt;
-&lt;p&gt;Hugo 서버를 수행하고 http://localhost:1313/ 로 접속합니다.&lt;/p&gt;
+&lt;p&gt;Hugo 서버를 시작하고 http://localhost:1313/ 로 접속합니다.&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
