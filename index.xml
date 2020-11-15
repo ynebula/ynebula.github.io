@@ -34,33 +34,102 @@ C:\Hugo\bin 디렉토리 생성 후 다운로드 받은 파일을 bin 디렉토�
 Hugo 바이너리를 시스템 환경 변수에 등록합니다.
 &lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoEnvVarSetting.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo Enviroment Variable Setting&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;create-a-new-site&#34;&gt;Create a New Site&lt;/h3&gt;
-&lt;p&gt;Hugo 운영할 사이트를 생성합니다.
-| hugo new site quickstart |
-위 명령어를 수행하면 quickstart 디렉토리가 생성되고 다음 그림과 같이 생성됩니다.
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoNewSite.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo New Site&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Hugo 운영할 사이트를 생성합니다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;명령어&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;hugo new site quickstart&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;위 명령어를 수행하면 quickstart 디렉토리가 생성되고 다음 그림과 같이 생성됩니다.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoNewSite.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo New Site&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;h3 id=&#34;add-a-theme--config&#34;&gt;Add a Theme $ Config&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&#34;https://themes.gohugo.io/&#34;&gt;Hugo Theme&lt;/a&gt; 에서 마음에 드는 테마를 선택해 다음이 명령어를 수행합니다.
-저는 심플한 디자인을 좋아해서 Kiera를 사용했습니다.
-| git init                                                                        |
-| git submodule add &lt;a href=&#34;https://github.com/funkydan2/hugo-kiera.git&#34;&gt;https://github.com/funkydan2/hugo-kiera.git&lt;/a&gt; themes/hugo-kiera |
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoTheme.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo Theme&#34;&gt;&lt;/p&gt;
+저는 심플한 디자인을 좋아해서 Kiera를 사용했습니다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;명령어&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;git init&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;git submodule add &lt;a href=&#34;https://github.com/funkydan2/hugo-kiera.git&#34;&gt;https://github.com/funkydan2/hugo-kiera.git&lt;/a&gt; themes/hugo-kiera&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoTheme.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo Theme&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;h3 id=&#34;config-setting&#34;&gt;Config Setting&lt;/h3&gt;
 &lt;p&gt;exampleSite 디렉토리에서 config.toml파일을 참고해서 수정하길 권장합니다.
 &lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoSettingConfig.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo Setting Config&#34;&gt;
 &lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoSettingConfig2.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo Setting Config&#34;&gt;
 config 파일을 열어 운영 사이트에 맞게 수정합니다.&lt;/p&gt;
 &lt;h3 id=&#34;add-some-content&#34;&gt;Add Some Content&lt;/h3&gt;
-&lt;p&gt;다음 명령어를 수행하면 &amp;ldquo;content\posts\my-first-post.md&amp;rdquo; 파일이 생성됩니다. 파일을 열어 편집합니다.
-| hugo new posts/my-first-post.md |
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoFirstPosting.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo First Posting&#34;&gt;&lt;/p&gt;
+&lt;p&gt;다음 명령어를 수행하면 &amp;ldquo;content\posts\my-first-post.md&amp;rdquo; 파일이 생성됩니다. 파일을 열어 편집합니다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;명령어&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;hugo new posts/my-first-post.md&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoFirstPosting.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo First Posting&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;h3 id=&#34;start-the-hugo-server&#34;&gt;Start the Hugo server&lt;/h3&gt;
-&lt;p&gt;Hugo 서버를 수행하고 http://localhost:1313/ 로 접속합니다.
-| hugo server -D |
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoWebPage.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo Web Page&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Hugo 서버를 수행하고 http://localhost:1313/ 로 접속합니다.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;명령어&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;hugo server -D&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoWebPage.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo Web Page&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;h3 id=&#34;hugo-build--github-clone&#34;&gt;Hugo build &amp;amp; Github clone&lt;/h3&gt;
-&lt;p&gt;hugo 빌드를 수행하면 public 디렉토리가 생성됩니다. 생성된 public 디렉토리에 접근해 git clone을 수행합니다(force로 수행해야 함). 
-| hugo -D |
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoPublic.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo Public Directory&#34;&gt;&lt;/p&gt;
+&lt;p&gt;hugo 빌드를 수행하면 public 디렉토리가 생성됩니다. 생성된 public 디렉토리에 접근해 git clone을 수행합니다(force로 수행해야 함). &lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;명령어&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;hugo -D&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoPublic.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo Public Directory&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;h3 id=&#34;hugo-마크다운&#34;&gt;Hugo 마크다운&lt;/h3&gt;
 &lt;p&gt;Hugo 마크다운 문법을 사용합니다. 
 &lt;a href=&#34;https://gohugo.io/content-management/formats/#learn-markdown&#34;&gt;Hugo Learn Markdown&lt;/a&gt;&lt;/p&gt;
