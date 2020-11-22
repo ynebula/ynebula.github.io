@@ -4,16 +4,81 @@
   
   <url>
     <loc>https://ynebula.github.io/</loc>
-    <lastmod>2020-11-14T12:30:39+09:00</lastmod>
+    <lastmod>2020-11-17T12:28:58+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ynebula.github.io/posts/hugo/hugo-install-markdown/</loc>
-    <lastmod>2020-11-14T12:30:39+09:00</lastmod>
+    <loc>https://ynebula.github.io/categories/</loc>
+    <lastmod>2020-11-17T12:28:58+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ynebula.github.io/tags/install/</loc>
+    <lastmod>2020-11-17T12:28:58+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ynebula.github.io/tags/java/</loc>
+    <lastmod>2020-11-17T12:28:58+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ynebula.github.io/categories/java/</loc>
+    <lastmod>2020-11-17T12:28:58+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ynebula.github.io/posts/java/java8_install_on_ubuntu/</loc>
+    <lastmod>2020-11-17T12:28:58+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://ynebula.github.io/posts/</loc>
+    <lastmod>2020-11-17T12:28:58+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ynebula.github.io/tags/</loc>
+    <lastmod>2020-11-17T12:28:58+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ynebula.github.io/post/java/java8_install_on_ubuntu/</loc>
+    <lastmod>2020-11-17T12:28:50+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ynebula.github.io/post/</loc>
+    <lastmod>2020-11-17T12:28:50+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ynebula.github.io/post/java/java_install/</loc>
+    <lastmod>2020-11-17T12:28:23+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ynebula.github.io/categories/bigdata/</loc>
+    <lastmod>2020-11-16T11:39:12+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ynebula.github.io/tags/hadoop/</loc>
+    <lastmod>2020-11-16T11:39:12+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ynebula.github.io/categories/hadoop/</loc>
+    <lastmod>2020-11-16T11:39:12+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ynebula.github.io/posts/bigdata/distributed_mode_install/</loc>
+    <lastmod>2020-11-16T11:39:12+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ynebula.github.io/posts/hugo/hugo-install-markdown/</loc>
     <lastmod>2020-11-14T12:30:39+09:00</lastmod>
   </url>
   
@@ -25,14 +90,6 @@
   <url>
     <loc>https://ynebula.github.io/posts/my-second-post/</loc>
     <lastmod>2020-11-11T12:35:31+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ynebula.github.io/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>https://ynebula.github.io/tags/</loc>
   </url>
   
 </urlset>
