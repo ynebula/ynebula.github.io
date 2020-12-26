@@ -6,10 +6,180 @@
    <description>Recent content in Posts on Bigdata Engineer &amp; Analyst Story</description>
    <generator>Hugo -- gohugo.io</generator>
    <copyright>Copyright &amp;copy; 2020 - Sungwoon Yoon</copyright>
-   <lastBuildDate>Tue, 17 Nov 2020 12:28:58 +0900</lastBuildDate>
+   <lastBuildDate>Sat, 26 Dec 2020 16:05:06 +0900</lastBuildDate>
    
        <atom:link href="https://ynebula.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
    
+   
+     <item>
+       <title>빅데이터 시스템이란</title>
+       <link>https://ynebula.github.io/posts/bigdata/what_is_bigdata_system_/</link>
+       <pubDate>Sat, 26 Dec 2020 16:05:06 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/bigdata/what_is_bigdata_system_/</guid>
+       <description>&lt;h3 id=&#34;빅데이터-시스템-개념&#34;&gt;빅데이터 시스템 개념&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/what_is_bigdata_system_01.jpg&#34; alt=&#34;alt text&#34; title=&#34;Bigdata System&#34;&gt;&lt;br&gt;
+빅데이터 시스템이란 단순히 파일 크기가 크다 파일을 처리한다는 의미가 아니다. 빅데이터 시스템이란 파일의 크기와 그 파일을 처리방식 모두 만족해야 한다.&lt;br&gt;
+즉 데이터 저장에 필요한 &lt;strong&gt;HDFS&lt;/strong&gt; 와 같은 &lt;strong&gt;분산파일시스템&lt;/strong&gt; 과 이 데이터를 처리하는 &lt;strong&gt;MapReduce&lt;/strong&gt; 와 같은 &lt;strong&gt;분산병렬처리프레임워크&lt;/strong&gt; 를 가지고 있어야 빅데이터 처리 시스템이라고 할 수 있다.&lt;br&gt;
+보통 수십 테라 이상의 크기의 테이터로 일반적인 DBMS로 처리하지 못하며, 서버 한 대로 처리할 수 없는 규모의 데이터를 말한다.&lt;br&gt;
+대표적인 시스템으로는 하둡(Hadoop)이 있다.&lt;/p&gt;
+&lt;h3 id=&#34;rdbms와-nosql의-비교-및-bigdata-필요성&#34;&gt;RDBMS와 NoSQL의 비교 및 Bigdata 필요성&lt;/h3&gt;
+&lt;p&gt;보통 일반적인 DBMS는 빠른 읽기에 최적화(R&amp;raquo;CUD)되어있어 CUD가 일어나면 인덱스 수정해야 하는 작업이 있다. 이는 데이터가 빈번히 생성/주정/삭제되는 시스템에 적합하지 않다.&lt;br&gt;
+반면 NoSQL은 빠른 쓰기에 최적화면 DB이다.&lt;br&gt;
+데이터의 사이즈가 수십 테라로 커지면서 CRUD 모두 처리가 필요했으며 Bigdata 기술이 두각 되었다. 빅데이터는 테이블이나 스키마 방식이 아닌 일반적인 파일로 관리(주로 키/밸류 방식)한다.
+빅데이터는 RDBMS나 NoSQL의 데이터 처리 방식(테이블/레코드)과 다르게 &lt;strong&gt;파일(Key/Value)&lt;/strong&gt; 로 처리합니다.&lt;/p&gt;
+&lt;h3 id=&#34;빅데이터의-특징---3v&#34;&gt;빅데이터의 특징 - 3V&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Volume: 데이터 볼륨 증가&lt;/li&gt;
+&lt;li&gt;Velocity: 데이터 생성의 속도가 빨라짐&lt;/li&gt;
+&lt;li&gt;Variety: 정형화, 반정형 및 비정형 데이터&lt;br&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/what_is_bigdata_system_02.jpg&#34; alt=&#34;alt text&#34; title=&#34;3V&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;빅데이터-처리-기술의-요구사항&#34;&gt;빅데이터 처리 기술의 요구사항&lt;/h3&gt;
+&lt;p&gt;데이터 처리 방법&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;배치 처리(Batch Processing): 데이터 일괄처리&lt;/li&gt;
+&lt;li&gt;대화형 처리(Interactive Processing): 수 초 내에 답을 얻는 형태, Hive/Pig/Spark 대화형 모드&lt;/li&gt;
+&lt;li&gt;실시간 처리(Real-time Processing): 실시간 분석, 큰 메모리, 인-메모리 처리 기술 필요&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;결함 허용 시스템&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;다른 노드에 결함 된 내용만 재 수행&lt;/li&gt;
+&lt;li&gt;Multiple Region(물리적으로 다른 지역), Load Balancing(부하분산), Active/Standby, Data Mirroring(디스크 백업), Data Replication(데이터 백업)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;분산 처리/병렬 시스템(Yarn)&lt;/p&gt;
+&lt;p&gt;분산 파일 시스템(HDFS)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;데이터 복제 기술, Block Replication&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;스케일 아웃 방식의 확장성&lt;/p&gt;
+&lt;p&gt;기존 시스템과 연계성&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;정형데이터를 처리했던 RDB와 연계, 즉 빅데이터 처리 요구사항은 빅데이터 시스템에서 처리하고 이 결과를 RDB로 넘겨서 서비스&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;빅데이터 수집, 저장, 처리, 분석, 시각화 도구 등 다양한 도구 지원 필요 및 호환성 필요&lt;br&gt;
+대용량 데이터를 저 비용으로 처리&lt;/p&gt;
+&lt;h3 id=&#34;빅데이터-프로세스-과정&#34;&gt;빅데이터 프로세스 과정&lt;/h3&gt;
+&lt;p&gt;데이터 -&amp;gt; 수집 -&amp;gt; 저장 -&amp;gt; 처리 -&amp;gt; 분석 -&amp;gt; 표현&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;데이터: 내부데이터(파일, 데이터베이스), 외부데이터(공공DB, 소셜미디어, IOT센서)&lt;/li&gt;
+&lt;li&gt;수집: 정형(RDB, CSV), 반정형(HTML, XML, JSON, 웹로그), 비정형(이진파일, 이미지, 동영상, 텍스트)&lt;/li&gt;
+&lt;li&gt;저장: 데이터베이스(RDBMS, NoSQL DB)&lt;/li&gt;
+&lt;li&gt;처리: 배치, 실시간, 분산 병렬&lt;/li&gt;
+&lt;li&gt;분석: 통계, 데이터 마이닝, 텍스트 마이닝, 머신러닝&lt;/li&gt;
+&lt;li&gt;표현: 시간, 분포 관계, 비교, 공간&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;bigdata-처리-방식&#34;&gt;Bigdata 처리 방식&lt;/h3&gt;
+&lt;p&gt;서버의 수를 병렬로 추가하는 Scale out 방식으로 처리하고 하둡v2의 경우 10,000대까지 연결 가능하다. 처리 가능한 데이터 량 수십 PB까지 보통 DBMS는 수 테라바이트 정도의 크기까지 다룰 수 있다.&lt;/p&gt;
+&lt;p&gt;배치 처리&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;주기적 작업을 일괄적으로 수행하는 형식으로 답변을 얻기까지 일정 시간이 소요되는 처리 방식&lt;/li&gt;
+&lt;li&gt;대표적인 툴: 맵리듀스, 하이브, 피그&lt;/li&gt;
+&lt;li&gt;ETL(Extract, Transform, Load) -&amp;gt; 로드된 데이터를 분석&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;대화형 처리&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;원하는 질의 대해 수 초 내에 답을 얻는 형태&lt;/li&gt;
+&lt;li&gt;사용자와 시스템 간의 유져 인터페이스 또는 커맨드라인 인터페이스 필요&lt;/li&gt;
+&lt;li&gt;대표적인 툴: 하이브, 피그, 스파크&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;실시간 처리&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;수 초 미만 또는 1초 미만의 실시간 처리 및 이벤트성 응답으로 데이터가 수집되는 즉시 실시간 전처리, 실시간 계산, 실시간 패턴 분석을 처리&lt;/li&gt;
+&lt;li&gt;데이터 스트림 처리&lt;/li&gt;
+&lt;li&gt;대표적인 툴: 스톰(Storm), 스파크 스트리밍(Spark Streaming) - 인메모리 구조&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;분산-데이터의-문제점-및-해결-방법&#34;&gt;분산 데이터의 문제점 및 해결 방법&lt;/h3&gt;
+&lt;p&gt;문제점: 통상 데이터를 분산하면 여러 개의 시스템 중 어디에 파일의 위치와 일부 시스템/네트워크에 장애의 대한 문제점을 갖고 있다.&lt;/p&gt;
+&lt;p&gt;해결책: 분산파일시스템&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;고가용성: 동일한 정보를 여러 군데 중복으로 저장해서 일부 데이터 유실 및 서버 장애에 대한 문제점을 해결할 수 있다(중복서/다중화(Redundancy)).&lt;/li&gt;
+&lt;li&gt;병렬처리방식: 작업을 나눠 동시에 처리하는 방식으로 처리 속도를 높일 수 있습니다(작업의 분업화).&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Zookeeper 설치</title>
+       <link>https://ynebula.github.io/posts/zookeeper/zookeeper_install_ubuntu/</link>
+       <pubDate>Sun, 22 Nov 2020 14:23:34 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/zookeeper/zookeeper_install_ubuntu/</guid>
+       <description>&lt;h3 id=&#34;설치-환경&#34;&gt;설치 환경&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Zookeeper 버전: zookeeper-3.5.8&lt;/li&gt;
+&lt;li&gt;운영체제: ubuntu-18.04.4-desktop-amd64&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;사전-작업&#34;&gt;사전 작업&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;레파지토리 최신화&lt;/li&gt;
+&lt;li&gt;sudo apt-get update&lt;/li&gt;
+&lt;li&gt;sudo apt-get upgrade&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;java-설치&#34;&gt;Java 설치&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://ynebula.github.io/posts/java/java8_install_on_ubuntu/&#34;&gt;Java 설치 참조 링크&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;adduser zookeeper&lt;/p&gt;
+&lt;h3 id=&#34;zookeeper-다운로드&#34;&gt;Zookeeper 다운로드&lt;/h3&gt;
+&lt;p&gt;Download: &lt;a href=&#34;http://apache.tt.co.kr/zookeeper/stable/&#34;&gt;http://apache.tt.co.kr/zookeeper/stable/&lt;/a&gt;
+wget &lt;a href=&#34;http://apache.tt.co.kr/zookeeper/stable/apache-zookeeper-3.5.8-bin.tar.gz&#34;&gt;http://apache.tt.co.kr/zookeeper/stable/apache-zookeeper-3.5.8-bin.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;sudo mv apache-zookeeper-3.5.8-bin /usr/local/
+sudo chown -R zookeeper:zookeeper apache-zookeeper-3.5.8-bin/
+sudo ln -s apache-zookeeper-3.5.8-bin/ zookeeper&lt;/p&gt;
+&lt;h3 id=&#34;환결-설정&#34;&gt;환결 설정&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;zookeeper 유져의 .profile에 home 디렉토리를 설정합니다.&lt;/li&gt;
+&lt;li&gt;ZOOKEEPER_HOME=/usr/local/zookeeper&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;로그-디렉토리-생성&#34;&gt;로그 디렉토리 생성&lt;/h3&gt;
+&lt;p&gt;지노드의 복사본인 스냅샷과 트랜잭션 로그들이 저장됩니다.
+지노드에 변경사항이 발생하면, 이 변경사항은 트랜잭션 로그에 추가됩니다.
+그리고 로그가 어느정도 커지면, 현재 모든 지노드의 상태 스냅샷이 파일시스템에 저장됩니다.
+앙상블 내 주키퍼 노드를 구분하기 위해서 ID를 만듭니다. 주키퍼에서는 myid라고 부르며 정수 형태로 만들어주면 됩니다.
+방금 만든 /data 디렉토리 하단에 myid라는 파일을 만들고 내용은 1이라고 입력합니다.
+여기서 myid는 주키퍼의 설정 파일에서 사용하게 되며, 예제 2-2의 zoo.cfg파일을 다루면서 다시 설명하겠습니다.
+다른 주키퍼 서버들에도 myid 파일을 만들고 숫자를 입력합니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;sudo mkdir /var/log/zookeeper&lt;/li&gt;
+&lt;li&gt;sudo chown zookeeper:zookeeper /var/log/zookeeper&lt;/li&gt;
+&lt;li&gt;sudo su zookeeper&lt;/li&gt;
+&lt;li&gt;echo 1 &amp;gt; /var/log/zookeeper/myid&lt;/li&gt;
+&lt;li&gt;echo 2 &amp;gt; /var/log/zookeeper/myid&lt;/li&gt;
+&lt;li&gt;echo 3 &amp;gt; /var/log/zookeeper/myid&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;zoo-설정파일-조정&#34;&gt;zoo 설정파일 조정&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;cp zoo_sample.cfg zoo.cfg 
+75  vi zoo.cfg
+&lt;h1 id=&#34;clustered-multi-server-setup&#34;&gt;Clustered (Multi-Server) Setup&lt;/h1&gt;
+&lt;h1 id=&#34;ref-httpszookeeperapacheorgdoccurrentzookeeperadminhtmlsc_singleanddevsetup&#34;&gt;Ref: &lt;a href=&#34;https://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_singleAndDevSetup&#34;&gt;https://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_singleAndDevSetup&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;server.1=zk1:2888:3888
+#server.2=zk2:2888:3888
+#server.3=zk3:2888:3888&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;tickTime=2000
+initLimit=10
+syncLimit=5
+clientPort=2181
+dataDir=/var/log/zookeeper
+server.1=zk1:2888:3888
+server.2=zk2:2888:3888
+#server.3=zk3:2888:3888&lt;/p&gt;
+&lt;p&gt;tickTime: 주키퍼가 사용하는 시간에 대한 기본 측정 단위(밀리초)
+initLimit: 팔로워가 리더와 초기에 연결하는 시간에 대한 타임아웃 tick의 수
+syncLimit: 팔로워가 리더와 동기화 하는 시간에 대한 타임 아웃 tick의 수(주키퍼에 저장된 데이터가 크면 수를 늘려야 함)
+dataDir= 주키퍼의 트랜잭션 로그와 스냅샷이 저장되는 데이터 저장 경로
+clientPort: 주키퍼 사용 TCP포트
+server.x: 주키퍼 앙상블 구성을 위한 서버 설절이며, server.myid 형식으로 사용함&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;myid와 호스트 이름 또는 ID주소:포트번호&lt;/li&gt;
+&lt;li&gt;포트번호 2888, 3888은 기본 포트이며 앙상블 내 노드끼리 연결하는데 사용하고, 리더 선출에 사용함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;zoo-실행&#34;&gt;zoo 실행&lt;/h3&gt;
+&lt;p&gt;/usr/local/zookeeper/bin/zkServer.sh start&lt;/p&gt;
+&lt;p&gt;ps -edf |grep zookeeper&lt;/p&gt;
+</description>
+     </item>
    
      <item>
        <title>Java8 설치</title>
@@ -125,7 +295,7 @@ sudo update-alternatives &amp;ndash;set java /usr/lib/jvm/jdk1.8.0_version/bin/j
 &lt;li&gt;sudo apt-get upgrade&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;java-설치&#34;&gt;Java 설치&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;&#34;&gt;Java 설치 참조 링크&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://ynebula.github.io/posts/java/java8_install_on_ubuntu/&#34;&gt;Java 설치 참조 링크&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&#34;mariadb&#34;&gt;MariaDB&lt;/h3&gt;
 &lt;h4 id=&#34;mariadb-설치&#34;&gt;MariaDB 설치&lt;/h4&gt;
 &lt;ul&gt;
@@ -349,31 +519,6 @@ ECDSA key fingerprint is SHA256:kXhOQgozNkCxUEeojqJ/4rb9Cx7lmU4yDuEgT2Aw5YQ.&lt;
 &lt;li&gt;Hugo 마크다운 문법을 사용합니다.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://gohugo.io/content-management/formats/#learn-markdown&#34;&gt;Hugo Learn Markdown&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-     </item>
-   
-     <item>
-       <title>My First Post</title>
-       <link>https://ynebula.github.io/posts/my-first-post/</link>
-       <pubDate>Wed, 11 Nov 2020 12:35:31 +0900</pubDate>
-       
-       <guid>https://ynebula.github.io/posts/my-first-post/</guid>
-       <description>&lt;p&gt;여기까지 Hugo를 이용한 웹 페이지 꾸미기를 실행하다가 투자되는 시간 대비 너무 다른 길로 새는 느낌이 들어 곧바로 글과 그림을 올리고 퍼블리슁할 수 있는 Gitbook에 글을 올리기 시작했다.
-친숙한 UI와 편리한 기능 제공으로 나에게는 안성맞춤이지만 이게 문서에 특화된 플랫폼이라 그런지 게시글이 사이드바에  추가되어 영 블로그느낌이 아닌 매뉴얼 느낌이 나는게 문제다.
-더군다나 글을 쓰고 완성하지 못한 채로 Merge를 하게 되면 미된 미완성된 글과 뒤죽박죽인 카테고리를 누가 볼 수도 있어 영 찜찜하다.&lt;/p&gt;
-&lt;p&gt;여기까지 Hugo를 이용한 웹 페이지 꾸미기를 실행하다가 투자되는 시간 대비 너무 다른 길로 새는 느낌이 들어 곧바로 글과 그림을 올리고 퍼블리슁할 수 있는 Gitbook에 글을 올리기 시작했다.
-친숙한 UI와 편리한 기능 제공으로 나에게는 안성맞춤이지만 이게 문서에 특화된 플랫폼이라 그런지 게시글이 사이드바에  추가되어 영 블로그느낌이 아닌 매뉴얼 느낌이 나는게 문제다.
-더군다나 글을 쓰고 완성하지 못한 채로 Merge를 하게 되면 미된 미완성된 글과 뒤죽박죽인 카테고리를 누가 볼 수도 있어 영 찜찜하다.&lt;/p&gt;
-</description>
-     </item>
-   
-     <item>
-       <title>My First Post</title>
-       <link>https://ynebula.github.io/posts/my-second-post/</link>
-       <pubDate>Wed, 11 Nov 2020 12:35:31 +0900</pubDate>
-       
-       <guid>https://ynebula.github.io/posts/my-second-post/</guid>
-       <description>&lt;p&gt;asasasaaa&lt;/p&gt;
 </description>
      </item>
    
