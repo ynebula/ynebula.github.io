@@ -1,0 +1,237 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>Hdfs - Bigdata Engineer &amp; Analyst Story</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Kiera: A Hugo theme for creative and technical writing." />
+<meta name="author" content="Sungwoon Yoon" /><meta property="og:title" content="Hdfs" />
+<meta property="og:description" content="하둡 코어 구성 요소 하둡 분산 파일 시스템(HDFS)
+ 하둡 클러스터 노드에 데이터를 저장하는 분산된 파일 시스템 어디에 블록이 저장돼 있는지 위치 정보 필요 20강 1분 이미지  데이터 읽기/쓰기 과정 네임노드: 네임스페이스(위치정보) 관리 보조 네임노드: 네이노드 페일 시 사용됨, 네임스페이스 동시 관리 데이터노드: 데이터 블록 저장 20강 5분 이미지" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ynebula.github.io/posts/bigdata/hdfs/" />
+<meta property="article:published_time" content="2021-01-03T22:33:30+09:00" />
+<meta property="article:modified_time" content="2021-01-03T22:33:30+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hdfs"/>
+<meta name="twitter:description" content="하둡 코어 구성 요소 하둡 분산 파일 시스템(HDFS)
+ 하둡 클러스터 노드에 데이터를 저장하는 분산된 파일 시스템 어디에 블록이 저장돼 있는지 위치 정보 필요 20강 1분 이미지  데이터 읽기/쓰기 과정 네임노드: 네임스페이스(위치정보) 관리 보조 네임노드: 네이노드 페일 시 사용됨, 네임스페이스 동시 관리 데이터노드: 데이터 블록 저장 20강 5분 이미지"/>
+
+<meta name="generator" content="Hugo 0.78.1" />
+    
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://ynebula.github.io/fontawesome/css/all.min.css" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  
+  
+  <link rel="stylesheet" type="text/css" href="https://ynebula.github.io/css/styles.css" /></head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://ynebula.github.io/">Bigdata Engineer &amp; Analyst Story</a>
+            </h1>
+
+      <ul id="social-media">
+             <li>
+               <a href="https://www.facebook.com/username" title="Facebook">
+               <i class="fab fa-facebook fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://github.com/ynebula" title="GitHub">
+               <i class="fab fa-github fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://linkedin.com/in/%EC%84%B1%EC%9A%B4-%EC%9C%A4-a9bb30135/" title="LinkedIn">
+               <i class="fab fa-linkedin fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://www.instagram.com/sungwoon.yoon" title="Instagram">
+               <i class="fab fa-instagram fa-lg"></i>
+               </a>
+             </li>
+      </ul>
+      
+      <p><em>A Hugo theme for creative and technical writing</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://ynebula.github.io/tags">
+                <i class="fa-li fa  fa-lg"></i><span>Tags</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://ynebula.github.io/categories">
+                <i class="fa-li fa  fa-lg"></i><span>Categories</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Hdfs</h1>
+
+    
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2021-01-03T22:33:30&#43;09:00">Jan 3, 2021</time>
+        </li>
+        
+        
+
+        
+
+        <li>One minute read</li>
+    </ul>
+</aside>
+
+    
+
+    
+<div class="featured_image">
+    <a href="https://ynebula.github.io/posts/bigdata/hdfs/" title="Hdfs">
+        <img src="">
+    </a>
+</div>
+
+
+
+    <p>하둡 코어 구성 요소
+하둡 분산 파일 시스템(HDFS)</p>
+<ul>
+<li>하둡 클러스터 노드에 데이터를 저장하는 분산된 파일 시스템</li>
+<li>어디에 블록이 저장돼 있는지 위치 정보 필요
+20강 1분 이미지</li>
+</ul>
+<p>데이터 읽기/쓰기 과정
+네임노드: 네임스페이스(위치정보) 관리
+보조 네임노드: 네이노드 페일 시 사용됨, 네임스페이스 동시 관리
+데이터노드: 데이터 블록 저장
+20강 5분 이미지</p>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://ynebula.github.io/posts/bigdata/yarn/"><i class="fa fa-chevron-circle-left"></i> Yarn</a>
+        </li>
+        
+        
+    </ul>
+</section>
+  
+    
+    
+        <section class="comments-block">
+      <button id="show-comments" style="display: none;"><i class="fa fa-comments"></i> Add/View Comments</button>
+</section>
+
+<section id="disqus_thread"></section>
+
+<script>
+      (function () {
+            
+            
+            if (window.location.hostname == "localhost")
+                  return;
+
+            var disqus_loaded = false;
+            var disqus_shortname = 'myShortName';
+            var disqus_button = document.getElementById("show-comments");
+
+            var disqus_autoload =  null ;
+            var disable_comment =  null ;
+
+            if (disable_comment)
+                  return;
+
+            disqus_button.style.display = "";
+
+            if (disqus_autoload){
+                  disqus();
+            }else{
+                  disqus_button.addEventListener("click", disqus, false);
+            }
+
+            function disqus() {
+
+                  if (!disqus_loaded) {
+                        disqus_loaded = true;
+
+                        var e = document.createElement("script");
+                        e.type = "text/javascript";
+                        e.async = true;
+                        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                        (document.getElementsByTagName("head")[0] ||
+                              document.getElementsByTagName("body")[0])
+                        .appendChild(e);
+
+                        
+                        document.getElementById("show-comments").style.display = "none";
+                  }
+            }
+
+            
+            var hash = window.location.hash.substr(1);
+            if (hash.length > 8) {
+                  if (hash.substring(0, 8) == "comment-") {
+                        disqus();
+                  }
+            }
+
+            
+            if (/bot|google|baidu|bing|msn|duckduckgo|slurp|yandex/i.test(navigator.userAgent)) {
+                  disqus();
+            }
+      })();
+</script>
+
+    
+  
+
+
+
+
+
+</main>
+    <footer>
+        <h6>Copyright © 2020 - Sungwoon Yoon |
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://ynebula.github.io/index.xml">Subscribe </a></h6>
+    </footer>
+</div>
+<script src="https://ynebula.github.io/js/scripts.js"></script>
+
+
+</body>
+
+</html>
+

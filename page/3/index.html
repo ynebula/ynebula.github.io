@@ -94,11 +94,68 @@
     
 
     <li class="first" >
-      <h1><a href="https://ynebula.github.io/posts/bigdata/hdfs/" title="Hdfs">Hdfs</a></h1>
+      <h1><a href="https://ynebula.github.io/posts/bigdata/distributed_mode_install/" title="하둡(Hadoop) 가상 분산 모드 설치">하둡(Hadoop) 가상 분산 모드 설치</a></h1>
       <aside>
     <ul>
         <li>
-            <time class="post-date" datetime="2021-01-03T22:33:30&#43;09:00">Jan 3, 2021</time>
+            <time class="post-date" datetime="2020-11-16T11:39:12&#43;09:00">Nov 16, 2020</time>
+        </li>
+        
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="https://ynebula.github.io/categories/bigdata">Bigdata</a>
+                
+                    , 
+                    <a href="https://ynebula.github.io/categories/hadoop">Hadoop</a>
+                
+            </em>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="https://ynebula.github.io/tags/hadoop">#Hadoop</a>
+                
+                    , 
+                    <a href="https://ynebula.github.io/tags/install">#Install</a>
+                
+            </em>
+        </li>
+        
+
+        <li>3 minutes read</li>
+    </ul>
+</aside>
+
+      
+<div class="featured_image">
+    <a href="https://ynebula.github.io/posts/bigdata/distributed_mode_install/" title="하둡(Hadoop) 가상 분산 모드 설치">
+        <img src="">
+    </a>
+</div>
+
+
+      <p>사전 작업  레파지토리 최신화(패키지들의 새로운 버젼이 있는지 확인하고 최신 버전으로 업그래이드) sudo apt-get update sudo apt-get upgrade  Java 설치 Java 설치 참조 링크
+MariaDB MariaDB 설치  sudo apt-get install -y mariadb-server  mysql 사용자 확인  cat /etc/passwd 를 수행해 mysql 유져를 확인합니다.</p>
+      
+      <a href="https://ynebula.github.io/posts/bigdata/distributed_mode_install/">Read more…</a>
+      
+    </li>
+    
+
+    <li >
+      <h1><a href="https://ynebula.github.io/posts/hugo/hugo-install-markdown/" title="Hugo 설치(Install) &amp; 마크다운(Markdown)">Hugo 설치(Install) &amp; 마크다운(Markdown)</a></h1>
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2020-11-14T12:30:39&#43;09:00">Nov 14, 2020</time>
         </li>
         
         
@@ -111,76 +168,15 @@
 
       
 <div class="featured_image">
-    <a href="https://ynebula.github.io/posts/bigdata/hdfs/" title="Hdfs">
+    <a href="https://ynebula.github.io/posts/hugo/hugo-install-markdown/" title="Hugo 설치(Install) &amp; 마크다운(Markdown)">
         <img src="">
     </a>
 </div>
 
 
-      <p>하둡 코어 구성 요소 하둡 분산 파일 시스템(HDFS)
- 하둡 클러스터 노드에 데이터를 저장하는 분산된 파일 시스템 어디에 블록이 저장돼 있는지 위치 정보 필요 20강 1분 이미지  데이터 읽기/쓰기 과정 네임노드: 네임스페이스(위치정보) 관리 보조 네임노드: 네이노드 페일 시 사용됨, 네임스페이스 동시 관리 데이터노드: 데이터 블록 저장 20강 5분 이미지</p>
+      <p>참고사이트  Install Hugo Link Quick Start Link  설치 환경  Windows 10, Github  Github 설치  Github Download Link  Download &amp; Install  Windows 환경 Hugo 설치는 Binary 파일을 다운로드 받고 시스템 환경 변수에 등록만 하면 됩니다.</p>
       
-    </li>
-    
-
-    <li >
-      <h1><a href="https://ynebula.github.io/posts/bigdata/yarn/" title="Yarn">Yarn</a></h1>
-      <aside>
-    <ul>
-        <li>
-            <time class="post-date" datetime="2021-01-03T22:31:11&#43;09:00">Jan 3, 2021</time>
-        </li>
-        
-        
-
-        
-
-        <li>2 minutes read</li>
-    </ul>
-</aside>
-
-      
-<div class="featured_image">
-    <a href="https://ynebula.github.io/posts/bigdata/yarn/" title="Yarn">
-        <img src="">
-    </a>
-</div>
-
-
-      <p>Yarn (Yet Another Resource Negotiator)  HDFS 계층과 MR 계층 중간에 YARN 을 구성해 리소스(자원)관리 수행 (MapReduce - YARN - HDFS) MapReduce이외의 데이터 처리 모듈이 하위의 HDFS를 공유할 수 있음 즉, 여러 Data Processing 지원 자원을 다양한 응용 프로그램에 효율적으로 할당하고 사용자 응용 프로그램을 효율적으로 스케줄링 함 애플리케이션마스터 (AM-Application Master)가 애플리케이션 별로 리소스를 관리함 작업을 관리  잡트래커 하나가 전체 시스템을 관리하는 형태에서 애프리케이션 별로 관리함 잡트래커+태스트트래커 -&gt; 리소스매니저+노드매니저 시스템 리소스 관리와 잡 관리를 분리   클러스터의 자원을 컨테이너(Container)로 분할  컨테이너는 할당되는 CPU 코어 수와 메모리 용량으로 정의됨   실행 중인 컨테이너들을 모니터링 함  컨테이너가 자원(CPU, 메모리, 디스크, 네트워크 등)의 최대 할당량을 초과하지 않게 억제   클러스터의 자원을 컨테이너로 관리함으로써 분산 시스템을 전체적으로 원활하게 운영함 클러스터의 자원을 다수의 응용 프로그램에 공평한 방식으로 공유함 자원 관리자(Resource Manager)  다양한 응용 프로그램에 자원을 할당   응용 프로그램 마스터(Application Master)  프로세스의 실행을 모니터링 자원 관리자에게 자원을 요청    하둡 YARN  클러스터에 있는 컴퓨팅 자원들(CPU, 메모리 등)을 동적으로 관리하는 플랫폼 서비스  클러스터 자원 관리</p>
-      
-      <a href="https://ynebula.github.io/posts/bigdata/yarn/">Read more…</a>
-      
-    </li>
-    
-
-    <li >
-      <h1><a href="https://ynebula.github.io/posts/bigdata/hadoop_architecture/" title="하둡 아키텍처">하둡 아키텍처</a></h1>
-      <aside>
-    <ul>
-        <li>
-            <time class="post-date" datetime="2020-12-27T15:28:31&#43;09:00">Dec 27, 2020</time>
-        </li>
-        
-        
-
-        
-
-        <li>4 minutes read</li>
-    </ul>
-</aside>
-
-      
-<div class="featured_image">
-    <a href="https://ynebula.github.io/posts/bigdata/hadoop_architecture/" title="하둡 아키텍처">
-        <img src="">
-    </a>
-</div>
-
-
-      <p>하둡 아키텍쳐 하둡은 분산파일시스템 HDFS(Hadoop Distributed File System)과 분산처리 기술인 MapReduce 기술이 결합된 기술이다.         하둡(Hadoop) = HDFS(Big file system) + MapReduce(분산처리 시스템)    하둡 클러스터 동작 방식 독립 모드(Standalone Mode)</p>
-      
-      <a href="https://ynebula.github.io/posts/bigdata/hadoop_architecture/">Read more…</a>
+      <a href="https://ynebula.github.io/posts/hugo/hugo-install-markdown/">Read more…</a>
       
     </li>
     
@@ -192,20 +188,20 @@
   <li class="page-item">
     <a href="https://ynebula.github.io/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
   </li>
-  <li class="page-item disabled">
-    <a  class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+  <li class="page-item">
+    <a href="https://ynebula.github.io/page/2/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
   </li>
-  <li class="page-item active">
+  <li class="page-item">
     <a class="page-link" href="https://ynebula.github.io/">1</a>
   </li>
   <li class="page-item">
     <a class="page-link" href="https://ynebula.github.io/page/2/">2</a>
   </li>
-  <li class="page-item">
+  <li class="page-item active">
     <a class="page-link" href="https://ynebula.github.io/page/3/">3</a>
   </li>
-  <li class="page-item">
-    <a href="https://ynebula.github.io/page/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+  <li class="page-item disabled">
+    <a  class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
   </li>
   <li class="page-item">
     <a href="https://ynebula.github.io/page/3/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
