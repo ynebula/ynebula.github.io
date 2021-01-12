@@ -3,22 +3,24 @@
 <html lang="en">
 
 <head>
-  <title>Hdfs - Bigdata Engineer &amp; Analyst Story</title>
+  <title>Sqoop - Bigdata Engineer &amp; Analyst Story</title>
   <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="Kiera: A Hugo theme for creative and technical writing." />
-<meta name="author" content="Sungwoon Yoon" /><meta property="og:title" content="Hdfs" />
-<meta property="og:description" content="하둡 코어 구성 요소 하둡 분산 파일 시스템(HDFS)
- 하둡 클러스터 노드에 데이터를 저장하는 분산된 파일 시스템 어디에 블록이 저장돼 있는지 위치 정보 필요 20강 1분 이미지  데이터 읽기/쓰기 과정 네임노드: 네임스페이스(위치정보) 관리 보조 네임노드: 네이노드 페일 시 사용됨, 네임스페이스 동시 관리 데이터노드: 데이터 블록 저장 20강 5분 이미지" />
+<meta name="author" content="Sungwoon Yoon" /><meta property="og:title" content="Sqoop" />
+<meta property="og:description" content="스쿱(Sqoop)
+ 하둡에코시스템에 수집 부분 RDBMS와 HDFS간의 효율적인 데이터 전송 지원 도구 JDBC와 호환되는 모든 RDBMS에 사용 가능  스쿱 임포트(Sqoop Import)
+ RDBMS에서 HDFS Storage로 저장 스쿱잡은 맵(Map)만 수행하여 HDFS Storage에 저장  스쿱 익스포트(Sqoop Export)" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://ynebula.github.io/posts/bigdata/hdfs/" />
-<meta property="article:published_time" content="2021-01-03T22:33:30+09:00" />
-<meta property="article:modified_time" content="2021-01-03T22:33:30+09:00" />
+<meta property="og:url" content="https://ynebula.github.io/posts/bigdata/sqoop/" />
+<meta property="article:published_time" content="2021-01-12T23:20:56+09:00" />
+<meta property="article:modified_time" content="2021-01-12T23:20:56+09:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Hdfs"/>
-<meta name="twitter:description" content="하둡 코어 구성 요소 하둡 분산 파일 시스템(HDFS)
- 하둡 클러스터 노드에 데이터를 저장하는 분산된 파일 시스템 어디에 블록이 저장돼 있는지 위치 정보 필요 20강 1분 이미지  데이터 읽기/쓰기 과정 네임노드: 네임스페이스(위치정보) 관리 보조 네임노드: 네이노드 페일 시 사용됨, 네임스페이스 동시 관리 데이터노드: 데이터 블록 저장 20강 5분 이미지"/>
+<meta name="twitter:title" content="Sqoop"/>
+<meta name="twitter:description" content="스쿱(Sqoop)
+ 하둡에코시스템에 수집 부분 RDBMS와 HDFS간의 효율적인 데이터 전송 지원 도구 JDBC와 호환되는 모든 RDBMS에 사용 가능  스쿱 임포트(Sqoop Import)
+ RDBMS에서 HDFS Storage로 저장 스쿱잡은 맵(Map)만 수행하여 HDFS Storage에 저장  스쿱 익스포트(Sqoop Export)"/>
 
 <meta name="generator" content="Hugo 0.78.1" />
     
@@ -92,13 +94,13 @@
 
 <article>
 
-    <h1>Hdfs</h1>
+    <h1>Sqoop</h1>
 
     
       <aside>
     <ul>
         <li>
-            <time class="post-date" datetime="2021-01-03T22:33:30&#43;09:00">Jan 3, 2021</time>
+            <time class="post-date" datetime="2021-01-12T23:20:56&#43;09:00">Jan 12, 2021</time>
         </li>
         
         
@@ -113,25 +115,60 @@
 
     
 <div class="featured_image">
-    <a href="https://ynebula.github.io/posts/bigdata/hdfs/" title="Hdfs">
+    <a href="https://ynebula.github.io/posts/bigdata/sqoop/" title="Sqoop">
         <img src="">
     </a>
 </div>
 
 
 
-    <p>하둡 코어 구성 요소
-하둡 분산 파일 시스템(HDFS)</p>
+    <p>스쿱(Sqoop)</p>
 <ul>
-<li>하둡 클러스터 노드에 데이터를 저장하는 분산된 파일 시스템</li>
-<li>어디에 블록이 저장돼 있는지 위치 정보 필요
-20강 1분 이미지</li>
+<li>하둡에코시스템에 수집 부분</li>
+<li>RDBMS와 HDFS간의 효율적인 데이터 전송 지원 도구</li>
+<li>JDBC와 호환되는 모든 RDBMS에 사용 가능</li>
 </ul>
-<p>데이터 읽기/쓰기 과정
-네임노드: 네임스페이스(위치정보) 관리
-보조 네임노드: 네이노드 페일 시 사용됨, 네임스페이스 동시 관리
-데이터노드: 데이터 블록 저장
-20강 5분 이미지</p>
+<p>스쿱 임포트(Sqoop Import)</p>
+<ul>
+<li>RDBMS에서 HDFS Storage로 저장</li>
+<li>스쿱잡은 맵(Map)만 수행하여 HDFS Storage에 저장</li>
+</ul>
+<p>스쿱 익스포트(Sqoop Export)</p>
+<ul>
+<li>HDFS Storage에서 RDBMS로 저장</li>
+<li>스쿱잡은 맵(Map)만 수행하여 RDBMS에 저장</li>
+<li>RDBMS에 Table은 생성돼 있어야 함</li>
+</ul>
+<p>스쿱v1 VS 스쿱v2</p>
+<ul>
+<li>복잡성과 보안 취약으로 v2에서는 다음과 같은 사항을 지원하지 않음</li>
+<li>Kerberos보안 통함: v1(지원함), v2(지원하지 않음)</li>
+<li>RDBMS에서 하이브나 HBase로 데이터 전송: v1(지원함), v2(지원하지 않음)</li>
+</ul>
+<p>스쿱 명령어
+RDBMS 보기</p>
+<ul>
+<li>sqoop list-databases &ndash;connect jdbc:mysql://{host_name} &ndash;username {username} &ndash;password {password}</li>
+</ul>
+<p>Table 보기</p>
+<ul>
+<li>sqoop list-tables &ndash;connect jdbc:mysql://{host_name}/{db_name} &ndash;username {username} &ndash;password {password}</li>
+</ul>
+<p>스쿱 임포트</p>
+<ul>
+<li>sqoop import &ndash;connect jdbc:mysql://{host_name}/{db_name} &ndash;username {username} &ndash;password {password} &ndash;table {table_name} -m 1 &ndash;target-dir {hdfs_target_dir}</li>
+</ul>
+<p>스쿱 익스포트</p>
+<ul>
+<li>sqoop export &ndash;connect jdbc:mysql://{host_name}/{db_name} &ndash;username {username} &ndash;password {password} &ndash;table {table_name} -m 1 &ndash;export-dir {hdfs_export_dir}</li>
+</ul>
+<p>HDFS 확인</p>
+<ul>
+<li>hdfs dfs -ls {hdfs_target_dir}</li>
+<li>hdfs dfs -cat {hdfs_target_dir}/part-m-00000
+: 구분자 콤마
+: Map잡이 하나이므로 파일 하나만 생김</li>
+</ul>
 
 
 </article>
@@ -141,13 +178,9 @@
     <ul>
         
         <li>
-            <a href="https://ynebula.github.io/posts/bigdata/yarn/"><i class="fa fa-chevron-circle-left"></i> Yarn</a>
+            <a href="https://ynebula.github.io/posts/bigdata/hdfs/"><i class="fa fa-chevron-circle-left"></i> Hdfs</a>
         </li>
         
-        
-        <li>
-            <a href="https://ynebula.github.io/posts/bigdata/sqoop/">Sqoop <i class="fa fa-chevron-circle-right"></i> </a>
-        </li>
         
     </ul>
 </section>

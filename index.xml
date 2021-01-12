@@ -6,10 +6,66 @@
    <description>Recent content on Bigdata Engineer &amp; Analyst Story</description>
    <generator>Hugo -- gohugo.io</generator>
    <copyright>Copyright &amp;copy; 2020 - Sungwoon Yoon</copyright>
-   <lastBuildDate>Sun, 03 Jan 2021 22:33:30 +0900</lastBuildDate>
+   <lastBuildDate>Tue, 12 Jan 2021 23:20:56 +0900</lastBuildDate>
    
        <atom:link href="https://ynebula.github.io/index.xml" rel="self" type="application/rss+xml" />
    
+   
+     <item>
+       <title>Sqoop</title>
+       <link>https://ynebula.github.io/posts/bigdata/sqoop/</link>
+       <pubDate>Tue, 12 Jan 2021 23:20:56 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/bigdata/sqoop/</guid>
+       <description>&lt;p&gt;스쿱(Sqoop)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;하둡에코시스템에 수집 부분&lt;/li&gt;
+&lt;li&gt;RDBMS와 HDFS간의 효율적인 데이터 전송 지원 도구&lt;/li&gt;
+&lt;li&gt;JDBC와 호환되는 모든 RDBMS에 사용 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;스쿱 임포트(Sqoop Import)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;RDBMS에서 HDFS Storage로 저장&lt;/li&gt;
+&lt;li&gt;스쿱잡은 맵(Map)만 수행하여 HDFS Storage에 저장&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;스쿱 익스포트(Sqoop Export)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HDFS Storage에서 RDBMS로 저장&lt;/li&gt;
+&lt;li&gt;스쿱잡은 맵(Map)만 수행하여 RDBMS에 저장&lt;/li&gt;
+&lt;li&gt;RDBMS에 Table은 생성돼 있어야 함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;스쿱v1 VS 스쿱v2&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;복잡성과 보안 취약으로 v2에서는 다음과 같은 사항을 지원하지 않음&lt;/li&gt;
+&lt;li&gt;Kerberos보안 통함: v1(지원함), v2(지원하지 않음)&lt;/li&gt;
+&lt;li&gt;RDBMS에서 하이브나 HBase로 데이터 전송: v1(지원함), v2(지원하지 않음)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;스쿱 명령어
+RDBMS 보기&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;sqoop list-databases &amp;ndash;connect jdbc:mysql://{host_name} &amp;ndash;username {username} &amp;ndash;password {password}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Table 보기&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;sqoop list-tables &amp;ndash;connect jdbc:mysql://{host_name}/{db_name} &amp;ndash;username {username} &amp;ndash;password {password}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;스쿱 임포트&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;sqoop import &amp;ndash;connect jdbc:mysql://{host_name}/{db_name} &amp;ndash;username {username} &amp;ndash;password {password} &amp;ndash;table {table_name} -m 1 &amp;ndash;target-dir {hdfs_target_dir}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;스쿱 익스포트&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;sqoop export &amp;ndash;connect jdbc:mysql://{host_name}/{db_name} &amp;ndash;username {username} &amp;ndash;password {password} &amp;ndash;table {table_name} -m 1 &amp;ndash;export-dir {hdfs_export_dir}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;HDFS 확인&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;hdfs dfs -ls {hdfs_target_dir}&lt;/li&gt;
+&lt;li&gt;hdfs dfs -cat {hdfs_target_dir}/part-m-00000
+: 구분자 콤마
+: Map잡이 하나이므로 파일 하나만 생김&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+     </item>
    
      <item>
        <title>Hdfs</title>
