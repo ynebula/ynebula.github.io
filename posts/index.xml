@@ -68,10 +68,10 @@
 &lt;li&gt;Switch Case문과 유사한 구조&lt;/li&gt;
 &lt;li&gt;JSP EL(Java Server Page Expression Language)형시 사용&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;WordCount예시&lt;/strong&gt; 
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/oozie_01.jpg&#34; alt=&#34;alt text&#34; title=&#34;Word Count&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;OozieWorkflow예시&lt;/strong&gt;
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/oozie_02.jpg&#34; alt=&#34;alt text&#34; title=&#34;Oozie Workflow Example&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;WordCount예시&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/oozie_01.png&#34; alt=&#34;alt text&#34; title=&#34;Word Count&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;OozieWorkflow예시&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/oozie_02.png&#34; alt=&#34;alt text&#34; title=&#34;Oozie Workflow Example&#34;&gt;&lt;/p&gt;
 </description>
      </item>
    
@@ -101,7 +101,7 @@
 &lt;li&gt;znode라는 데이터 저장 객체를 제공함(Key-Value 방식)
 &lt;ul&gt;
 &lt;li&gt;객체에 데이터(상태 정보, 구성 정보, 위치 정보 등)를 넣고 빼는 기능을 제공함
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/zookeeper_01.jpg&#34; alt=&#34;alt text&#34; title=&#34;Zoopkeeper Directory&#34;&gt;&lt;/li&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/zookeeper_01.png&#34; alt=&#34;alt text&#34; title=&#34;Zoopkeeper Directory&#34;&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -134,7 +134,7 @@
 &lt;li&gt;클라이언트가 주키퍼 서버에 연결&lt;/li&gt;
 &lt;li&gt;요청, 응답, Watch 이벤트, Heart Bests 등을 주고 받음&lt;/li&gt;
 &lt;li&gt;TCP 연결(신뢰성이 강한 연결)을 유지하며, 연결이 끊어지면 타 서버에 연결
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/zookeeper_02.jpg&#34; alt=&#34;alt text&#34; title=&#34;Zoopkeeper Replication&#34;&gt;&lt;/li&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/zookeeper_02.png&#34; alt=&#34;alt text&#34; title=&#34;Zoopkeeper Replication&#34;&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;주키퍼-활용분야&#34;&gt;주키퍼 활용분야&lt;/h3&gt;
 &lt;p&gt;클러스터 정보&lt;/p&gt;
