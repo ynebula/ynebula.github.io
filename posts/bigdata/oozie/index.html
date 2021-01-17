@@ -3,20 +3,20 @@
 <html lang="en">
 
 <head>
-  <title>Sqoop - Bigdata Engineer &amp; Analyst Story</title>
+  <title>Oozie - Bigdata Engineer &amp; Analyst Story</title>
   <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="Kiera: A Hugo theme for creative and technical writing." />
-<meta name="author" content="Sungwoon Yoon" /><meta property="og:title" content="Sqoop" />
-<meta property="og:description" content="스쿱(Sqoop)  하둡에코시스템에 수집 부분 RDBMS와 HDFS간의 효율적인 데이터 전송 지원 도구 JDBC와 호환되는 모든 RDBMS에 사용 가능  스쿱 임포트(Sqoop Import)  RDBMS에서 HDFS Storage로 저장 스쿱잡은 맵(Map)만 수행하여 HDFS Storage에 저장  스쿱 익스포트(Sqoop Export)  HDFS Storage에서 RDBMS로 저장 스쿱잡은 맵(Map)만 수행하여 RDBMS에 저장 RDBMS에 Table은 생성돼 있어야 함  스쿱v1 VS 스쿱v2  복잡성과 보안 취약으로 v2에서는 다음과 같은 사항을 지원하지 않음 Kerberos보안 통함: v1(지원함), v2(지원하지 않음) RDBMS에서 하이브나 HBase로 데이터 전송: v1(지원함), v2(지원하지 않음)  스쿱 명령어 RDBMS 보기" />
+<meta name="author" content="Sungwoon Yoon" /><meta property="og:title" content="Oozie" />
+<meta property="og:description" content="Oozie개요  여러 하둡 작업을 실행하고 관리하는 워크플로우 스케줄러 시스템 데이터 수집부터 분석에 이르는 데이터 파이프라인을 구성 시 워크플로우 정의 및 개별 하둡 작업의 순차적 실행 및 관리 여러 유형의 하둡 작업 지원  맵리듀스, 피그, 하이브, 스파크, 스쿱, 자바, 쉘스크립트   워크플로우 작업은 여러 액션의 DAG(Directed Acyclic Graph)로 표현됨  우지 작업 유형 워크플로우(Workflow)" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://ynebula.github.io/posts/bigdata/sqoop/" />
-<meta property="article:published_time" content="2021-01-12T23:20:56+09:00" />
-<meta property="article:modified_time" content="2021-01-12T23:20:56+09:00" />
+<meta property="og:url" content="https://ynebula.github.io/posts/bigdata/oozie/" />
+<meta property="article:published_time" content="2021-01-17T18:54:40+09:00" />
+<meta property="article:modified_time" content="2021-01-17T18:54:40+09:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Sqoop"/>
-<meta name="twitter:description" content="스쿱(Sqoop)  하둡에코시스템에 수집 부분 RDBMS와 HDFS간의 효율적인 데이터 전송 지원 도구 JDBC와 호환되는 모든 RDBMS에 사용 가능  스쿱 임포트(Sqoop Import)  RDBMS에서 HDFS Storage로 저장 스쿱잡은 맵(Map)만 수행하여 HDFS Storage에 저장  스쿱 익스포트(Sqoop Export)  HDFS Storage에서 RDBMS로 저장 스쿱잡은 맵(Map)만 수행하여 RDBMS에 저장 RDBMS에 Table은 생성돼 있어야 함  스쿱v1 VS 스쿱v2  복잡성과 보안 취약으로 v2에서는 다음과 같은 사항을 지원하지 않음 Kerberos보안 통함: v1(지원함), v2(지원하지 않음) RDBMS에서 하이브나 HBase로 데이터 전송: v1(지원함), v2(지원하지 않음)  스쿱 명령어 RDBMS 보기"/>
+<meta name="twitter:title" content="Oozie"/>
+<meta name="twitter:description" content="Oozie개요  여러 하둡 작업을 실행하고 관리하는 워크플로우 스케줄러 시스템 데이터 수집부터 분석에 이르는 데이터 파이프라인을 구성 시 워크플로우 정의 및 개별 하둡 작업의 순차적 실행 및 관리 여러 유형의 하둡 작업 지원  맵리듀스, 피그, 하이브, 스파크, 스쿱, 자바, 쉘스크립트   워크플로우 작업은 여러 액션의 DAG(Directed Acyclic Graph)로 표현됨  우지 작업 유형 워크플로우(Workflow)"/>
 
 <meta name="generator" content="Hugo 0.78.1" />
     
@@ -90,13 +90,13 @@
 
 <article>
 
-    <h1>Sqoop</h1>
+    <h1>Oozie</h1>
 
     
       <aside>
     <ul>
         <li>
-            <time class="post-date" datetime="2021-01-12T23:20:56&#43;09:00">Jan 12, 2021</time>
+            <time class="post-date" datetime="2021-01-17T18:54:40&#43;09:00">Jan 17, 2021</time>
         </li>
         
         
@@ -111,60 +111,68 @@
 
     
 <div class="featured_image">
-    <a href="https://ynebula.github.io/posts/bigdata/sqoop/" title="Sqoop">
+    <a href="https://ynebula.github.io/posts/bigdata/oozie/" title="Oozie">
         <img src="">
     </a>
 </div>
 
 
 
-    <h3 id="스쿱sqoop">스쿱(Sqoop)</h3>
+    <h3 id="oozie개요">Oozie개요</h3>
 <ul>
-<li>하둡에코시스템에 수집 부분</li>
-<li>RDBMS와 HDFS간의 효율적인 데이터 전송 지원 도구</li>
-<li>JDBC와 호환되는 모든 RDBMS에 사용 가능</li>
-</ul>
-<h3 id="스쿱-임포트sqoop-import">스쿱 임포트(Sqoop Import)</h3>
+<li>여러 하둡 작업을 실행하고 관리하는 워크플로우 스케줄러 시스템</li>
+<li>데이터 수집부터 분석에 이르는 데이터 파이프라인을 구성 시 워크플로우 정의 및 개별 하둡 작업의 순차적 실행 및 관리</li>
+<li>여러 유형의 하둡 작업 지원
 <ul>
-<li>RDBMS에서 HDFS Storage로 저장</li>
-<li>스쿱잡은 맵(Map)만 수행하여 HDFS Storage에 저장</li>
+<li>맵리듀스, 피그, 하이브, 스파크, 스쿱, 자바, 쉘스크립트</li>
 </ul>
-<h3 id="스쿱-익스포트sqoop-export">스쿱 익스포트(Sqoop Export)</h3>
+</li>
+<li>워크플로우 작업은 여러 액션의 DAG(Directed Acyclic Graph)로 표현됨</li>
+</ul>
+<h3 id="우지-작업-유형">우지 작업 유형</h3>
+<p><strong>워크플로우(Workflow)</strong></p>
 <ul>
-<li>HDFS Storage에서 RDBMS로 저장</li>
-<li>스쿱잡은 맵(Map)만 수행하여 RDBMS에 저장</li>
-<li>RDBMS에 Table은 생성돼 있어야 함</li>
-</ul>
-<h3 id="스쿱v1-vs-스쿱v2">스쿱v1 VS 스쿱v2</h3>
+<li>이전 작업의 출력이 다음 작업의 입력으로 이어짐</li>
+<li>결과 기반 제어 기능과 제어 종속성을 제공하는 하둡 작업 시퀀스
 <ul>
-<li>복잡성과 보안 취약으로 v2에서는 다음과 같은 사항을 지원하지 않음</li>
-<li>Kerberos보안 통함: v1(지원함), v2(지원하지 않음)</li>
-<li>RDBMS에서 하이브나 HBase로 데이터 전송: v1(지원함), v2(지원하지 않음)</li>
+<li>제어 종속성: 선행 작업이 완료되기 전까지 다음 작업이 실행될 수 없음</li>
 </ul>
-<h3 id="스쿱-명령어">스쿱 명령어</h3>
-<p>RDBMS 보기</p>
+</li>
+</ul>
+<p><strong>코디네이터(Coordinator)</strong></p>
 <ul>
-<li>sqoop list-databases &ndash;connect jdbc:mysql://{host_name} &ndash;username {username} &ndash;password {password}</li>
+<li>예약된 워크플로우 작업</li>
+<li>다양한 시간 간격으로 작업을 반복 실행할 수 있음</li>
 </ul>
-<p>Table 보기</p>
+<p><strong>번들(Bundle)</strong></p>
 <ul>
-<li>sqoop list-tables &ndash;connect jdbc:mysql://{host_name}/{db_name} &ndash;username {username} &ndash;password {password}</li>
+<li>여러 코디네이터 작업을 일괄 실행할 수 있는 한 단계 높은 추상화 객체</li>
 </ul>
-<p>스쿱 임포트</p>
+<h3 id="우지-워크플로우-노드-유형">우지 워크플로우 노드 유형</h3>
 <ul>
-<li>sqoop import &ndash;connect jdbc:mysql://{host_name}/{db_name} &ndash;username {username} &ndash;password {password} &ndash;table {table_name} -m 1 &ndash;target-dir {hdfs_target_dir}</li>
+<li>시작노드, 종료노드, 실패노드, 액션노드, 포크/조인노드, 제어플로우노드</li>
 </ul>
-<p>스쿱 익스포트</p>
+<p><strong>액션노드</strong></p>
 <ul>
-<li>sqoop export &ndash;connect jdbc:mysql://{host_name}/{db_name} &ndash;username {username} &ndash;password {password} &ndash;table {table_name} -m 1 &ndash;export-dir {hdfs_export_dir}</li>
+<li>실제로 처리되는 태스크를 정의</li>
+<li>액션을 실행하는 원격 시스템의 액션 실행을 완료한 후 그 사실을 우지에게 알리면 우지는 다음 노드를 실행</li>
 </ul>
-<p>HDFS 확인</p>
+<p><strong>포크/조인노드</strong></p>
 <ul>
-<li>hdfs dfs -ls {hdfs_target_dir}</li>
-<li>hdfs dfs -cat {hdfs_target_dir}/part-m-00000
-: 구분자 콤마
-: Map잡이 하나이므로 파일 하나만 생김</li>
+<li>워크플로우에서 태스크를 병렬로 실행시킴</li>
+<li>포크노드: 동시에 작업 두 개 이상을 실행하게 워크플로우를 분기함</li>
+<li>조인노드: 분기된 모든 포크 태스크가 완료될 때까지 기다리는 랑데부 포인트를 지정함</li>
 </ul>
+<p><strong>제어플로우노드</strong></p>
+<ul>
+<li>조건문 노드</li>
+<li>Switch Case문과 유사한 구조</li>
+<li>JSP EL(Java Server Page Expression Language)형시 사용</li>
+</ul>
+<p><strong>WordCount예시</strong> 
+<img src="https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/oozie_01.jpg" alt="alt text" title="Word Count"></p>
+<p><strong>OozieWorkflow예시</strong>
+<img src="https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/oozie_02.jpg" alt="alt text" title="Oozie Workflow Example"></p>
 
 
 </article>
@@ -174,13 +182,9 @@
     <ul>
         
         <li>
-            <a href="https://ynebula.github.io/posts/bigdata/hdfs/"><i class="fa fa-chevron-circle-left"></i> Hdfs</a>
+            <a href="https://ynebula.github.io/posts/bigdata/zoopkeeper/"><i class="fa fa-chevron-circle-left"></i> Zoopkeeper</a>
         </li>
         
-        
-        <li>
-            <a href="https://ynebula.github.io/posts/bigdata/zoopkeeper/">Zoopkeeper <i class="fa fa-chevron-circle-right"></i> </a>
-        </li>
         
     </ul>
 </section>
