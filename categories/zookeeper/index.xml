@@ -12,6 +12,72 @@
    
    
      <item>
+       <title>Hbase</title>
+       <link>https://ynebula.github.io/posts/bigdata/hbase/</link>
+       <pubDate>Sun, 17 Jan 2021 19:38:06 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/bigdata/hbase/</guid>
+       <description>&lt;h3 id=&#34;hbasenosql-데이터베이스&#34;&gt;Hbase(NoSQL 데이터베이스)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;컬럼 기반의 NoSQL 데이터베이스&lt;/li&gt;
+&lt;li&gt;컬럼 베이스(패밀리)로 구성된 스키마 없는 데이터베이스로서 조인, 인덱스가 없음&lt;/li&gt;
+&lt;li&gt;비정형/반정형 데이터에 대해 임의 액세스 및 일관성 제공&lt;/li&gt;
+&lt;li&gt;컬럼 베이스로 돼 있어서, 테이블은 n개의 컬럼 패밀리를 가질 수 있음
+&lt;ul&gt;
+&lt;li&gt;1개의 행: rowkey(유일한 인덱스, 기준 정렬) + 컬럼 패밀리&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;hbase-데이터-관리-방법&#34;&gt;Hbase 데이터 관리 방법&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;create: 데이터베이스 생성&lt;/li&gt;
+&lt;li&gt;put: 데이터베이스에 데이터를 기록&lt;/li&gt;
+&lt;li&gt;get: 데이터베이스에서 데이터를 읽음&lt;/li&gt;
+&lt;li&gt;scan: 테이블의 여러 행에서 데이터를 가져옴&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/habse_01.png&#34; alt=&#34;alt text&#34; title=&#34;Hbase Schema&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;컬럼 패밀리를 구성: Personal과 Office로 나눔&lt;/li&gt;
+&lt;li&gt;상세 퀄리파이어 구성&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;값&lt;/th&gt;
+&lt;th&gt;의미&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;생성&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;create &amp;lsquo;Contact&amp;rsquo;, &amp;lsquo;Personal&amp;rsquo;, &amp;lsquo;Office&amp;rsquo;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;데이터삽입&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;put &amp;lsquo;Contact&amp;rsquo;, &amp;lsquo;1000&amp;rsquo;, &amp;lsquo;Personal:Name&amp;rsquo;, &amp;lsquo;John Dole&amp;rsquo;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;put &amp;lsquo;Contact&amp;rsquo;, &amp;lsquo;1000&amp;rsquo;, &amp;lsquo;Personal:Phonne&amp;rsquo;, &amp;lsquo;1-425-000-0001&amp;rsquo;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;put &amp;lsquo;Contact&amp;rsquo;, &amp;lsquo;1000&amp;rsquo;, &amp;lsquo;Office:Phone&amp;rsquo;, &amp;lsquo;1-425-000-0002&amp;rsquo;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;put &amp;lsquo;Contact&amp;rsquo;, &amp;lsquo;1000&amp;rsquo;, &amp;lsquo;Office:Address&amp;rsquo;, &amp;lsquo;1111San Gabriel Dr&amp;rsquo;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;데이터 추출&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;scan &amp;lsquo;Contacts&amp;rsquo;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+     </item>
+   
+     <item>
        <title>Oozie</title>
        <link>https://ynebula.github.io/posts/bigdata/oozie/</link>
        <pubDate>Sun, 17 Jan 2021 18:54:40 +0900</pubDate>
