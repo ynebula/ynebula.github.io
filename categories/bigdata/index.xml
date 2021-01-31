@@ -6,10 +6,159 @@
    <description>Recent content in Bigdata on Bigdata Engineer &amp; Analyst Story</description>
    <generator>Hugo -- gohugo.io</generator>
    <copyright>Copyright &amp;copy; 2020 - Sungwoon Yoon</copyright>
-   <lastBuildDate>Mon, 16 Nov 2020 11:39:12 +0900</lastBuildDate>
+   <lastBuildDate>Sun, 17 Jan 2021 19:38:06 +0900</lastBuildDate>
    
        <atom:link href="https://ynebula.github.io/categories/bigdata/index.xml" rel="self" type="application/rss+xml" />
    
+   
+     <item>
+       <title>Error_and_resolve</title>
+       <link>https://ynebula.github.io/posts/linux/error_and_resolve/</link>
+       <pubDate>Sun, 31 Jan 2021 15:56:40 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/linux/error_and_resolve/</guid>
+       <description>&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Command &amp;lsquo;make&amp;rsquo; not found, but can be installed with&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;sudo apt-get install make&lt;/li&gt;
+&lt;li&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;make: gcc: Command not found&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;sudo apt-get install build-essential&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;sudo apt-get install libjasper-dev
+Reading package lists&amp;hellip; Done
+Building dependency tree    &lt;br&gt;
+Reading state information&amp;hellip; Done
+E: Unable to locate package libjasper-dev
+Reading package lists&amp;hellip; Done
+Building dependency tree    &lt;br&gt;
+Reading state information&amp;hellip; Done&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;E: Unable to locate package libjasper-dev&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;sudo add-apt-repository &amp;ldquo;deb &lt;a href=&#34;http://security.ubuntu.com/ubuntu&#34;&gt;http://security.ubuntu.com/ubuntu&lt;/a&gt; xenial-security main&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Zookeeper</title>
+       <link>https://ynebula.github.io/posts/zookeeper/zookeeper/</link>
+       <pubDate>Sun, 31 Jan 2021 13:47:12 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/zookeeper/zookeeper/</guid>
+       <description>&lt;h3 id=&#34;분산-시스템의-고민&#34;&gt;분산 시스템의 고민&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;분산 시스템 간의 정보 공유 방법?&lt;/li&gt;
+&lt;li&gt;클러스터 서버들의 상태 체크 방법?&lt;/li&gt;
+&lt;li&gt;분산된 서버들 간에 동기화를 위해 잠금(LOCK) 처리 방법&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;코디네이션-서비스-시스템coordination-service---주키퍼zoopkeeper&#34;&gt;코디네이션 서비스 시스템(Coordination Service) - 주키퍼(Zoopkeeper)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;노드 간에 &lt;strong&gt;조정자&lt;/strong&gt; 역할을 수행하는 서비스&lt;/li&gt;
+&lt;li&gt;노드 간 &lt;strong&gt;정보공유&lt;/strong&gt;, &lt;strong&gt;잠금(Lock,Unlock)&lt;/strong&gt;, &lt;strong&gt;이벤트&lt;/strong&gt; 등의 기능 수행&lt;/li&gt;
+&lt;li&gt;여러 개의 노드에 작업을 분산시켜주는 &lt;strong&gt;부하분산기능(Load Balancing)&lt;/strong&gt; 을 제공&lt;/li&gt;
+&lt;li&gt;서버에서 처리된 결과를 다른 서버에 동기화 할 때 &lt;strong&gt;잠금(Lock)&lt;/strong&gt; 처리 수행&lt;/li&gt;
+&lt;li&gt;서버 장애 시 대기(Standby) 서버가 대신 처리하는 &lt;strong&gt;장애상황판단&lt;/strong&gt; 및 &lt;strong&gt;복구기능&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;주키퍼-아키텍처&#34;&gt;주키퍼 아키텍처&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;디렉토리(계층,트리) 구조 기반의 데이터 저장소&lt;/li&gt;
+&lt;li&gt;znode라는 데이터 저장 객체를 제공함(Key-Value 방식)
+&lt;ul&gt;
+&lt;li&gt;객체에 데이터(상태 정보, 구성 정보, 위치 정보 등)를 넣고 빼는 기능을 제공함
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/zookeeper_01.png&#34; alt=&#34;alt text&#34; title=&#34;Zoopkeeper Directory&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;노드의-종류&#34;&gt;노드의 종류&lt;/h3&gt;
+&lt;p&gt;Persistent Node&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;데이터가 영구히 저장되는 노드&lt;/li&gt;
+&lt;li&gt;트랜잭션 로그, 스냅샷, 상태 이미지 등을 유지함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ephemeral Node&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;클라이언트의 세션이 연결돼 있을 경우만 유효한 노드&lt;/li&gt;
+&lt;li&gt;클라이언트가 연결돼 있는지 판단함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Sequence Node&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;노드를 생성 시 자동으로 일련 번호가 붙는 노드&lt;/li&gt;
+&lt;li&gt;주로 분산 Lock을 구현하는데 사용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;주기능&#34;&gt;주기능&lt;/h3&gt;
+&lt;p&gt;Watch 기능&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;주키퍼 클라이언트가 특정 znode에 watch를 걸어 놓음&lt;/li&gt;
+&lt;li&gt;znode가 변경됐을 때 클라이언트로 callback 호출을 날림&lt;/li&gt;
+&lt;li&gt;클라이언트에 해당 znode가 변경됐음을 알려줌&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;복제 기능&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;주키퍼 서버의 모든 데이터가 복제됨&lt;/li&gt;
+&lt;li&gt;클라이언트가 주키퍼 서버에 연결&lt;/li&gt;
+&lt;li&gt;요청, 응답, Watch 이벤트, Heart Bests 등을 주고 받음&lt;/li&gt;
+&lt;li&gt;TCP 연결(신뢰성이 강한 연결)을 유지하며, 연결이 끊어지면 타 서버에 연결
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/zookeeper_02.png&#34; alt=&#34;alt text&#34; title=&#34;Zoopkeeper Replication&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;주키퍼-활용분야&#34;&gt;주키퍼 활용분야&lt;/h3&gt;
+&lt;p&gt;클러스터 정보&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;클러스터에서 기동 중인 서버 목록을 유지할 수 있음&lt;/li&gt;
+&lt;li&gt;Ephemeral Node는 주기퍼 클라이언트가 살아 있을 경우에만 유효함&lt;/li&gt;
+&lt;li&gt;서버가 죽으면 Ephemeral Node가 삭제되기 때문에 클러스터 내의 살아 있는 Node리스트만 유지할 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;서버 정보&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;클러스터 내의 각 서버들의 설정 정보를 저장하는 저장소로 사용 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;글로벌 잠금&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;여러 개의 서버로 구성된 분산 서버&lt;/li&gt;
+&lt;li&gt;공유 자원을 접근하려고 했을때 or 동시에 하나의 작업만 발생해야 한다고 할때
+&lt;ul&gt;
+&lt;li&gt;그 작업에 잠금을 걸고 작업을 할 수 있는 기능을 구현할 때 사용함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+     </item>
    
      <item>
        <title>Hbase</title>
@@ -138,90 +287,6 @@
 &lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/oozie_01.png&#34; alt=&#34;alt text&#34; title=&#34;Word Count&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;OozieWorkflow예시&lt;/strong&gt;&lt;br&gt;
 &lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/oozie_02.png&#34; alt=&#34;alt text&#34; title=&#34;Oozie Workflow Example&#34;&gt;&lt;/p&gt;
-</description>
-     </item>
-   
-     <item>
-       <title>Zoopkeeper</title>
-       <link>https://ynebula.github.io/posts/bigdata/zoopkeeper/</link>
-       <pubDate>Sun, 17 Jan 2021 17:31:29 +0900</pubDate>
-       
-       <guid>https://ynebula.github.io/posts/bigdata/zoopkeeper/</guid>
-       <description>&lt;h3 id=&#34;분산-시스템의-고민&#34;&gt;분산 시스템의 고민&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;분산 시스템 간의 정보 공유 방법?&lt;/li&gt;
-&lt;li&gt;클러스터 서버들의 상태 체크 방법?&lt;/li&gt;
-&lt;li&gt;분산된 서버들 간에 동기화를 위해 잠금(LOCK) 처리 방법&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;코디네이션-서비스-시스템coordination-service---주키퍼zoopkeeper&#34;&gt;코디네이션 서비스 시스템(Coordination Service) - 주키퍼(Zoopkeeper)&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;노드 간에 &lt;strong&gt;조정자&lt;/strong&gt; 역할을 수행하는 서비스&lt;/li&gt;
-&lt;li&gt;노드 간 &lt;strong&gt;정보공유&lt;/strong&gt;, &lt;strong&gt;잠금(Lock,Unlock)&lt;/strong&gt;, &lt;strong&gt;이벤트&lt;/strong&gt; 등의 기능 수행&lt;/li&gt;
-&lt;li&gt;여러 개의 노드에 작업을 분산시켜주는 &lt;strong&gt;부하분산기능(Load Balancing)&lt;/strong&gt; 을 제공&lt;/li&gt;
-&lt;li&gt;서버에서 처리된 결과를 다른 서버에 동기화 할 때 &lt;strong&gt;잠금(Lock)&lt;/strong&gt; 처리 수행&lt;/li&gt;
-&lt;li&gt;서버 장애 시 대기(Standby) 서버가 대신 처리하는 &lt;strong&gt;장애상황판단&lt;/strong&gt; 및 &lt;strong&gt;복구기능&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;주키퍼-아키텍처&#34;&gt;주키퍼 아키텍처&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;디렉토리(계층,트리) 구조 기반의 데이터 저장소&lt;/li&gt;
-&lt;li&gt;znode라는 데이터 저장 객체를 제공함(Key-Value 방식)
-&lt;ul&gt;
-&lt;li&gt;객체에 데이터(상태 정보, 구성 정보, 위치 정보 등)를 넣고 빼는 기능을 제공함
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/zookeeper_01.png&#34; alt=&#34;alt text&#34; title=&#34;Zoopkeeper Directory&#34;&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;노드의-종류&#34;&gt;노드의 종류&lt;/h3&gt;
-&lt;p&gt;Persistent Node&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;데이터가 영구히 저장되는 노드&lt;/li&gt;
-&lt;li&gt;트랜잭션 로그, 스냅샷, 상태 이미지 등을 유지함&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Ephemeral Node&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;클라이언트의 세션이 연결돼 있을 경우만 유효한 노드&lt;/li&gt;
-&lt;li&gt;클라이언트가 연결돼 있는지 판단함&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Sequence Node&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;노드를 생성 시 자동으로 일련 번호가 붙는 노드&lt;/li&gt;
-&lt;li&gt;주로 분산 Lock을 구현하는데 사용&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;주기능&#34;&gt;주기능&lt;/h3&gt;
-&lt;p&gt;Watch 기능&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;주키퍼 클라이언트가 특정 znode에 watch를 걸어 놓음&lt;/li&gt;
-&lt;li&gt;znode가 변경됐을 때 클라이언트로 callback 호출을 날림&lt;/li&gt;
-&lt;li&gt;클라이언트에 해당 znode가 변경됐음을 알려줌&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;복제 기능&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;주키퍼 서버의 모든 데이터가 복제됨&lt;/li&gt;
-&lt;li&gt;클라이언트가 주키퍼 서버에 연결&lt;/li&gt;
-&lt;li&gt;요청, 응답, Watch 이벤트, Heart Bests 등을 주고 받음&lt;/li&gt;
-&lt;li&gt;TCP 연결(신뢰성이 강한 연결)을 유지하며, 연결이 끊어지면 타 서버에 연결
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/zookeeper_02.png&#34; alt=&#34;alt text&#34; title=&#34;Zoopkeeper Replication&#34;&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;주키퍼-활용분야&#34;&gt;주키퍼 활용분야&lt;/h3&gt;
-&lt;p&gt;클러스터 정보&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;클러스터에서 기동 중인 서버 목록을 유지할 수 있음&lt;/li&gt;
-&lt;li&gt;Ephemeral Node는 주기퍼 클라이언트가 살아 있을 경우에만 유효함&lt;/li&gt;
-&lt;li&gt;서버가 죽으면 Ephemeral Node가 삭제되기 때문에 클러스터 내의 살아 있는 Node리스트만 유지할 수 있음&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;서버 정보&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;클러스터 내의 각 서버들의 설정 정보를 저장하는 저장소로 사용 가능&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;글로벌 잠금&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;여러 개의 서버로 구성된 분산 서버&lt;/li&gt;
-&lt;li&gt;공유 자원을 접근하려고 했을때 or 동시에 하나의 작업만 발생해야 한다고 할때
-&lt;ul&gt;
-&lt;li&gt;그 작업에 잠금을 걸고 작업을 할 수 있는 기능을 구현할 때 사용함&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
 </description>
      </item>
    
@@ -689,10 +754,10 @@ sudo ln -s apache-zookeeper-3.5.8-bin/ zookeeper&lt;/p&gt;
 &lt;li&gt;ZOOKEEPER_HOME=/usr/local/zookeeper&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;로그-디렉토리-생성&#34;&gt;로그 디렉토리 생성&lt;/h3&gt;
-&lt;p&gt;지노드의 복사본인 스냅샷과 트랜잭션 로그들이 저장됩니다.
+&lt;p&gt;주키퍼는 zoo.cfg에 설정한 데이터 디렉토리에 지노드의 복사본인 스냅샷과 트랜잭션 로그들이 저장됩니다.
 지노드에 변경사항이 발생하면, 이 변경사항은 트랜잭션 로그에 추가됩니다.
 그리고 로그가 어느정도 커지면, 현재 모든 지노드의 상태 스냅샷이 파일시스템에 저장됩니다.
-앙상블 내 주키퍼 노드를 구분하기 위해서 ID를 만듭니다. 주키퍼에서는 myid라고 부르며 정수 형태로 만들어주면 됩니다.
+앙상블 내 주키퍼 노드를 구분하기 위해서 ID를 만듭니다. 주키퍼에서는 &lt;strong&gt;myid&lt;/strong&gt; 라고 부르며 정수 형태로 만들어주면 됩니다.
 방금 만든 /data 디렉토리 하단에 myid라는 파일을 만들고 내용은 1이라고 입력합니다.
 여기서 myid는 주키퍼의 설정 파일에서 사용하게 되며, 예제 2-2의 zoo.cfg파일을 다루면서 다시 설명하겠습니다.
 다른 주키퍼 서버들에도 myid 파일을 만들고 숫자를 입력합니다.&lt;/p&gt;
@@ -1074,9 +1139,14 @@ ECDSA key fingerprint is SHA256:kXhOQgozNkCxUEeojqJ/4rb9Cx7lmU4yDuEgT2Aw5YQ.&lt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;hugo-마크다운&#34;&gt;Hugo 마크다운&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;Hugo 마크다운 문법을 사용합니다.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://gohugo.io/content-management/formats/#learn-markdown&#34;&gt;Hugo Learn Markdown&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ccl.cckorea.org/syntax/&#34;&gt;Hugo Learn Markdown&lt;/a&gt;
+&lt;li&gt;
+&lt;p&gt;Hugo 마크다운 문법을 사용합니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://gohugo.io/content-management/formats/#learn-markdown&#34;&gt;Hugo Learn Markdown&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://ccl.cckorea.org/syntax/&#34;&gt;Hugo Learn Markdown&lt;/a&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -1100,6 +1170,27 @@ ECDSA key fingerprint is SHA256:kXhOQgozNkCxUEeojqJ/4rb9Cx7lmU4yDuEgT2Aw5YQ.&lt;
 &lt;td style=&#34;text-align:left&#34;&gt;zebra stripes&lt;/td&gt;
 &lt;td style=&#34;text-align:center&#34;&gt;are neat&lt;/td&gt;
 &lt;td style=&#34;text-align:right&#34;&gt;$1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;열병합&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Column 1&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Column 2&lt;/th&gt;
+&lt;th&gt;Column 3&lt;/th&gt;
+&lt;th&gt;Column 4&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;No span&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Span across three columns&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
