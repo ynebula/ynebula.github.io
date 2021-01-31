@@ -1033,10 +1033,10 @@ sudo update-alternatives &amp;ndash;set java /usr/lib/jvm/jdk1.8.0_version/bin/j
 &lt;li&gt;http://127.0.0.1:8088&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&#34;예제-실행&#34;&gt;예제 실행&lt;/h4&gt;
+&lt;p&gt;HDFS에 파일을 저장하고 얀을 기반으로 맵리듀스 잡을 실행해 보겠습니다.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;HDFS에 파일을 저장하고 얀을 기반으로 맵리듀스 잡을 실행해 보겠습니다.
+&lt;li&gt;hadoop-env.sh를 HDFS에 저장
 &lt;ul&gt;
-&lt;li&gt;hadoop-env.sh를 HDFS에 저장&lt;/li&gt;
 &lt;li&gt;./hdfs dfs -mkdir /user&lt;/li&gt;
 &lt;li&gt;./hdfs dfs -mkdir /user/hadoop&lt;/li&gt;
 &lt;li&gt;./hdfs dfs -mkdir /user/hadoop/conf&lt;/li&gt;
