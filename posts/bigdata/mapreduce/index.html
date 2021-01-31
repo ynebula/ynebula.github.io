@@ -3,20 +3,22 @@
 <html lang="en">
 
 <head>
-  <title>Error_and_resolve - Bigdata Engineer &amp; Analyst Story</title>
+  <title>맵리듀스(MapReduce - Map &#43; Reduce) - Bigdata Engineer &amp; Analyst Story</title>
   <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="Kiera: A Hugo theme for creative and technical writing." />
-<meta name="author" content="Sungwoon Yoon" /><meta property="og:title" content="Error_and_resolve" />
-<meta property="og:description" content="Command &lsquo;make&rsquo; not found, but can be installed with     sudo apt-get install make            make: gcc: Command not found     sudo apt-get install build-essential  sudo apt-get install libjasper-dev Reading package lists&hellip; Done Building dependency tree Reading state information&hellip; Done E: Unable to locate package libjasper-dev Reading package lists&hellip; Done Building dependency tree Reading state information&hellip; Done" />
+<meta name="author" content="Sungwoon Yoon" /><meta property="og:title" content="맵리듀스(MapReduce - Map &#43; Reduce)" />
+<meta property="og:description" content="맵리듀스 프레임 분산 병렬 처리 방식으로 여러 개의 작업 노드에 작업을 분산하여 병렬 수행할 수 있는 프레입워크를 제공
+맵리듀스 프레임워크 단계    단계 처리 담당     맵(Map)단계 분산된 데이터를 키(key)와 값(value)의 리스트로 모으는 단계 개발자 정의   셔플(Shuffle and Sort)단계 맵 단계에서 나온 중간 결과를 해당 리듀스 함수에 전달하는 단계 하둡(시스템)이 자동으로 처리   리듀스(Reduce)단계 리스트에서 원하는 데이터를 찾아서 집계하는 단계 개발자 정의    " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://ynebula.github.io/posts/linux/error_and_resolve/" />
-<meta property="article:published_time" content="2021-01-31T15:56:40+09:00" />
-<meta property="article:modified_time" content="2021-01-31T15:56:40+09:00" />
+<meta property="og:url" content="https://ynebula.github.io/posts/bigdata/mapreduce/" />
+<meta property="article:published_time" content="2021-01-31T16:38:51+09:00" />
+<meta property="article:modified_time" content="2021-01-31T16:38:51+09:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Error_and_resolve"/>
-<meta name="twitter:description" content="Command &lsquo;make&rsquo; not found, but can be installed with     sudo apt-get install make            make: gcc: Command not found     sudo apt-get install build-essential  sudo apt-get install libjasper-dev Reading package lists&hellip; Done Building dependency tree Reading state information&hellip; Done E: Unable to locate package libjasper-dev Reading package lists&hellip; Done Building dependency tree Reading state information&hellip; Done"/>
+<meta name="twitter:title" content="맵리듀스(MapReduce - Map &#43; Reduce)"/>
+<meta name="twitter:description" content="맵리듀스 프레임 분산 병렬 처리 방식으로 여러 개의 작업 노드에 작업을 분산하여 병렬 수행할 수 있는 프레입워크를 제공
+맵리듀스 프레임워크 단계    단계 처리 담당     맵(Map)단계 분산된 데이터를 키(key)와 값(value)의 리스트로 모으는 단계 개발자 정의   셔플(Shuffle and Sort)단계 맵 단계에서 나온 중간 결과를 해당 리듀스 함수에 전달하는 단계 하둡(시스템)이 자동으로 처리   리듀스(Reduce)단계 리스트에서 원하는 데이터를 찾아서 집계하는 단계 개발자 정의    "/>
 
 <meta name="generator" content="Hugo 0.78.1" />
     
@@ -90,13 +92,13 @@
 
 <article>
 
-    <h1>Error_and_resolve</h1>
+    <h1>맵리듀스(MapReduce - Map &#43; Reduce)</h1>
 
     
       <aside>
     <ul>
         <li>
-            <time class="post-date" datetime="2021-01-31T15:56:40&#43;09:00">Jan 31, 2021</time>
+            <time class="post-date" datetime="2021-01-31T16:38:51&#43;09:00">Jan 31, 2021</time>
         </li>
         
         
@@ -111,69 +113,44 @@
 
     
 <div class="featured_image">
-    <a href="https://ynebula.github.io/posts/linux/error_and_resolve/" title="Error_and_resolve">
+    <a href="https://ynebula.github.io/posts/bigdata/mapreduce/" title="맵리듀스(MapReduce - Map &#43; Reduce)">
         <img src="">
     </a>
 </div>
 
 
 
-    <table>
-<thead>
-<tr>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Command &lsquo;make&rsquo; not found, but can be installed with</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>sudo apt-get install make</li>
-<li>
-<!-- raw HTML omitted -->
-</li>
-</ul>
+    <h3 id="맵리듀스-프레임">맵리듀스 프레임</h3>
+<p>분산 병렬 처리 방식으로 여러 개의 작업 노드에 작업을 분산하여 병렬 수행할 수 있는 프레입워크를 제공</p>
+<h3 id="맵리듀스-프레임워크-단계">맵리듀스 프레임워크 단계</h3>
 <table>
 <thead>
 <tr>
-<th></th>
+<th style="text-align:center">단계</th>
+<th style="text-align:left">처리</th>
+<th style="text-align:center">담당</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">make: gcc: Command not found</td>
+<td style="text-align:center">맵(Map)단계</td>
+<td style="text-align:left">분산된 데이터를 키(key)와 값(value)의 리스트로 모으는 단계</td>
+<td style="text-align:center">개발자 정의</td>
+</tr>
+<tr>
+<td style="text-align:center">셔플(Shuffle and Sort)단계</td>
+<td style="text-align:left">맵 단계에서 나온 중간 결과를 해당 리듀스 함수에 전달하는 단계</td>
+<td style="text-align:center">하둡(시스템)이 자동으로 처리</td>
+</tr>
+<tr>
+<td style="text-align:center">리듀스(Reduce)단계</td>
+<td style="text-align:left">리스트에서 원하는 데이터를 찾아서 집계하는 단계</td>
+<td style="text-align:center">개발자 정의</td>
 </tr>
 </tbody>
 </table>
-<ul>
-<li>sudo apt-get install build-essential</li>
-</ul>
-<p>sudo apt-get install libjasper-dev
-Reading package lists&hellip; Done
-Building dependency tree    <br>
-Reading state information&hellip; Done
-E: Unable to locate package libjasper-dev
-Reading package lists&hellip; Done
-Building dependency tree    <br>
-Reading state information&hellip; Done</p>
-<table>
-<thead>
-<tr>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">E: Unable to locate package libjasper-dev</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>sudo add-apt-repository &ldquo;deb <a href="http://security.ubuntu.com/ubuntu">http://security.ubuntu.com/ubuntu</a> xenial-security main&rdquo;</li>
-</ul>
+<p><img src="https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/mapreduce_01.png" alt="alt text" title="MapReduce Flow"></p>
+<p><img src="https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/mapreduce_02.png" alt="alt text" title="Word Count Example"></p>
 
 
 </article>
@@ -183,13 +160,9 @@ Reading state information&hellip; Done</p>
     <ul>
         
         <li>
-            <a href="https://ynebula.github.io/posts/zookeeper/zookeeper/"><i class="fa fa-chevron-circle-left"></i> Zookeeper</a>
+            <a href="https://ynebula.github.io/posts/linux/error_and_resolve/"><i class="fa fa-chevron-circle-left"></i> Error_and_resolve</a>
         </li>
         
-        
-        <li>
-            <a href="https://ynebula.github.io/posts/bigdata/mapreduce/">맵리듀스(MapReduce - Map &#43; Reduce) <i class="fa fa-chevron-circle-right"></i> </a>
-        </li>
         
     </ul>
 </section>

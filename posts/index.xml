@@ -6,10 +6,50 @@
    <description>Recent content in Posts on Bigdata Engineer &amp; Analyst Story</description>
    <generator>Hugo -- gohugo.io</generator>
    <copyright>Copyright &amp;copy; 2020 - Sungwoon Yoon</copyright>
-   <lastBuildDate>Sun, 31 Jan 2021 15:56:40 +0900</lastBuildDate>
+   <lastBuildDate>Sun, 31 Jan 2021 16:38:51 +0900</lastBuildDate>
    
        <atom:link href="https://ynebula.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
    
+   
+     <item>
+       <title>맵리듀스(MapReduce - Map &#43; Reduce)</title>
+       <link>https://ynebula.github.io/posts/bigdata/mapreduce/</link>
+       <pubDate>Sun, 31 Jan 2021 16:38:51 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/bigdata/mapreduce/</guid>
+       <description>&lt;h3 id=&#34;맵리듀스-프레임&#34;&gt;맵리듀스 프레임&lt;/h3&gt;
+&lt;p&gt;분산 병렬 처리 방식으로 여러 개의 작업 노드에 작업을 분산하여 병렬 수행할 수 있는 프레입워크를 제공&lt;/p&gt;
+&lt;h3 id=&#34;맵리듀스-프레임워크-단계&#34;&gt;맵리듀스 프레임워크 단계&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;단계&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;처리&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;담당&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;맵(Map)단계&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;분산된 데이터를 키(key)와 값(value)의 리스트로 모으는 단계&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;개발자 정의&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;셔플(Shuffle and Sort)단계&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;맵 단계에서 나온 중간 결과를 해당 리듀스 함수에 전달하는 단계&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;하둡(시스템)이 자동으로 처리&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;리듀스(Reduce)단계&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;리스트에서 원하는 데이터를 찾아서 집계하는 단계&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;개발자 정의&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/mapreduce_01.png&#34; alt=&#34;alt text&#34; title=&#34;MapReduce Flow&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/mapreduce_02.png&#34; alt=&#34;alt text&#34; title=&#34;Word Count Example&#34;&gt;&lt;/p&gt;
+</description>
+     </item>
    
      <item>
        <title>Error_and_resolve</title>
@@ -347,23 +387,82 @@ Reading state information&amp;hellip; Done&lt;/p&gt;
      </item>
    
      <item>
-       <title>Hdfs</title>
+       <title>하둡 분산 파일 시스템(Hdfs)</title>
        <link>https://ynebula.github.io/posts/bigdata/hdfs/</link>
        <pubDate>Sun, 03 Jan 2021 22:33:30 +0900</pubDate>
        
        <guid>https://ynebula.github.io/posts/bigdata/hdfs/</guid>
-       <description>&lt;p&gt;하둡 코어 구성 요소
-하둡 분산 파일 시스템(HDFS)&lt;/p&gt;
+       <description>&lt;h3 id=&#34;하둡-분산-파일-시스템&#34;&gt;하둡 분산 파일 시스템&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;하둡 클러스터 노드에 데이터를 저장하는 분산된 파일 시스템&lt;/li&gt;
-&lt;li&gt;어디에 블록이 저장돼 있는지 위치 정보 필요
-20강 1분 이미지&lt;/li&gt;
+&lt;li&gt;대용량 파일 읽기 및 쓰기 작업에 최적화된 파일 시스템&lt;/li&gt;
+&lt;li&gt;파일의 메타정보는 네임노드(마스터노드)가 관리하고 실제 블록 데이터는 데이터노드(작업노드)에서 분산 저장됨&lt;/li&gt;
+&lt;li&gt;분산 파일 시스템은 유져 입장에서는 하나로 보이지만 물리적으로 분산/쪼개져 있고 네임노드가 데이터 노드를 관리함&lt;/li&gt;
+&lt;li&gt;파일시스템 관점에서는 하나의 클러스터의 파일 시스템&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;데이터 읽기/쓰기 과정
-네임노드: 네임스페이스(위치정보) 관리
-보조 네임노드: 네이노드 페일 시 사용됨, 네임스페이스 동시 관리
-데이터노드: 데이터 블록 저장
-20강 5분 이미지&lt;/p&gt;
+&lt;h3 id=&#34;네임노드&#34;&gt;네임노드&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;메타정보를 보관&lt;/li&gt;
+&lt;li&gt;SPOF(single point of failure)&lt;/li&gt;
+&lt;li&gt;Active-standby 형태로 운영&lt;/li&gt;
+&lt;li&gt;Fsimage, Edit Log(변경로그)  		
+&lt;strong&gt;메타정보&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;HDFS에 있는 각 블록의 파일위치, 사용자, 권한 등에 대한 정보
+&lt;strong&gt;Fsimage&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;데이터노드에 저장된 블록들에 대한 정보
+&lt;strong&gt;EditLog&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;블록정보에 대한 변경 사항&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;데이터노드&#34;&gt;데이터노드&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;파일을 기본적으로 64M 혹은 128M 블록 단위로 나누어 여러 개의 데이터노드에 분산 저장함&lt;/li&gt;
+&lt;li&gt;복제본의 수는 시스템에서 설절하며, 디폴트 3&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;특징&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;신뢰성 보장
+&lt;ul&gt;
+&lt;li&gt;하나의 복제본이 손실되어도 아무런 결함 없이 사용될 수 있도록 함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;데이터 지역성(Data Locality)향상
+&lt;ul&gt;
+&lt;li&gt;같은 랙&lt;/li&gt;
+&lt;li&gt;문제가 있을때, 실행을 위해 데이터 이동 없이 블록이 저장된 곳에서 수행할 수 있도록 함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;보조네임노드secondary-namenode&#34;&gt;보조네임노드(Secondary Namenode)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;최신이 메타정보를 유지하기 위해서 주기적으로 체크포이트를 만듦 즉, 최신의 fsimage를 생성하는 역할
+&lt;ul&gt;
+&lt;li&gt;네임노드의 fsimage N과 edit N 변경 로그를 가지고 최신의 fsimage N+1을 생성&lt;/li&gt;
+&lt;li&gt;네임노드가 가지고 있는 fsimage N을 대체하며 변경 로그는 초기화함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;한 시간마다 네임노드의 메타정보를 백업&lt;/li&gt;
+&lt;li&gt;네임노드에 장애가 발생했을 때 복구용으로 활용함&lt;/li&gt;
+&lt;li&gt;네임노드 고장 시 장애를 극복하는 역할을 수행하지 않음 - 고가용서 지원 하지 않음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;파일쓰기&#34;&gt;파일쓰기&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/hdfs_01.png&#34; alt=&#34;alt text&#34; title=&#34;HDFS Read/Write&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HDFS 클라이언트가 네임노드에게 파일쓰기 요청&lt;/li&gt;
+&lt;li&gt;네임노드는 메타정보 바탕으로 쓰기 가능한 데이터노드 정보 리턴&lt;/li&gt;
+&lt;li&gt;HDFS 클라이언트가 데이터노드에 데이터 파일쓰기&lt;/li&gt;
+&lt;li&gt;파일쓰기 완료하면, 바로 블록이 복제함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;파일-읽기&#34;&gt;파일 읽기&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;클라이언트로부터 특정 파일에 대한 요구 발생&lt;/li&gt;
+&lt;li&gt;메타정보 바탕으로, 실제 데이터가 보관되어 있는 데이터노드의 위치를 알려줌&lt;/li&gt;
+&lt;li&gt;실제 데이터 접근은 데이터 노드를 통해 이루어짐&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;고가용성---대기네임노드stanby-namenode&#34;&gt;고가용성 - 대기네임노드(Stanby Namenode)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;활성 네임노드와 항상 동일한 정보 상태를 유지함&lt;/li&gt;
+&lt;li&gt;데이터노드로부터 같이 정보를 받음&lt;/li&gt;
+&lt;li&gt;활성 네임노드에 장애 발생 시, 자동으로 활성 네임노드로 전환&lt;/li&gt;
+&lt;/ul&gt;
 </description>
      </item>
    

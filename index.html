@@ -11,7 +11,7 @@
 <meta property="og:description" content="Kiera: A Hugo theme for creative and technical writing." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ynebula.github.io/" />
-<meta property="og:updated_time" content="2021-01-31T15:56:40+09:00" />
+<meta property="og:updated_time" content="2021-01-31T16:38:51+09:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Bigdata Engineer &amp; Analyst Story"/>
@@ -94,6 +94,36 @@
     
 
     <li class="first" >
+      <h1><a href="https://ynebula.github.io/posts/bigdata/mapreduce/" title="맵리듀스(MapReduce - Map &#43; Reduce)">맵리듀스(MapReduce - Map &#43; Reduce)</a></h1>
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2021-01-31T16:38:51&#43;09:00">Jan 31, 2021</time>
+        </li>
+        
+        
+
+        
+
+        <li>One minute read</li>
+    </ul>
+</aside>
+
+      
+<div class="featured_image">
+    <a href="https://ynebula.github.io/posts/bigdata/mapreduce/" title="맵리듀스(MapReduce - Map &#43; Reduce)">
+        <img src="">
+    </a>
+</div>
+
+
+      <p>맵리듀스 프레임 분산 병렬 처리 방식으로 여러 개의 작업 노드에 작업을 분산하여 병렬 수행할 수 있는 프레입워크를 제공
+맵리듀스 프레임워크 단계    단계 처리 담당     맵(Map)단계 분산된 데이터를 키(key)와 값(value)의 리스트로 모으는 단계 개발자 정의   셔플(Shuffle and Sort)단계 맵 단계에서 나온 중간 결과를 해당 리듀스 함수에 전달하는 단계 하둡(시스템)이 자동으로 처리   리듀스(Reduce)단계 리스트에서 원하는 데이터를 찾아서 집계하는 단계 개발자 정의    </p>
+      
+    </li>
+    
+
+    <li >
       <h1><a href="https://ynebula.github.io/posts/linux/error_and_resolve/" title="Error_and_resolve">Error_and_resolve</a></h1>
       <aside>
     <ul>
@@ -151,60 +181,6 @@
       <p>분산 시스템의 고민  분산 시스템 간의 정보 공유 방법? 클러스터 서버들의 상태 체크 방법? 분산된 서버들 간에 동기화를 위해 잠금(LOCK) 처리 방법  코디네이션 서비스 시스템(Coordination Service) - 주키퍼(Zoopkeeper)  노드 간에 조정자 역할을 수행하는 서비스 노드 간 정보공유, 잠금(Lock,Unlock), 이벤트 등의 기능 수행 여러 개의 노드에 작업을 분산시켜주는 부하분산기능(Load Balancing) 을 제공 서버에서 처리된 결과를 다른 서버에 동기화 할 때 잠금(Lock) 처리 수행 서버 장애 시 대기(Standby) 서버가 대신 처리하는 장애상황판단 및 복구기능  주키퍼 아키텍처  디렉토리(계층,트리) 구조 기반의 데이터 저장소 znode라는 데이터 저장 객체를 제공함(Key-Value 방식)  객체에 데이터(상태 정보, 구성 정보, 위치 정보 등)를 넣고 빼는 기능을 제공함     노드의 종류 Persistent Node</p>
       
       <a href="https://ynebula.github.io/posts/zookeeper/zookeeper/">Read more…</a>
-      
-    </li>
-    
-
-    <li >
-      <h1><a href="https://ynebula.github.io/posts/bigdata/hbase/" title="Hbase">Hbase</a></h1>
-      <aside>
-    <ul>
-        <li>
-            <time class="post-date" datetime="2021-01-17T19:38:06&#43;09:00">Jan 17, 2021</time>
-        </li>
-        
-        
-        <li>
-            Categories:
-            <em>
-                
-                    
-                    <a href="https://ynebula.github.io/categories/bigdata">Bigdata</a>
-                
-                    , 
-                    <a href="https://ynebula.github.io/categories/hbase">HBase</a>
-                
-            </em>
-        </li>
-        
-
-        
-        <li>
-            <em>
-                
-                    
-                    <a href="https://ynebula.github.io/tags/bigdata">#Bigdata</a>
-                
-                    , 
-                    <a href="https://ynebula.github.io/tags/hbase">#HBase</a>
-                
-            </em>
-        </li>
-        
-
-        <li>One minute read</li>
-    </ul>
-</aside>
-
-      
-<div class="featured_image">
-    <a href="https://ynebula.github.io/posts/bigdata/hbase/" title="Hbase">
-        <img src="">
-    </a>
-</div>
-
-
-      <p>Hbase(NoSQL 데이터베이스)  컬럼 기반의 NoSQL 데이터베이스 컬럼 베이스(패밀리)로 구성된 스키마 없는 데이터베이스로서 조인, 인덱스가 없음 비정형/반정형 데이터에 대해 임의 액세스 및 일관성 제공 컬럼 베이스로 돼 있어서, 테이블은 n개의 컬럼 패밀리를 가질 수 있음  1개의 행: rowkey(유일한 인덱스, 기준 정렬) + 컬럼 패밀리    Hbase 데이터 관리 방법  create: 데이터베이스 생성 put: 데이터베이스에 데이터를 기록 get: 데이터베이스에서 데이터를 읽음 scan: 테이블의 여러 행에서 데이터를 가져옴   컬럼 패밀리를 구성: Personal과 Office로 나눔 상세 퀄리파이어 구성     값 의미     생성 create &lsquo;Contact&rsquo;, &lsquo;Personal&rsquo;, &lsquo;Office&rsquo;   데이터삽입 put &lsquo;Contact&rsquo;, &lsquo;1000&rsquo;, &lsquo;Personal:Name&rsquo;, &lsquo;John Dole&rsquo;    put &lsquo;Contact&rsquo;, &lsquo;1000&rsquo;, &lsquo;Personal:Phonne&rsquo;, &lsquo;1-425-000-0001&rsquo;    put &lsquo;Contact&rsquo;, &lsquo;1000&rsquo;, &lsquo;Office:Phone&rsquo;, &lsquo;1-425-000-0002&rsquo;    put &lsquo;Contact&rsquo;, &lsquo;1000&rsquo;, &lsquo;Office:Address&rsquo;, &lsquo;1111San Gabriel Dr&rsquo;   데이터 추출 scan &lsquo;Contacts&rsquo;    </p>
       
     </li>
     
