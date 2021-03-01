@@ -1,0 +1,258 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>Mongodb_replica_set - Bigdata Engineer &amp; Analyst Story</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Kiera: A Hugo theme for creative and technical writing." />
+<meta name="author" content="Sungwoon Yoon" /><meta property="og:title" content="Mongodb_replica_set" />
+<meta property="og:description" content="Replica Set(RS)
+ 복제 구성을 통한 DB HA(High Availability) 기능 이렇게 복제 구성된 그룹은 Replica Set이라 하며, 나아가 다수의 Replica Set을 함께 구성하여 쿼리의 분산 처리와 Scale out에 유리하게 구성한 형태를 Sharded Cluster 하나의 Replica Set은 이를 구성하는 3개 이상의 Member로 구성되며, 각각의 Member는 3가지 중 role(Primary, Secondary, Arbiter) 중 하나의 역할 주로 3개의 Member에 대하여 P-S-A(Primary-Secondary-Arbiter) 혹은 P-S-S(Primary-Secondary-Secondary) 구성이 일반적 : https://docs." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ynebula.github.io/posts/bigdata/mongodb/mongodb_replica_set/" />
+<meta property="article:published_time" content="2021-03-01T16:09:45+09:00" />
+<meta property="article:modified_time" content="2021-03-01T16:09:45+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mongodb_replica_set"/>
+<meta name="twitter:description" content="Replica Set(RS)
+ 복제 구성을 통한 DB HA(High Availability) 기능 이렇게 복제 구성된 그룹은 Replica Set이라 하며, 나아가 다수의 Replica Set을 함께 구성하여 쿼리의 분산 처리와 Scale out에 유리하게 구성한 형태를 Sharded Cluster 하나의 Replica Set은 이를 구성하는 3개 이상의 Member로 구성되며, 각각의 Member는 3가지 중 role(Primary, Secondary, Arbiter) 중 하나의 역할 주로 3개의 Member에 대하여 P-S-A(Primary-Secondary-Arbiter) 혹은 P-S-S(Primary-Secondary-Secondary) 구성이 일반적 : https://docs."/>
+
+<meta name="generator" content="Hugo 0.78.1" />
+    
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://ynebula.github.io/fontawesome/css/all.min.css" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  
+  
+  <link rel="stylesheet" type="text/css" href="https://ynebula.github.io/css/styles.css" /></head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://ynebula.github.io/">Bigdata Engineer &amp; Analyst Story</a>
+            </h1>
+
+      <ul id="social-media">
+             <li>
+               <a href="https://www.facebook.com/username" title="Facebook">
+               <i class="fab fa-facebook fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://github.com/ynebula" title="GitHub">
+               <i class="fab fa-github fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://linkedin.com/in/%EC%84%B1%EC%9A%B4-%EC%9C%A4-a9bb30135/" title="LinkedIn">
+               <i class="fab fa-linkedin fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://www.instagram.com/sungwoon.yoon" title="Instagram">
+               <i class="fab fa-instagram fa-lg"></i>
+               </a>
+             </li>
+      </ul>
+      
+      <p><em>A Hugo theme for creative and technical writing</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://ynebula.github.io/tags">
+                <i class="fa-li fa  fa-lg"></i><span>Tags</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://ynebula.github.io/categories">
+                <i class="fa-li fa  fa-lg"></i><span>Categories</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Mongodb_replica_set</h1>
+
+    
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2021-03-01T16:09:45&#43;09:00">Mar 1, 2021</time>
+        </li>
+        
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="https://ynebula.github.io/categories/mongodb">MongoDB</a>
+                
+            </em>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="https://ynebula.github.io/tags/mongodb">#MongoDB</a>
+                
+            </em>
+        </li>
+        
+
+        <li>One minute read</li>
+    </ul>
+</aside>
+
+    
+
+    
+<div class="featured_image">
+    <a href="https://ynebula.github.io/posts/bigdata/mongodb/mongodb_replica_set/" title="Mongodb_replica_set">
+        <img src="">
+    </a>
+</div>
+
+
+
+    <p>Replica Set(RS)</p>
+<ul>
+<li>복제 구성을 통한 DB HA(High Availability) 기능</li>
+<li>이렇게 복제 구성된 그룹은 Replica Set이라 하며, 나아가 다수의 Replica Set을 함께 구성하여 쿼리의 분산 처리와 Scale out에 유리하게 구성한 형태를 Sharded Cluster</li>
+<li>하나의 Replica Set은 이를 구성하는 3개 이상의 Member로 구성되며, 각각의 Member는 3가지 중 role(Primary, Secondary, Arbiter) 중 하나의 역할</li>
+<li>주로 3개의 Member에 대하여 P-S-A(Primary-Secondary-Arbiter) 혹은 P-S-S(Primary-Secondary-Secondary) 구성이 일반적
+: <a href="https://docs.ncloud.com/ko/assets/database-10-3-1.png">https://docs.ncloud.com/ko/assets/database-10-3-1.png</a></li>
+</ul>
+<p>P-S-A 구성</p>
+<ul>
+<li>DB 서버로 사용할 서버 2대, 그리고 Arbiter 서버로 사용할 1대를 준비
+: Arbiter는 primary 및 secondary의 데이터를 복제 하지 않으며 프로세스로만 존재하고 primary에 문제가 생겨 fali-over가 발생할 시에 투표만 하는 역할이므로 고성능 DB서버를 사용하지 않아도 됩니다.</li>
+<li>MongoDB replica set 3대의 데몬 설정파일(/home/mongodb/db/config/mongod.conf)을 아래와 같이 설정</li>
+</ul>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://ynebula.github.io/posts/bigdata/mongodb/mongodb_sharding/"><i class="fa fa-chevron-circle-left"></i> Mongodb_sharding</a>
+        </li>
+        
+        
+    </ul>
+</section>
+  
+    
+    
+        <section class="comments-block">
+      <button id="show-comments" style="display: none;"><i class="fa fa-comments"></i> Add/View Comments</button>
+</section>
+
+<section id="disqus_thread"></section>
+
+<script>
+      (function () {
+            
+            
+            if (window.location.hostname == "localhost")
+                  return;
+
+            var disqus_loaded = false;
+            var disqus_shortname = 'myShortName';
+            var disqus_button = document.getElementById("show-comments");
+
+            var disqus_autoload =  null ;
+            var disable_comment =  null ;
+
+            if (disable_comment)
+                  return;
+
+            disqus_button.style.display = "";
+
+            if (disqus_autoload){
+                  disqus();
+            }else{
+                  disqus_button.addEventListener("click", disqus, false);
+            }
+
+            function disqus() {
+
+                  if (!disqus_loaded) {
+                        disqus_loaded = true;
+
+                        var e = document.createElement("script");
+                        e.type = "text/javascript";
+                        e.async = true;
+                        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                        (document.getElementsByTagName("head")[0] ||
+                              document.getElementsByTagName("body")[0])
+                        .appendChild(e);
+
+                        
+                        document.getElementById("show-comments").style.display = "none";
+                  }
+            }
+
+            
+            var hash = window.location.hash.substr(1);
+            if (hash.length > 8) {
+                  if (hash.substring(0, 8) == "comment-") {
+                        disqus();
+                  }
+            }
+
+            
+            if (/bot|google|baidu|bing|msn|duckduckgo|slurp|yandex/i.test(navigator.userAgent)) {
+                  disqus();
+            }
+      })();
+</script>
+
+    
+  
+
+
+
+
+
+</main>
+    <footer>
+        <h6>Copyright © 2020 - Sungwoon Yoon |
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://ynebula.github.io/index.xml">Subscribe </a></h6>
+    </footer>
+</div>
+<script src="https://ynebula.github.io/js/scripts.js"></script>
+
+
+</body>
+
+</html>
+

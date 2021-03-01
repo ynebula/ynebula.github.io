@@ -1,0 +1,318 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>MongoDB Query - Bigdata Engineer &amp; Analyst Story</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Kiera: A Hugo theme for creative and technical writing." />
+<meta name="author" content="Sungwoon Yoon" /><meta property="og:title" content="MongoDB Query" />
+<meta property="og:description" content="데이터베이스 조회 show dbs; use test;
+mongotop
+ 각 collection별 read write 속도 모니터링 mongodb 서버에서 query 응답이 느리다면, 어떤 컬렉션에 문제가 발생하고 있는지 확인할 수 있음 ./mongotop &ndash;host localhost &ndash;port 27017 -u user -p &lsquo;password&rsquo; &ndash;authenticationDatabase admin mongostat query 실행 모니터링 DB 인스턴스의 각각 수행되고 있는 query 수와 network 사용량 등을 모니터링 실행 샘플 : ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ynebula.github.io/posts/bigdata/mongodb/mongodb_query/" />
+<meta property="article:published_time" content="2021-03-01T16:07:22+09:00" />
+<meta property="article:modified_time" content="2021-03-01T16:07:22+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MongoDB Query"/>
+<meta name="twitter:description" content="데이터베이스 조회 show dbs; use test;
+mongotop
+ 각 collection별 read write 속도 모니터링 mongodb 서버에서 query 응답이 느리다면, 어떤 컬렉션에 문제가 발생하고 있는지 확인할 수 있음 ./mongotop &ndash;host localhost &ndash;port 27017 -u user -p &lsquo;password&rsquo; &ndash;authenticationDatabase admin mongostat query 실행 모니터링 DB 인스턴스의 각각 수행되고 있는 query 수와 network 사용량 등을 모니터링 실행 샘플 : ."/>
+
+<meta name="generator" content="Hugo 0.78.1" />
+    
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://ynebula.github.io/fontawesome/css/all.min.css" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  
+  
+  <link rel="stylesheet" type="text/css" href="https://ynebula.github.io/css/styles.css" /></head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://ynebula.github.io/">Bigdata Engineer &amp; Analyst Story</a>
+            </h1>
+
+      <ul id="social-media">
+             <li>
+               <a href="https://www.facebook.com/username" title="Facebook">
+               <i class="fab fa-facebook fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://github.com/ynebula" title="GitHub">
+               <i class="fab fa-github fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://linkedin.com/in/%EC%84%B1%EC%9A%B4-%EC%9C%A4-a9bb30135/" title="LinkedIn">
+               <i class="fab fa-linkedin fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://www.instagram.com/sungwoon.yoon" title="Instagram">
+               <i class="fab fa-instagram fa-lg"></i>
+               </a>
+             </li>
+      </ul>
+      
+      <p><em>A Hugo theme for creative and technical writing</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://ynebula.github.io/tags">
+                <i class="fa-li fa  fa-lg"></i><span>Tags</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://ynebula.github.io/categories">
+                <i class="fa-li fa  fa-lg"></i><span>Categories</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>MongoDB Query</h1>
+
+    
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2021-03-01T16:07:22&#43;09:00">Mar 1, 2021</time>
+        </li>
+        
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="https://ynebula.github.io/categories/mongodb">MongoDB</a>
+                
+            </em>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="https://ynebula.github.io/tags/mongodb">#MongoDB</a>
+                
+            </em>
+        </li>
+        
+
+        <li>2 minutes read</li>
+    </ul>
+</aside>
+
+    
+
+    
+<div class="featured_image">
+    <a href="https://ynebula.github.io/posts/bigdata/mongodb/mongodb_query/" title="MongoDB Query">
+        <img src="">
+    </a>
+</div>
+
+
+
+    <p>데이터베이스 조회
+show dbs;
+use test;</p>
+<p>mongotop</p>
+<ul>
+<li>각 collection별 read write 속도 모니터링</li>
+<li>mongodb 서버에서 query 응답이 느리다면, 어떤 컬렉션에 문제가 발생하고 있는지 확인할 수 있음</li>
+<li>./mongotop &ndash;host localhost &ndash;port 27017 -u user -p &lsquo;password&rsquo; &ndash;authenticationDatabase admin
+mongostat</li>
+<li>query 실행 모니터링</li>
+<li>DB 인스턴스의 각각 수행되고 있는 query 수와 network 사용량 등을 모니터링</li>
+<li>실행 샘플 : ./mongostat &ndash;host localhost &ndash;port 27017 -u user -p &lsquo;password&rsquo; &ndash;authenticationDatabase admin</li>
+</ul>
+<p>컬랙션</p>
+<ul>
+<li>RDB의 Table과 같은 개념으로 데이터를 저장하는 단위</li>
+<li>하지만 RDB와 다르게 스키마를 정의하고 이에 맞는 데이터만 저장되지만, MongoDB는 모든 종류의 데이터 저장할 수 있음 -&gt; schemaless 특징 있음</li>
+</ul>
+<p>컬렉션(데이터 저장하는 단위) 조회
+show collections;</p>
+<p>Javascript 명령 지원</p>
+<ul>
+<li>변수 생성 및 사칙 연산</li>
+<li>a=5; a*10;</li>
+<li>for(i=0; i&lt;10; i++) {print(&lsquo;hello&rsquo;)};</li>
+</ul>
+<p>JSON 형태 데이터 저장</p>
+<ul>
+<li>var a = {age:25};</li>
+<li>var n = {name:&lsquo;Ed&rsquo;, language:[&lsquo;c&rsquo;, &lsquo;ruby&rsquo;, &lsquo;js&rsquo;]};</li>
+<li>var student = {name:&lsquo;Jim&rsquo;, scores:[75, 99, 87.2]};</li>
+</ul>
+<p>저장</p>
+<ul>
+<li>{DB}.{collection}.save({a:99})</li>
+<li>db.scores.save({a:99});</li>
+<li>db.scores.find();</li>
+<li>_id는 자동 생성 됨</li>
+</ul>
+<p>반복 저장</p>
+<ul>
+<li>for(i=0; i&lt;10; i++) {db.scores.save({a:i, exam:5});};</li>
+<li>db.scores.find();</li>
+</ul>
+<p>조회</p>
+<ul>
+<li>모든 데이터 조회 -&gt; 매개변수 없음
+: db.scores.find();</li>
+<li>특정 데이터 조회 -&gt; 매개변수는 JSON형식
+: a가 2인 도큐먼트만 찾아라
+<ul>
+<li>db.scores.find({a:2});
+: a가 15보다 큰거 찾아라</li>
+<li>db.scores.find({a:{'$gt':15}});</li>
+</ul>
+</li>
+<li>find AND 연산 - a가 2보다 크고 4보다 작은 
+: db.scores.find({a:{'$gte':2, &lsquo;$lte&rsquo;:4}});</li>
+<li>find IN 명령 - 배열로 와야함
+: db.scores.find({a:{'$in':[2,3,4]}});
+: db.scores.find({a:{'$nin':[2,3,4]}});</li>
+<li>find OR 명령
+: db.scores.find({$or:[{&lsquo;a&rsquo;:{$lt:1}},{&lsquo;a&rsquo;:{$gt:9}}]});</li>
+<li>필드 존재 유무 exam 키 가지고 있는 
+: db.scores.find({exam:{$exists:true}});</li>
+<li>반환 필드 선택 - a, exam 출력, _id 출력 안함
+: db.scores.find({}, {a:1, exam:2, _id:0});</li>
+</ul>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://ynebula.github.io/posts/bigdata/mongodb/mongodb_install/"><i class="fa fa-chevron-circle-left"></i> Mongodb install on Mac</a>
+        </li>
+        
+        
+        <li>
+            <a href="https://ynebula.github.io/posts/bigdata/mongodb/mongodb_sharding/">Mongodb_sharding <i class="fa fa-chevron-circle-right"></i> </a>
+        </li>
+        
+    </ul>
+</section>
+  
+    
+    
+        <section class="comments-block">
+      <button id="show-comments" style="display: none;"><i class="fa fa-comments"></i> Add/View Comments</button>
+</section>
+
+<section id="disqus_thread"></section>
+
+<script>
+      (function () {
+            
+            
+            if (window.location.hostname == "localhost")
+                  return;
+
+            var disqus_loaded = false;
+            var disqus_shortname = 'myShortName';
+            var disqus_button = document.getElementById("show-comments");
+
+            var disqus_autoload =  null ;
+            var disable_comment =  null ;
+
+            if (disable_comment)
+                  return;
+
+            disqus_button.style.display = "";
+
+            if (disqus_autoload){
+                  disqus();
+            }else{
+                  disqus_button.addEventListener("click", disqus, false);
+            }
+
+            function disqus() {
+
+                  if (!disqus_loaded) {
+                        disqus_loaded = true;
+
+                        var e = document.createElement("script");
+                        e.type = "text/javascript";
+                        e.async = true;
+                        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                        (document.getElementsByTagName("head")[0] ||
+                              document.getElementsByTagName("body")[0])
+                        .appendChild(e);
+
+                        
+                        document.getElementById("show-comments").style.display = "none";
+                  }
+            }
+
+            
+            var hash = window.location.hash.substr(1);
+            if (hash.length > 8) {
+                  if (hash.substring(0, 8) == "comment-") {
+                        disqus();
+                  }
+            }
+
+            
+            if (/bot|google|baidu|bing|msn|duckduckgo|slurp|yandex/i.test(navigator.userAgent)) {
+                  disqus();
+            }
+      })();
+</script>
+
+    
+  
+
+
+
+
+
+</main>
+    <footer>
+        <h6>Copyright © 2020 - Sungwoon Yoon |
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://ynebula.github.io/index.xml">Subscribe </a></h6>
+    </footer>
+</div>
+<script src="https://ynebula.github.io/js/scripts.js"></script>
+
+
+</body>
+
+</html>
+

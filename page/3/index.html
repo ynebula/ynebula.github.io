@@ -11,7 +11,7 @@
 <meta property="og:description" content="Kiera: A Hugo theme for creative and technical writing." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ynebula.github.io/" />
-<meta property="og:updated_time" content="2021-01-31T16:38:51+09:00" />
+<meta property="og:updated_time" content="2021-03-01T16:09:45+09:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Bigdata Engineer &amp; Analyst Story"/>
@@ -94,11 +94,11 @@
     
 
     <li class="first" >
-      <h1><a href="https://ynebula.github.io/posts/bigdata/hdfs/" title="하둡 분산 파일 시스템(Hdfs)">하둡 분산 파일 시스템(Hdfs)</a></h1>
+      <h1><a href="https://ynebula.github.io/posts/zookeeper/zookeeper/" title="Zookeeper">Zookeeper</a></h1>
       <aside>
     <ul>
         <li>
-            <time class="post-date" datetime="2021-01-03T22:33:30&#43;09:00">Jan 3, 2021</time>
+            <time class="post-date" datetime="2021-01-31T13:47:12&#43;09:00">Jan 31, 2021</time>
         </li>
         
         
@@ -121,7 +121,7 @@
                     <a href="https://ynebula.github.io/tags/bigdata">#Bigdata</a>
                 
                     , 
-                    <a href="https://ynebula.github.io/tags/hdfs">#HDFS</a>
+                    <a href="https://ynebula.github.io/tags/zookeeper">#Zookeeper</a>
                 
             </em>
         </li>
@@ -133,25 +133,25 @@
 
       
 <div class="featured_image">
-    <a href="https://ynebula.github.io/posts/bigdata/hdfs/" title="하둡 분산 파일 시스템(Hdfs)">
+    <a href="https://ynebula.github.io/posts/zookeeper/zookeeper/" title="Zookeeper">
         <img src="">
     </a>
 </div>
 
 
-      <p>하둡 분산 파일 시스템  대용량 파일 읽기 및 쓰기 작업에 최적화된 파일 시스템 파일의 메타정보는 네임노드(마스터노드)가 관리하고 실제 블록 데이터는 데이터노드(작업노드)에서 분산 저장됨 분산 파일 시스템은 유져 입장에서는 하나로 보이지만 물리적으로 분산/쪼개져 있고 네임노드가 데이터 노드를 관리함 파일시스템 관점에서는 하나의 클러스터의 파일 시스템  네임노드  메타정보를 보관 SPOF(single point of failure) Active-standby 형태로 운영 Fsimage, Edit Log(변경로그) 메타정보 HDFS에 있는 각 블록의 파일위치, 사용자, 권한 등에 대한 정보 Fsimage 데이터노드에 저장된 블록들에 대한 정보 EditLog 블록정보에 대한 변경 사항  데이터노드  파일을 기본적으로 64M 혹은 128M 블록 단위로 나누어 여러 개의 데이터노드에 분산 저장함 복제본의 수는 시스템에서 설절하며, 디폴트 3  특징</p>
+      <p>분산 시스템의 고민  분산 시스템 간의 정보 공유 방법? 클러스터 서버들의 상태 체크 방법? 분산된 서버들 간에 동기화를 위해 잠금(LOCK) 처리 방법  코디네이션 서비스 시스템(Coordination Service) - 주키퍼(Zoopkeeper)  노드 간에 조정자 역할을 수행하는 서비스 노드 간 정보공유, 잠금(Lock,Unlock), 이벤트 등의 기능 수행 여러 개의 노드에 작업을 분산시켜주는 부하분산기능(Load Balancing) 을 제공 서버에서 처리된 결과를 다른 서버에 동기화 할 때 잠금(Lock) 처리 수행 서버 장애 시 대기(Standby) 서버가 대신 처리하는 장애상황판단 및 복구기능  주키퍼 아키텍처  디렉토리(계층,트리) 구조 기반의 데이터 저장소 znode라는 데이터 저장 객체를 제공함(Key-Value 방식)  객체에 데이터(상태 정보, 구성 정보, 위치 정보 등)를 넣고 빼는 기능을 제공함     노드의 종류 Persistent Node</p>
       
-      <a href="https://ynebula.github.io/posts/bigdata/hdfs/">Read more…</a>
+      <a href="https://ynebula.github.io/posts/zookeeper/zookeeper/">Read more…</a>
       
     </li>
     
 
     <li >
-      <h1><a href="https://ynebula.github.io/posts/bigdata/yarn/" title="Yarn">Yarn</a></h1>
+      <h1><a href="https://ynebula.github.io/posts/bigdata/hbase/" title="Hbase">Hbase</a></h1>
       <aside>
     <ul>
         <li>
-            <time class="post-date" datetime="2021-01-03T22:31:11&#43;09:00">Jan 3, 2021</time>
+            <time class="post-date" datetime="2021-01-17T19:38:06&#43;09:00">Jan 17, 2021</time>
         </li>
         
         
@@ -163,7 +163,7 @@
                     <a href="https://ynebula.github.io/categories/bigdata">Bigdata</a>
                 
                     , 
-                    <a href="https://ynebula.github.io/categories/yarn">Yarn</a>
+                    <a href="https://ynebula.github.io/categories/hbase">HBase</a>
                 
             </em>
         </li>
@@ -177,37 +177,35 @@
                     <a href="https://ynebula.github.io/tags/bigdata">#Bigdata</a>
                 
                     , 
-                    <a href="https://ynebula.github.io/tags/yarn">#Yarn</a>
+                    <a href="https://ynebula.github.io/tags/hbase">#HBase</a>
                 
             </em>
         </li>
         
 
-        <li>2 minutes read</li>
+        <li>One minute read</li>
     </ul>
 </aside>
 
       
 <div class="featured_image">
-    <a href="https://ynebula.github.io/posts/bigdata/yarn/" title="Yarn">
+    <a href="https://ynebula.github.io/posts/bigdata/hbase/" title="Hbase">
         <img src="">
     </a>
 </div>
 
 
-      <p>Yarn (Yet Another Resource Negotiator)  HDFS 계층과 MR 계층 중간에 YARN 을 구성해 리소스(자원)관리 수행 (MapReduce - YARN - HDFS) MapReduce이외의 데이터 처리 모듈이 하위의 HDFS를 공유할 수 있음 즉, 여러 Data Processing 지원 자원을 다양한 응용 프로그램에 효율적으로 할당하고 사용자 응용 프로그램을 효율적으로 스케줄링 함 애플리케이션마스터 (AM-Application Master)가 애플리케이션 별로 리소스를 관리함 작업을 관리  잡트래커 하나가 전체 시스템을 관리하는 형태에서 애프리케이션 별로 관리함 잡트래커+태스트트래커 -&gt; 리소스매니저+노드매니저 시스템 리소스 관리와 잡 관리를 분리   클러스터의 자원을 컨테이너(Container)로 분할  컨테이너는 할당되는 CPU 코어 수와 메모리 용량으로 정의됨   실행 중인 컨테이너들을 모니터링 함  컨테이너가 자원(CPU, 메모리, 디스크, 네트워크 등)의 최대 할당량을 초과하지 않게 억제   클러스터의 자원을 컨테이너로 관리함으로써 분산 시스템을 전체적으로 원활하게 운영함 클러스터의 자원을 다수의 응용 프로그램에 공평한 방식으로 공유함 자원 관리자(Resource Manager)  다양한 응용 프로그램에 자원을 할당   응용 프로그램 마스터(Application Master)  프로세스의 실행을 모니터링 자원 관리자에게 자원을 요청    하둡 YARN  클러스터에 있는 컴퓨팅 자원들(CPU, 메모리 등)을 동적으로 관리하는 플랫폼 서비스  클러스터 자원 관리</p>
-      
-      <a href="https://ynebula.github.io/posts/bigdata/yarn/">Read more…</a>
+      <p>Hbase(NoSQL 데이터베이스)  컬럼 기반의 NoSQL 데이터베이스 컬럼 베이스(패밀리)로 구성된 스키마 없는 데이터베이스로서 조인, 인덱스가 없음 비정형/반정형 데이터에 대해 임의 액세스 및 일관성 제공 컬럼 베이스로 돼 있어서, 테이블은 n개의 컬럼 패밀리를 가질 수 있음  1개의 행: rowkey(유일한 인덱스, 기준 정렬) + 컬럼 패밀리    Hbase 데이터 관리 방법  create: 데이터베이스 생성 put: 데이터베이스에 데이터를 기록 get: 데이터베이스에서 데이터를 읽음 scan: 테이블의 여러 행에서 데이터를 가져옴   컬럼 패밀리를 구성: Personal과 Office로 나눔 상세 퀄리파이어 구성     값 의미     생성 create &lsquo;Contact&rsquo;, &lsquo;Personal&rsquo;, &lsquo;Office&rsquo;   데이터삽입 put &lsquo;Contact&rsquo;, &lsquo;1000&rsquo;, &lsquo;Personal:Name&rsquo;, &lsquo;John Dole&rsquo;    put &lsquo;Contact&rsquo;, &lsquo;1000&rsquo;, &lsquo;Personal:Phonne&rsquo;, &lsquo;1-425-000-0001&rsquo;    put &lsquo;Contact&rsquo;, &lsquo;1000&rsquo;, &lsquo;Office:Phone&rsquo;, &lsquo;1-425-000-0002&rsquo;    put &lsquo;Contact&rsquo;, &lsquo;1000&rsquo;, &lsquo;Office:Address&rsquo;, &lsquo;1111San Gabriel Dr&rsquo;   데이터 추출 scan &lsquo;Contacts&rsquo;    </p>
       
     </li>
     
 
     <li >
-      <h1><a href="https://ynebula.github.io/posts/bigdata/hadoop_architecture/" title="하둡 아키텍처">하둡 아키텍처</a></h1>
+      <h1><a href="https://ynebula.github.io/posts/bigdata/oozie/" title="Oozie">Oozie</a></h1>
       <aside>
     <ul>
         <li>
-            <time class="post-date" datetime="2020-12-27T15:28:31&#43;09:00">Dec 27, 2020</time>
+            <time class="post-date" datetime="2021-01-17T18:54:40&#43;09:00">Jan 17, 2021</time>
         </li>
         
         
@@ -217,9 +215,6 @@
                 
                     
                     <a href="https://ynebula.github.io/categories/bigdata">Bigdata</a>
-                
-                    , 
-                    <a href="https://ynebula.github.io/categories/hadoop">Hadoop</a>
                 
             </em>
         </li>
@@ -233,30 +228,27 @@
                     <a href="https://ynebula.github.io/tags/bigdata">#Bigdata</a>
                 
                     , 
-                    <a href="https://ynebula.github.io/tags/hadoop">#Hadoop</a>
-                
-                    , 
-                    <a href="https://ynebula.github.io/tags/architecture">#Architecture</a>
+                    <a href="https://ynebula.github.io/tags/oozie">#Oozie</a>
                 
             </em>
         </li>
         
 
-        <li>4 minutes read</li>
+        <li>One minute read</li>
     </ul>
 </aside>
 
       
 <div class="featured_image">
-    <a href="https://ynebula.github.io/posts/bigdata/hadoop_architecture/" title="하둡 아키텍처">
+    <a href="https://ynebula.github.io/posts/bigdata/oozie/" title="Oozie">
         <img src="">
     </a>
 </div>
 
 
-      <p>하둡 아키텍쳐 하둡은 분산파일시스템 HDFS(Hadoop Distributed File System)과 분산처리 기술인 MapReduce 기술이 결합된 기술이다.         하둡(Hadoop) = HDFS(Big file system) + MapReduce(분산처리 시스템)    하둡 클러스터 동작 방식 독립 모드(Standalone Mode)</p>
+      <p>Oozie개요  여러 하둡 작업을 실행하고 관리하는 워크플로우 스케줄러 시스템 데이터 수집부터 분석에 이르는 데이터 파이프라인을 구성 시 워크플로우 정의 및 개별 하둡 작업의 순차적 실행 및 관리 여러 유형의 하둡 작업 지원  맵리듀스, 피그, 하이브, 스파크, 스쿱, 자바, 쉘스크립트   워크플로우 작업은 여러 액션의 DAG(Directed Acyclic Graph)로 표현됨  우지 작업 유형 워크플로우(Workflow)</p>
       
-      <a href="https://ynebula.github.io/posts/bigdata/hadoop_architecture/">Read more…</a>
+      <a href="https://ynebula.github.io/posts/bigdata/oozie/">Read more…</a>
       
     </li>
     
@@ -283,14 +275,17 @@
   <li class="page-item">
     <a class="page-link" href="https://ynebula.github.io/page/4/">4</a>
   </li>
+  <li class="page-item disabled">
+    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
+  </li>
   <li class="page-item">
-    <a class="page-link" href="https://ynebula.github.io/page/5/">5</a>
+    <a class="page-link" href="https://ynebula.github.io/page/6/">6</a>
   </li>
   <li class="page-item">
     <a href="https://ynebula.github.io/page/4/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
   </li>
   <li class="page-item">
-    <a href="https://ynebula.github.io/page/5/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <a href="https://ynebula.github.io/page/6/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
   </li>
 </ul>
 

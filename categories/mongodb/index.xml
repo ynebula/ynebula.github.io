@@ -1,0 +1,1508 @@
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+ <channel>
+   <title>MongoDB on Bigdata Engineer &amp; Analyst Story</title>
+   <link>https://ynebula.github.io/categories/mongodb/</link>
+   <description>Recent content in MongoDB on Bigdata Engineer &amp; Analyst Story</description>
+   <generator>Hugo -- gohugo.io</generator>
+   <copyright>Copyright &amp;copy; 2020 - Sungwoon Yoon</copyright>
+   <lastBuildDate>Mon, 01 Mar 2021 16:09:45 +0900</lastBuildDate>
+   
+       <atom:link href="https://ynebula.github.io/categories/mongodb/index.xml" rel="self" type="application/rss+xml" />
+   
+   
+     <item>
+       <title>Mongodb_replica_set</title>
+       <link>https://ynebula.github.io/posts/bigdata/mongodb/mongodb_replica_set/</link>
+       <pubDate>Mon, 01 Mar 2021 16:09:45 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/bigdata/mongodb/mongodb_replica_set/</guid>
+       <description>&lt;p&gt;Replica Set(RS)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;복제 구성을 통한 DB HA(High Availability) 기능&lt;/li&gt;
+&lt;li&gt;이렇게 복제 구성된 그룹은 Replica Set이라 하며, 나아가 다수의 Replica Set을 함께 구성하여 쿼리의 분산 처리와 Scale out에 유리하게 구성한 형태를 Sharded Cluster&lt;/li&gt;
+&lt;li&gt;하나의 Replica Set은 이를 구성하는 3개 이상의 Member로 구성되며, 각각의 Member는 3가지 중 role(Primary, Secondary, Arbiter) 중 하나의 역할&lt;/li&gt;
+&lt;li&gt;주로 3개의 Member에 대하여 P-S-A(Primary-Secondary-Arbiter) 혹은 P-S-S(Primary-Secondary-Secondary) 구성이 일반적
+: &lt;a href=&#34;https://docs.ncloud.com/ko/assets/database-10-3-1.png&#34;&gt;https://docs.ncloud.com/ko/assets/database-10-3-1.png&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;P-S-A 구성&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;DB 서버로 사용할 서버 2대, 그리고 Arbiter 서버로 사용할 1대를 준비
+: Arbiter는 primary 및 secondary의 데이터를 복제 하지 않으며 프로세스로만 존재하고 primary에 문제가 생겨 fali-over가 발생할 시에 투표만 하는 역할이므로 고성능 DB서버를 사용하지 않아도 됩니다.&lt;/li&gt;
+&lt;li&gt;MongoDB replica set 3대의 데몬 설정파일(/home/mongodb/db/config/mongod.conf)을 아래와 같이 설정&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Mongodb_sharding</title>
+       <link>https://ynebula.github.io/posts/bigdata/mongodb/mongodb_sharding/</link>
+       <pubDate>Mon, 01 Mar 2021 16:08:58 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/bigdata/mongodb/mongodb_sharding/</guid>
+       <description>&lt;p&gt;샤딩의 개념과 정의
+샤딩의 목적&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;데이터의 분산 저장&lt;/li&gt;
+&lt;li&gt;백업과 복구 전략&lt;/li&gt;
+&lt;li&gt;빠른 성능
+: 독립된 프로세스가 병렬로 작업을 수행하기 때문에 빠른 처리 성능 보장&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;샤딩 시스템 구조
+&lt;a href=&#34;https://elky84.github.io/images/mongodb_sharding_internals.jpg&#34;&gt;https://elky84.github.io/images/mongodb_sharding_internals.jpg&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;mongos: 라우터 역할 수행
+: 하나 이상의 프로세스를 사용
+: Config 서버의 Meta-data를 캐시
+: 빅데이터를 샤드 서버로 분산해주는 프로세스
+: mongos 서버를 통해 데이터를 읽고/쓰는 작업이 가능&lt;/li&gt;
+&lt;li&gt;3개의 샤드를 가짐. 샤드키를 기준으로 데이터를 3대에 분산해서 저장&lt;/li&gt;
+&lt;li&gt;레플리카 셋 구성 동일한 데이터를 세 개 구성&lt;/li&gt;
+&lt;li&gt;Config Servers
+: Config 서버는 샤드 시스템에 대한 메타 데이터 저장/관리 역할
+: 샤드 서버의 인덱스 정보를 빠르게 검색 가능케 함
+: 샤드 서버와 별도의 서버에 구축이 기본&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Shard key 구성&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Shard Key는 여러 개의 Shard 서버로 분할 될 기준 필드를 가리키며, partition과 load balancing에 기준이 됨&lt;/li&gt;
+&lt;li&gt;샤드키는 카디널리티를 보고 적절한 선택이 필요하며, 데이터 분포가 넓으면 Low 카디널리티, 분포가 높으면 High 카디널리티라고 부름&lt;/li&gt;
+&lt;li&gt;예로 사원번호는 고유한 값으로 구성돼 높은 카디널리티를 가지게 된다. 남자, 여자 라는 필드로 샤드키를 구성을 하면 검색 시 인덱스에 도움을 받을 수 없다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Chunk Migration&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;마이그레이션: 데이터의 이동. 서버에 균등하게 데이터를 재조정하는 과정&lt;/li&gt;
+&lt;li&gt;Chunk Default: 64M or 100,000행&lt;/li&gt;
+&lt;li&gt;기본 설정 보다 빈번하게 Chunk Migration이 발생한다면 Chunk 크기를 더욱 크게 설정해야 한다.&lt;/li&gt;
+&lt;li&gt;예로 하나의 서버에만 데이터가 집중되고 전체 샤드 서버에 골고루 데이터가 분산되지 않는다면 Chunk 크기를 더 작게 설정해 효율적으로 데이터 분산이 필요하다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;샤딩 시스템 구성&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;샤드 서버용 저장 공간 생성&lt;/li&gt;
+&lt;li&gt;config 서버용 저장 공간 생성&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;샤딩의-한계&#34;&gt;샤딩의 한계&lt;/h2&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>MongoDB Query</title>
+       <link>https://ynebula.github.io/posts/bigdata/mongodb/mongodb_query/</link>
+       <pubDate>Mon, 01 Mar 2021 16:07:22 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/bigdata/mongodb/mongodb_query/</guid>
+       <description>&lt;p&gt;데이터베이스 조회
+show dbs;
+use test;&lt;/p&gt;
+&lt;p&gt;mongotop&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;각 collection별 read write 속도 모니터링&lt;/li&gt;
+&lt;li&gt;mongodb 서버에서 query 응답이 느리다면, 어떤 컬렉션에 문제가 발생하고 있는지 확인할 수 있음&lt;/li&gt;
+&lt;li&gt;./mongotop &amp;ndash;host localhost &amp;ndash;port 27017 -u user -p &amp;lsquo;password&amp;rsquo; &amp;ndash;authenticationDatabase admin
+mongostat&lt;/li&gt;
+&lt;li&gt;query 실행 모니터링&lt;/li&gt;
+&lt;li&gt;DB 인스턴스의 각각 수행되고 있는 query 수와 network 사용량 등을 모니터링&lt;/li&gt;
+&lt;li&gt;실행 샘플 : ./mongostat &amp;ndash;host localhost &amp;ndash;port 27017 -u user -p &amp;lsquo;password&amp;rsquo; &amp;ndash;authenticationDatabase admin&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;컬랙션&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;RDB의 Table과 같은 개념으로 데이터를 저장하는 단위&lt;/li&gt;
+&lt;li&gt;하지만 RDB와 다르게 스키마를 정의하고 이에 맞는 데이터만 저장되지만, MongoDB는 모든 종류의 데이터 저장할 수 있음 -&amp;gt; schemaless 특징 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;컬렉션(데이터 저장하는 단위) 조회
+show collections;&lt;/p&gt;
+&lt;p&gt;Javascript 명령 지원&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;변수 생성 및 사칙 연산&lt;/li&gt;
+&lt;li&gt;a=5; a*10;&lt;/li&gt;
+&lt;li&gt;for(i=0; i&amp;lt;10; i++) {print(&amp;lsquo;hello&amp;rsquo;)};&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;JSON 형태 데이터 저장&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;var a = {age:25};&lt;/li&gt;
+&lt;li&gt;var n = {name:&amp;lsquo;Ed&amp;rsquo;, language:[&amp;lsquo;c&amp;rsquo;, &amp;lsquo;ruby&amp;rsquo;, &amp;lsquo;js&amp;rsquo;]};&lt;/li&gt;
+&lt;li&gt;var student = {name:&amp;lsquo;Jim&amp;rsquo;, scores:[75, 99, 87.2]};&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;저장&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;{DB}.{collection}.save({a:99})&lt;/li&gt;
+&lt;li&gt;db.scores.save({a:99});&lt;/li&gt;
+&lt;li&gt;db.scores.find();&lt;/li&gt;
+&lt;li&gt;_id는 자동 생성 됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;반복 저장&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;for(i=0; i&amp;lt;10; i++) {db.scores.save({a:i, exam:5});};&lt;/li&gt;
+&lt;li&gt;db.scores.find();&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;조회&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;모든 데이터 조회 -&amp;gt; 매개변수 없음
+: db.scores.find();&lt;/li&gt;
+&lt;li&gt;특정 데이터 조회 -&amp;gt; 매개변수는 JSON형식
+: a가 2인 도큐먼트만 찾아라
+&lt;ul&gt;
+&lt;li&gt;db.scores.find({a:2});
+: a가 15보다 큰거 찾아라&lt;/li&gt;
+&lt;li&gt;db.scores.find({a:{&#39;$gt&#39;:15}});&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;find AND 연산 - a가 2보다 크고 4보다 작은 
+: db.scores.find({a:{&#39;$gte&#39;:2, &amp;lsquo;$lte&amp;rsquo;:4}});&lt;/li&gt;
+&lt;li&gt;find IN 명령 - 배열로 와야함
+: db.scores.find({a:{&#39;$in&#39;:[2,3,4]}});
+: db.scores.find({a:{&#39;$nin&#39;:[2,3,4]}});&lt;/li&gt;
+&lt;li&gt;find OR 명령
+: db.scores.find({$or:[{&amp;lsquo;a&amp;rsquo;:{$lt:1}},{&amp;lsquo;a&amp;rsquo;:{$gt:9}}]});&lt;/li&gt;
+&lt;li&gt;필드 존재 유무 exam 키 가지고 있는 
+: db.scores.find({exam:{$exists:true}});&lt;/li&gt;
+&lt;li&gt;반환 필드 선택 - a, exam 출력, _id 출력 안함
+: db.scores.find({}, {a:1, exam:2, _id:0});&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Mongodb install on Mac</title>
+       <link>https://ynebula.github.io/posts/bigdata/mongodb/mongodb_install/</link>
+       <pubDate>Mon, 01 Mar 2021 16:04:49 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/bigdata/mongodb/mongodb_install/</guid>
+       <description>&lt;p&gt;설치환경&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;OS : Mac Catalina 10.15.7&lt;/li&gt;
+&lt;li&gt;MonogDB: Community 4.4.4&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;다운로드
+&lt;a href=&#34;https://www.mongodb.com/try/download/community&#34;&gt;https://www.mongodb.com/try/download/community&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;심볼링크 설정&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;심볼링크를 이용해서 /usr/local/lib/ 하위에 관리한다.&lt;/li&gt;
+&lt;li&gt;mv /Users/admin/Downloads /usr/local/mongodb-{version}&lt;/li&gt;
+&lt;li&gt;ln -s /usr/local/mongodb-{version} /usr/local/lib/mongodb&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Path 추가
+.bash_profile에 mongo binary를 추가하고 쉘에 적용한다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MONGO_HOME=/usr/local/lib/mongodb&lt;/li&gt;
+&lt;li&gt;PATH=${PATH}:${MONGO_HOME}/bin&lt;/li&gt;
+&lt;li&gt;source .bash_profile&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;데이터 디렉토리 추가
+/usr/local/lib/mongodb/ 아래 data/db 디렉토리를 생성한다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;mkdir -p /usr/local/lib/mongodb/data/db
+비고
+MongoDB는 기본적으로 &amp;ldquo;/data/db&amp;rdquo; 폴더에 데이터를 쓰고 저장하지만, Mac Catalina 버전은 보안 문제로 root 디렉토리는 Read-only file system으로 관리한다.&lt;/li&gt;
+&lt;li&gt;mkdir: /data/db: Read-only file system&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;mongoDB 서버 실행(mongo daemon 실행)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;mongod —dbpath=/usr/local/lib/mongodb/data/db&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;mongoDB 실행(mongo shell 실행)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;mongo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;INSTALLING COMPASS
+root 디렉토리가 read only라서 설치가 안된다.
+You can install compass using the install_compass script packaged with MongoDB:
+$ ./install_compass
+dmg 파일 다운로드 받아 설치 후 접속한다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/mongodb/img/mongodb_install_01.png&#34; alt=&#34;alt text&#34; title=&#34;COMPASS&#34;&gt;&lt;/p&gt;
+&lt;p&gt;COMPONENTS&lt;/p&gt;
+&lt;p&gt;mongod - The database server.
+mongos - Sharding router.
+mongo  - The database shell (uses interactive javascript).&lt;/p&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>맵리듀스(MapReduce - Map &#43; Reduce)</title>
+       <link>https://ynebula.github.io/posts/bigdata/mapreduce/</link>
+       <pubDate>Sun, 31 Jan 2021 16:38:51 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/bigdata/mapreduce/</guid>
+       <description>&lt;h3 id=&#34;맵리듀스-프레임&#34;&gt;맵리듀스 프레임&lt;/h3&gt;
+&lt;p&gt;분산 병렬 처리 방식으로 여러 개의 작업 노드에 작업을 분산하여 병렬 수행할 수 있는 프레입워크를 제공&lt;/p&gt;
+&lt;h3 id=&#34;맵리듀스-프레임워크-단계&#34;&gt;맵리듀스 프레임워크 단계&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;단계&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;처리&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;담당&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;맵(Map)단계&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;분산된 데이터를 키(key)와 값(value)의 리스트로 모으는 단계&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;개발자 정의&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;셔플(Shuffle and Sort)단계&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;맵 단계에서 나온 중간 결과를 해당 리듀스 함수에 전달하는 단계&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;하둡(시스템)이 자동으로 처리&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;리듀스(Reduce)단계&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;리스트에서 원하는 데이터를 찾아서 집계하는 단계&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;개발자 정의&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/mapreduce_01.png&#34; alt=&#34;alt text&#34; title=&#34;MapReduce Flow&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/mapreduce_02.png&#34; alt=&#34;alt text&#34; title=&#34;Word Count Example&#34;&gt;&lt;/p&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Error_and_resolve</title>
+       <link>https://ynebula.github.io/posts/linux/error_and_resolve/</link>
+       <pubDate>Sun, 31 Jan 2021 15:56:40 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/linux/error_and_resolve/</guid>
+       <description>&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Command &amp;lsquo;make&amp;rsquo; not found, but can be installed with&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;sudo apt-get install make&lt;/li&gt;
+&lt;li&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;make: gcc: Command not found&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;sudo apt-get install build-essential&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;sudo apt-get install libjasper-dev
+Reading package lists&amp;hellip; Done
+Building dependency tree    &lt;br&gt;
+Reading state information&amp;hellip; Done
+E: Unable to locate package libjasper-dev
+Reading package lists&amp;hellip; Done
+Building dependency tree    &lt;br&gt;
+Reading state information&amp;hellip; Done&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;E: Unable to locate package libjasper-dev&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;sudo add-apt-repository &amp;ldquo;deb &lt;a href=&#34;http://security.ubuntu.com/ubuntu&#34;&gt;http://security.ubuntu.com/ubuntu&lt;/a&gt; xenial-security main&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Zookeeper</title>
+       <link>https://ynebula.github.io/posts/zookeeper/zookeeper/</link>
+       <pubDate>Sun, 31 Jan 2021 13:47:12 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/zookeeper/zookeeper/</guid>
+       <description>&lt;h3 id=&#34;분산-시스템의-고민&#34;&gt;분산 시스템의 고민&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;분산 시스템 간의 정보 공유 방법?&lt;/li&gt;
+&lt;li&gt;클러스터 서버들의 상태 체크 방법?&lt;/li&gt;
+&lt;li&gt;분산된 서버들 간에 동기화를 위해 잠금(LOCK) 처리 방법&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;코디네이션-서비스-시스템coordination-service---주키퍼zoopkeeper&#34;&gt;코디네이션 서비스 시스템(Coordination Service) - 주키퍼(Zoopkeeper)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;노드 간에 &lt;strong&gt;조정자&lt;/strong&gt; 역할을 수행하는 서비스&lt;/li&gt;
+&lt;li&gt;노드 간 &lt;strong&gt;정보공유&lt;/strong&gt;, &lt;strong&gt;잠금(Lock,Unlock)&lt;/strong&gt;, &lt;strong&gt;이벤트&lt;/strong&gt; 등의 기능 수행&lt;/li&gt;
+&lt;li&gt;여러 개의 노드에 작업을 분산시켜주는 &lt;strong&gt;부하분산기능(Load Balancing)&lt;/strong&gt; 을 제공&lt;/li&gt;
+&lt;li&gt;서버에서 처리된 결과를 다른 서버에 동기화 할 때 &lt;strong&gt;잠금(Lock)&lt;/strong&gt; 처리 수행&lt;/li&gt;
+&lt;li&gt;서버 장애 시 대기(Standby) 서버가 대신 처리하는 &lt;strong&gt;장애상황판단&lt;/strong&gt; 및 &lt;strong&gt;복구기능&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;주키퍼-아키텍처&#34;&gt;주키퍼 아키텍처&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;디렉토리(계층,트리) 구조 기반의 데이터 저장소&lt;/li&gt;
+&lt;li&gt;znode라는 데이터 저장 객체를 제공함(Key-Value 방식)
+&lt;ul&gt;
+&lt;li&gt;객체에 데이터(상태 정보, 구성 정보, 위치 정보 등)를 넣고 빼는 기능을 제공함
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/zookeeper_01.png&#34; alt=&#34;alt text&#34; title=&#34;Zoopkeeper Directory&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;노드의-종류&#34;&gt;노드의 종류&lt;/h3&gt;
+&lt;p&gt;Persistent Node&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;데이터가 영구히 저장되는 노드&lt;/li&gt;
+&lt;li&gt;트랜잭션 로그, 스냅샷, 상태 이미지 등을 유지함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ephemeral Node&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;클라이언트의 세션이 연결돼 있을 경우만 유효한 노드&lt;/li&gt;
+&lt;li&gt;클라이언트가 연결돼 있는지 판단함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Sequence Node&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;노드를 생성 시 자동으로 일련 번호가 붙는 노드&lt;/li&gt;
+&lt;li&gt;주로 분산 Lock을 구현하는데 사용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;주기능&#34;&gt;주기능&lt;/h3&gt;
+&lt;p&gt;Watch 기능&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;주키퍼 클라이언트가 특정 znode에 watch를 걸어 놓음&lt;/li&gt;
+&lt;li&gt;znode가 변경됐을 때 클라이언트로 callback 호출을 날림&lt;/li&gt;
+&lt;li&gt;클라이언트에 해당 znode가 변경됐음을 알려줌&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;복제 기능&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;주키퍼 서버의 모든 데이터가 복제됨&lt;/li&gt;
+&lt;li&gt;클라이언트가 주키퍼 서버에 연결&lt;/li&gt;
+&lt;li&gt;요청, 응답, Watch 이벤트, Heart Bests 등을 주고 받음&lt;/li&gt;
+&lt;li&gt;TCP 연결(신뢰성이 강한 연결)을 유지하며, 연결이 끊어지면 타 서버에 연결
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/zookeeper_02.png&#34; alt=&#34;alt text&#34; title=&#34;Zoopkeeper Replication&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;주키퍼-활용분야&#34;&gt;주키퍼 활용분야&lt;/h3&gt;
+&lt;p&gt;클러스터 정보&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;클러스터에서 기동 중인 서버 목록을 유지할 수 있음&lt;/li&gt;
+&lt;li&gt;Ephemeral Node는 주기퍼 클라이언트가 살아 있을 경우에만 유효함&lt;/li&gt;
+&lt;li&gt;서버가 죽으면 Ephemeral Node가 삭제되기 때문에 클러스터 내의 살아 있는 Node리스트만 유지할 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;서버 정보&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;클러스터 내의 각 서버들의 설정 정보를 저장하는 저장소로 사용 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;글로벌 잠금&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;여러 개의 서버로 구성된 분산 서버&lt;/li&gt;
+&lt;li&gt;공유 자원을 접근하려고 했을때 or 동시에 하나의 작업만 발생해야 한다고 할때
+&lt;ul&gt;
+&lt;li&gt;그 작업에 잠금을 걸고 작업을 할 수 있는 기능을 구현할 때 사용함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Hbase</title>
+       <link>https://ynebula.github.io/posts/bigdata/hbase/</link>
+       <pubDate>Sun, 17 Jan 2021 19:38:06 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/bigdata/hbase/</guid>
+       <description>&lt;h3 id=&#34;hbasenosql-데이터베이스&#34;&gt;Hbase(NoSQL 데이터베이스)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;컬럼 기반의 NoSQL 데이터베이스&lt;/li&gt;
+&lt;li&gt;컬럼 베이스(패밀리)로 구성된 스키마 없는 데이터베이스로서 조인, 인덱스가 없음&lt;/li&gt;
+&lt;li&gt;비정형/반정형 데이터에 대해 임의 액세스 및 일관성 제공&lt;/li&gt;
+&lt;li&gt;컬럼 베이스로 돼 있어서, 테이블은 n개의 컬럼 패밀리를 가질 수 있음
+&lt;ul&gt;
+&lt;li&gt;1개의 행: rowkey(유일한 인덱스, 기준 정렬) + 컬럼 패밀리&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;hbase-데이터-관리-방법&#34;&gt;Hbase 데이터 관리 방법&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;create: 데이터베이스 생성&lt;/li&gt;
+&lt;li&gt;put: 데이터베이스에 데이터를 기록&lt;/li&gt;
+&lt;li&gt;get: 데이터베이스에서 데이터를 읽음&lt;/li&gt;
+&lt;li&gt;scan: 테이블의 여러 행에서 데이터를 가져옴&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/habse_01.png&#34; alt=&#34;alt text&#34; title=&#34;Hbase Schema&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;컬럼 패밀리를 구성: Personal과 Office로 나눔&lt;/li&gt;
+&lt;li&gt;상세 퀄리파이어 구성&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;값&lt;/th&gt;
+&lt;th&gt;의미&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;생성&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;create &amp;lsquo;Contact&amp;rsquo;, &amp;lsquo;Personal&amp;rsquo;, &amp;lsquo;Office&amp;rsquo;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;데이터삽입&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;put &amp;lsquo;Contact&amp;rsquo;, &amp;lsquo;1000&amp;rsquo;, &amp;lsquo;Personal:Name&amp;rsquo;, &amp;lsquo;John Dole&amp;rsquo;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;put &amp;lsquo;Contact&amp;rsquo;, &amp;lsquo;1000&amp;rsquo;, &amp;lsquo;Personal:Phonne&amp;rsquo;, &amp;lsquo;1-425-000-0001&amp;rsquo;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;put &amp;lsquo;Contact&amp;rsquo;, &amp;lsquo;1000&amp;rsquo;, &amp;lsquo;Office:Phone&amp;rsquo;, &amp;lsquo;1-425-000-0002&amp;rsquo;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;put &amp;lsquo;Contact&amp;rsquo;, &amp;lsquo;1000&amp;rsquo;, &amp;lsquo;Office:Address&amp;rsquo;, &amp;lsquo;1111San Gabriel Dr&amp;rsquo;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;데이터 추출&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;scan &amp;lsquo;Contacts&amp;rsquo;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Oozie</title>
+       <link>https://ynebula.github.io/posts/bigdata/oozie/</link>
+       <pubDate>Sun, 17 Jan 2021 18:54:40 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/bigdata/oozie/</guid>
+       <description>&lt;h3 id=&#34;oozie개요&#34;&gt;Oozie개요&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;여러 하둡 작업을 실행하고 관리하는 워크플로우 스케줄러 시스템&lt;/li&gt;
+&lt;li&gt;데이터 수집부터 분석에 이르는 데이터 파이프라인을 구성 시 워크플로우 정의 및 개별 하둡 작업의 순차적 실행 및 관리&lt;/li&gt;
+&lt;li&gt;여러 유형의 하둡 작업 지원
+&lt;ul&gt;
+&lt;li&gt;맵리듀스, 피그, 하이브, 스파크, 스쿱, 자바, 쉘스크립트&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;워크플로우 작업은 여러 액션의 DAG(Directed Acyclic Graph)로 표현됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;우지-작업-유형&#34;&gt;우지 작업 유형&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;워크플로우(Workflow)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;이전 작업의 출력이 다음 작업의 입력으로 이어짐&lt;/li&gt;
+&lt;li&gt;결과 기반 제어 기능과 제어 종속성을 제공하는 하둡 작업 시퀀스
+&lt;ul&gt;
+&lt;li&gt;제어 종속성: 선행 작업이 완료되기 전까지 다음 작업이 실행될 수 없음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;코디네이터(Coordinator)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;예약된 워크플로우 작업&lt;/li&gt;
+&lt;li&gt;다양한 시간 간격으로 작업을 반복 실행할 수 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;번들(Bundle)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;여러 코디네이터 작업을 일괄 실행할 수 있는 한 단계 높은 추상화 객체&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;우지-워크플로우-노드-유형&#34;&gt;우지 워크플로우 노드 유형&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;시작노드, 종료노드, 실패노드, 액션노드, 포크/조인노드, 제어플로우노드&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;액션노드&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;실제로 처리되는 태스크를 정의&lt;/li&gt;
+&lt;li&gt;액션을 실행하는 원격 시스템의 액션 실행을 완료한 후 그 사실을 우지에게 알리면 우지는 다음 노드를 실행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;포크/조인노드&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;워크플로우에서 태스크를 병렬로 실행시킴&lt;/li&gt;
+&lt;li&gt;포크노드: 동시에 작업 두 개 이상을 실행하게 워크플로우를 분기함&lt;/li&gt;
+&lt;li&gt;조인노드: 분기된 모든 포크 태스크가 완료될 때까지 기다리는 랑데부 포인트를 지정함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;제어플로우노드&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;조건문 노드&lt;/li&gt;
+&lt;li&gt;Switch Case문과 유사한 구조&lt;/li&gt;
+&lt;li&gt;JSP EL(Java Server Page Expression Language)형시 사용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;WordCount예시&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/oozie_01.png&#34; alt=&#34;alt text&#34; title=&#34;Word Count&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;OozieWorkflow예시&lt;/strong&gt;&lt;br&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/oozie_02.png&#34; alt=&#34;alt text&#34; title=&#34;Oozie Workflow Example&#34;&gt;&lt;/p&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Sqoop</title>
+       <link>https://ynebula.github.io/posts/bigdata/sqoop/</link>
+       <pubDate>Tue, 12 Jan 2021 23:20:56 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/bigdata/sqoop/</guid>
+       <description>&lt;h3 id=&#34;스쿱sqoop&#34;&gt;스쿱(Sqoop)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;하둡에코시스템에 수집 부분&lt;/li&gt;
+&lt;li&gt;RDBMS와 HDFS간의 효율적인 데이터 전송 지원 도구&lt;/li&gt;
+&lt;li&gt;JDBC와 호환되는 모든 RDBMS에 사용 가능&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;스쿱-임포트sqoop-import&#34;&gt;스쿱 임포트(Sqoop Import)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;RDBMS에서 HDFS Storage로 저장&lt;/li&gt;
+&lt;li&gt;스쿱잡은 맵(Map)만 수행하여 HDFS Storage에 저장&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;스쿱-익스포트sqoop-export&#34;&gt;스쿱 익스포트(Sqoop Export)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;HDFS Storage에서 RDBMS로 저장&lt;/li&gt;
+&lt;li&gt;스쿱잡은 맵(Map)만 수행하여 RDBMS에 저장&lt;/li&gt;
+&lt;li&gt;RDBMS에 Table은 생성돼 있어야 함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;스쿱v1-vs-스쿱v2&#34;&gt;스쿱v1 VS 스쿱v2&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;복잡성과 보안 취약으로 v2에서는 다음과 같은 사항을 지원하지 않음&lt;/li&gt;
+&lt;li&gt;Kerberos보안 통함: v1(지원함), v2(지원하지 않음)&lt;/li&gt;
+&lt;li&gt;RDBMS에서 하이브나 HBase로 데이터 전송: v1(지원함), v2(지원하지 않음)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;스쿱-명령어&#34;&gt;스쿱 명령어&lt;/h3&gt;
+&lt;p&gt;RDBMS 보기&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;sqoop list-databases &amp;ndash;connect jdbc:mysql://{host_name} &amp;ndash;username {username} &amp;ndash;password {password}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Table 보기&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;sqoop list-tables &amp;ndash;connect jdbc:mysql://{host_name}/{db_name} &amp;ndash;username {username} &amp;ndash;password {password}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;스쿱 임포트&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;sqoop import &amp;ndash;connect jdbc:mysql://{host_name}/{db_name} &amp;ndash;username {username} &amp;ndash;password {password} &amp;ndash;table {table_name} -m 1 &amp;ndash;target-dir {hdfs_target_dir}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;스쿱 익스포트&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;sqoop export &amp;ndash;connect jdbc:mysql://{host_name}/{db_name} &amp;ndash;username {username} &amp;ndash;password {password} &amp;ndash;table {table_name} -m 1 &amp;ndash;export-dir {hdfs_export_dir}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;HDFS 확인&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;hdfs dfs -ls {hdfs_target_dir}&lt;/li&gt;
+&lt;li&gt;hdfs dfs -cat {hdfs_target_dir}/part-m-00000
+: 구분자 콤마
+: Map잡이 하나이므로 파일 하나만 생김&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>하둡 분산 파일 시스템(Hdfs)</title>
+       <link>https://ynebula.github.io/posts/bigdata/hdfs/</link>
+       <pubDate>Sun, 03 Jan 2021 22:33:30 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/bigdata/hdfs/</guid>
+       <description>&lt;h3 id=&#34;하둡-분산-파일-시스템&#34;&gt;하둡 분산 파일 시스템&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;대용량 파일 읽기 및 쓰기 작업에 최적화된 파일 시스템&lt;/li&gt;
+&lt;li&gt;파일의 메타정보는 네임노드(마스터노드)가 관리하고 실제 블록 데이터는 데이터노드(작업노드)에서 분산 저장됨&lt;/li&gt;
+&lt;li&gt;분산 파일 시스템은 유져 입장에서는 하나로 보이지만 물리적으로 분산/쪼개져 있고 네임노드가 데이터 노드를 관리함&lt;/li&gt;
+&lt;li&gt;파일시스템 관점에서는 하나의 클러스터의 파일 시스템&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;네임노드&#34;&gt;네임노드&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;메타정보를 보관&lt;/li&gt;
+&lt;li&gt;SPOF(single point of failure)&lt;/li&gt;
+&lt;li&gt;Active-standby 형태로 운영&lt;/li&gt;
+&lt;li&gt;Fsimage, Edit Log(변경로그)  		
+&lt;strong&gt;메타정보&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;HDFS에 있는 각 블록의 파일위치, 사용자, 권한 등에 대한 정보
+&lt;strong&gt;Fsimage&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;데이터노드에 저장된 블록들에 대한 정보
+&lt;strong&gt;EditLog&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;블록정보에 대한 변경 사항&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;데이터노드&#34;&gt;데이터노드&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;파일을 기본적으로 64M 혹은 128M 블록 단위로 나누어 여러 개의 데이터노드에 분산 저장함&lt;/li&gt;
+&lt;li&gt;복제본의 수는 시스템에서 설절하며, 디폴트 3&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;특징&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;신뢰성 보장
+&lt;ul&gt;
+&lt;li&gt;하나의 복제본이 손실되어도 아무런 결함 없이 사용될 수 있도록 함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;데이터 지역성(Data Locality)향상
+&lt;ul&gt;
+&lt;li&gt;같은 랙&lt;/li&gt;
+&lt;li&gt;문제가 있을때, 실행을 위해 데이터 이동 없이 블록이 저장된 곳에서 수행할 수 있도록 함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;보조네임노드secondary-namenode&#34;&gt;보조네임노드(Secondary Namenode)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;최신이 메타정보를 유지하기 위해서 주기적으로 체크포이트를 만듦 즉, 최신의 fsimage를 생성하는 역할
+&lt;ul&gt;
+&lt;li&gt;네임노드의 fsimage N과 edit N 변경 로그를 가지고 최신의 fsimage N+1을 생성&lt;/li&gt;
+&lt;li&gt;네임노드가 가지고 있는 fsimage N을 대체하며 변경 로그는 초기화함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;한 시간마다 네임노드의 메타정보를 백업&lt;/li&gt;
+&lt;li&gt;네임노드에 장애가 발생했을 때 복구용으로 활용함&lt;/li&gt;
+&lt;li&gt;네임노드 고장 시 장애를 극복하는 역할을 수행하지 않음 - 고가용서 지원 하지 않음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;파일쓰기&#34;&gt;파일쓰기&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/hdfs_01.png&#34; alt=&#34;alt text&#34; title=&#34;HDFS Read/Write&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HDFS 클라이언트가 네임노드에게 파일쓰기 요청&lt;/li&gt;
+&lt;li&gt;네임노드는 메타정보 바탕으로 쓰기 가능한 데이터노드 정보 리턴&lt;/li&gt;
+&lt;li&gt;HDFS 클라이언트가 데이터노드에 데이터 파일쓰기&lt;/li&gt;
+&lt;li&gt;파일쓰기 완료하면, 바로 블록이 복제함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;파일-읽기&#34;&gt;파일 읽기&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;클라이언트로부터 특정 파일에 대한 요구 발생&lt;/li&gt;
+&lt;li&gt;메타정보 바탕으로, 실제 데이터가 보관되어 있는 데이터노드의 위치를 알려줌&lt;/li&gt;
+&lt;li&gt;실제 데이터 접근은 데이터 노드를 통해 이루어짐&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;고가용성---대기네임노드stanby-namenode&#34;&gt;고가용성 - 대기네임노드(Stanby Namenode)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;활성 네임노드와 항상 동일한 정보 상태를 유지함&lt;/li&gt;
+&lt;li&gt;데이터노드로부터 같이 정보를 받음&lt;/li&gt;
+&lt;li&gt;활성 네임노드에 장애 발생 시, 자동으로 활성 네임노드로 전환&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Yarn</title>
+       <link>https://ynebula.github.io/posts/bigdata/yarn/</link>
+       <pubDate>Sun, 03 Jan 2021 22:31:11 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/bigdata/yarn/</guid>
+       <description>&lt;h3 id=&#34;yarn-yet-another-resource-negotiator&#34;&gt;Yarn (Yet Another Resource Negotiator)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;HDFS 계층과 MR 계층 중간에 &lt;strong&gt;YARN&lt;/strong&gt; 을 구성해 &lt;strong&gt;리소스(자원)관리&lt;/strong&gt; 수행 (MapReduce - YARN - HDFS)&lt;/li&gt;
+&lt;li&gt;MapReduce이외의 데이터 처리 모듈이 하위의 HDFS를 공유할 수 있음 즉, 여러 Data Processing 지원&lt;/li&gt;
+&lt;li&gt;자원을 다양한 응용 프로그램에 효율적으로 할당하고 사용자 응용 프로그램을 효율적으로 스케줄링 함&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;애플리케이션마스터&lt;/strong&gt; (AM-Application Master)가 애플리케이션 별로 리소스를 관리함 작업을 관리
+&lt;ul&gt;
+&lt;li&gt;잡트래커 하나가 전체 시스템을 관리하는 형태에서 애프리케이션 별로 관리함&lt;/li&gt;
+&lt;li&gt;잡트래커+태스트트래커 -&amp;gt; 리소스매니저+노드매니저&lt;/li&gt;
+&lt;li&gt;시스템 리소스 관리와 잡 관리를 분리&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;클러스터의 자원을 컨테이너(Container)로 분할
+&lt;ul&gt;
+&lt;li&gt;컨테이너는 할당되는 CPU 코어 수와 메모리 용량으로 정의됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;실행 중인 컨테이너들을 모니터링 함
+&lt;ul&gt;
+&lt;li&gt;컨테이너가 자원(CPU, 메모리, 디스크, 네트워크 등)의 최대 할당량을 초과하지 않게 억제&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;클러스터의 자원을 컨테이너로 관리함으로써 분산 시스템을 전체적으로 원활하게 운영함&lt;/li&gt;
+&lt;li&gt;클러스터의 자원을 다수의 응용 프로그램에 공평한 방식으로 공유함&lt;/li&gt;
+&lt;li&gt;자원 관리자(Resource Manager)
+&lt;ul&gt;
+&lt;li&gt;다양한 응용 프로그램에 자원을 할당&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;응용 프로그램 마스터(Application Master)
+&lt;ul&gt;
+&lt;li&gt;프로세스의 실행을 모니터링&lt;/li&gt;
+&lt;li&gt;자원 관리자에게 자원을 요청&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;하둡-yarn&#34;&gt;하둡 YARN&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;클러스터에 있는 컴퓨팅 자원들(CPU, 메모리 등)을 동적으로 관리하는 플랫폼 서비스&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;클러스터 자원 관리&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;여러 개의 프레임워크(맵리듀스, 스파크 등)를 수행한느 동안 동적으로 CPU와 메모리 자원을 공유할 수 있도록 함&lt;/li&gt;
+&lt;li&gt;맵리듀스(배치처리)는 대규모 테이블 데이터를 검색하여 많은 디스크 I/O를 사용하여 적은 메모리를 사용(디스크 IO 중요)&lt;/li&gt;
+&lt;li&gt;스파크는 반복적인 머신 러닝 알고리즘을 사용해서 복잡한 계산으로 많은 메모리와 CPU를 사용(메모리 용량 중요)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;두 가지 데몬 실행
+자원 관리자(Resource Manager)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;다양한 응용 프로그램에 자원을 할당&lt;/li&gt;
+&lt;li&gt;클러스터에 1개 존재하고 각 애플리케이션 시작을 초기화&lt;/li&gt;
+&lt;li&gt;작업 노드에 있는 자원들을 어떻개 할당할 것인가를 결정
+&lt;ul&gt;
+&lt;li&gt;정보가 와야함 -&amp;gt; 작업 노드에 있는 노드 관리자로부터 주기적으로 정보를 받음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;각 작업에 대한 애플리케이션 마스터에 대한 컨테이너를 생성
+&lt;ul&gt;
+&lt;li&gt;애플리케이션 마스터의 상태를 주기적으로 관찰&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;컨테이너는 작업 노드 메모리와 CPU의 쌍으로 구성
+&lt;ul&gt;
+&lt;li&gt;각 작업의 태스크들이 컨테이너를 할당 받아 작업을 수행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;YARN 애플리케이션은 한 개 이상의 컨테이너에서 수행&lt;/li&gt;
+&lt;li&gt;애플리케이션 마스터는 하나의 YARN 애플리케이션 마다 생성
+&lt;ul&gt;
+&lt;li&gt;자원 관리자에게 필요한 컨테이너를 요청해서 각 작업 노드에서 해당 태스크를 수행
+응용 프로그램 마스터(AM - Application Master)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;프로세스의 실행을 모니터링&lt;/li&gt;
+&lt;li&gt;자원 관리자에게 자원을 요청
+노드 관리자&lt;/li&gt;
+&lt;li&gt;자원 관리자에게 자신의 자원에 대한 정보를 제공
+&lt;ul&gt;
+&lt;li&gt;보유 중인 컨테이너 정보와 노드가 살아 있다는 정보를 보냄&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;애플리케이션 마스터로부터 요청 받은 컨테이너에 해당 프로세스를 론칭
+&lt;ul&gt;
+&lt;li&gt;사용되는 자원을 모니터링&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;애플리케이션에 대한 실행 로그들을 모아서 HDFS에 저장&lt;/li&gt;
+&lt;li&gt;노드 레벨에서의 보안을 관리하면서 부가 서비스를 수행
+20강 8분 10초  이미지&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>하둡 아키텍처</title>
+       <link>https://ynebula.github.io/posts/bigdata/hadoop_architecture/</link>
+       <pubDate>Sun, 27 Dec 2020 15:28:31 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/bigdata/hadoop_architecture/</guid>
+       <description>&lt;h3 id=&#34;하둡-아키텍쳐&#34;&gt;하둡 아키텍쳐&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/hadoop_architecture_01.jpg&#34; alt=&#34;alt text&#34; title=&#34;Hadoop Architecture&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;하둡은-분산파일시스템-hdfshadoop-distributed-file-system과-분산처리-기술인-mapreduce-기술이-결합된-기술이다&#34;&gt;하둡은 분산파일시스템 HDFS(Hadoop Distributed File System)과 분산처리 기술인 MapReduce 기술이 결합된 기술이다.&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;하둡(Hadoop) = HDFS(Big file system) + MapReduce(분산처리 시스템)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;하둡-클러스터-동작-방식&#34;&gt;하둡 클러스터 동작 방식&lt;/h3&gt;
+&lt;p&gt;독립 모드(Standalone Mode)&lt;br&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/hadoop_architecture_05.jpg&#34; alt=&#34;alt text&#34; title=&#34;Single Mode&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;데몬 프로세스 없이 모든 프로그램이 하나의 JVM에서 동작하는 모드&lt;/li&gt;
+&lt;li&gt;맵리듀스 프로그램을 동작시키고 개발 테스트하는 동안에 사용&lt;/li&gt;
+&lt;li&gt;HDFS를 사용하지 않고 로컬 파일 시스템을 사용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;의사분산 모드(Pesudo-distributed Mode)&lt;br&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/hadoop_architecture_06.jpg&#34; alt=&#34;alt text&#34; title=&#34;Pesudo-distributed Mode&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1대의 컴퓨터에 하둡 데몬 프로세스가 여러 개 분리되어 동작하는 모드&lt;/li&gt;
+&lt;li&gt;클러스터를 테스트, 디버깅, 프로토 타이핑하는 경우에 사용&lt;/li&gt;
+&lt;li&gt;HDFS 사용&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;완전분사 모드(Fully distributed Mode)&lt;br&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/hadoop_architecture_07.jpg&#34; alt=&#34;alt text&#34; title=&#34;Fully distributed Mode&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;하둡 데몬 프로세스가 클러스터로 구성된 여러 개의 컴퓨터에 나누어 동작&lt;/li&gt;
+&lt;li&gt;빅데이터 분산 처리 시스템으로 동작&lt;/li&gt;
+&lt;li&gt;데이터 노드에 분산 저장되며 이들에 대한 메타정보는 네임 노드에서 관리&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;hdfshadoop-distributed-file-system-분산파일시스템&#34;&gt;HDFS(Hadoop Distributed File system)-분산파일시스템&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;HDFS는 물리적으로 나눠져 있는 서버를 논리적으로 하나의 서버 형태로 구현한 파일시스템&lt;/li&gt;
+&lt;li&gt;HDFS는 네임노드(마스터), 데이터노드(슬레이브)로 구성&lt;/li&gt;
+&lt;li&gt;HDFS는 Write Once Read Many 즉 한번 쓰고 여러 번 읽는 시스템에 적합고 큰 파일을 주로 다루기 때문에 데이터를 추가(Append) 방식이 아닌 덮어쓰기(Overwrite) 방식으로 제공&lt;/li&gt;
+&lt;li&gt;큰 파일을 여러 개의 블록으로 나누어 저장하고(블록단위) 블록사이즈는 64M 또는 128M를 많이 사용며, 동일한 블록을 여러 군데에 복사하는 복제수(Replication Factor)를 지원&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;mapredue-분산처리시스템-프레임워크&#34;&gt;MapRedue-분산처리시스템 프레임워크&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;MapReduce는 잡트래커(마스터), 태스크트래커(슬레이브)로 구성&lt;/li&gt;
+&lt;li&gt;Job은 하나의 MapReduce 프로그램 말하며, 하나의 잡은 여러 개의 Map Task와 Reduce Task로 이루어져 있음&lt;/li&gt;
+&lt;li&gt;입력데이터/출력데이터는 반드시 HDFS사에 존재해야 하며, Task Tracker는 DataNode와 같은 물리서버에 존재&lt;/li&gt;
+&lt;li&gt;일정한 크기로 데이터를 분할&lt;/li&gt;
+&lt;li&gt;여러 컴퓨터에서 병렬 처리&lt;/li&gt;
+&lt;li&gt;결과를 통합하여 죄종 결과를 완성&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;mapreduce-동작-방법&#34;&gt;MapReduce 동작 방법&lt;/h3&gt;
+&lt;p&gt;Word Count를 예제로 MapReduce동작 방법을 알아보겠다.&lt;br&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/hadoop_architecture_02.jpg&#34; alt=&#34;alt text&#34; title=&#34;MapReduce 동작 방법&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Input은 데이터 의미를 의미며, 데이터를 Mapper의 수만큼 나누는데 이것이 Splitting&lt;/li&gt;
+&lt;li&gt;Splitting은 데이터를 물리적으로 나눠서 Mapper에 넣는 행위를 수행&lt;/li&gt;
+&lt;li&gt;Mapper는 데이터를 Key/Value 형태로 처리하고 Reducer로 가기 전 Shuffle/Sort 단계에서 Key를 기준으로 정렬하고 Reducer로 보냄&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;하둡의-데이터-처리-방식&#34;&gt;하둡의 데이터 처리 방식&lt;/h3&gt;
+&lt;p&gt;데이터 블록 전송 단계&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;하나의 파일(데이터)을 여러 블록으로 나누어 클러스터에 있는 데이터 노드들에 분산 저장
+데이터 블록 복제 단계&lt;/li&gt;
+&lt;li&gt;하나의 블록은 여러 개의 복제본을 생성하여 분산 저장
+프로그램 코드를 노드에 전송 단계&lt;/li&gt;
+&lt;li&gt;패키지 된 프로그램 코드를 해당 노드들에게 전달
+데이터 병렬 처리 단계&lt;/li&gt;
+&lt;li&gt;데이터를 병렬 처리하고 그 결과를 HDFS에 저장
+19강 4분 20초 이미지&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;hadoop2&#34;&gt;Hadoop2&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/hadoop_architecture_03.jpg&#34; alt=&#34;alt text&#34; title=&#34;Hadoop1/Hadoop2 Architecture&#34;&gt;&lt;br&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/hadoop_architecture_04.jpg&#34; alt=&#34;alt text&#34; title=&#34;HDFS and YARN&#34;&gt;&lt;br&gt;
+Hadoop1&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;2계층(HDFS계층과 MR계층)으로 구성&lt;/li&gt;
+&lt;li&gt;맵리듀스 처리와 자원관리 기능 수행&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Hadoop1의 약점&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;배치에 최적화되어 있음(리얼타임에 약함)&lt;/li&gt;
+&lt;li&gt;MapReduce만 지원함.&lt;/li&gt;
+&lt;li&gt;잡트래커가 하나가 MapReduce을 관리와 시스템 자원 관리를 같이하여 무리가 있었음.&lt;/li&gt;
+&lt;li&gt;맵/리듀스 작업의 자원활용에 문제점이 있음&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Hadoop2&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HDFS 계층과 MR 계층 중간에 &lt;strong&gt;자원관리&lt;/strong&gt; 를 담당하는 &lt;strong&gt;YARN&lt;/strong&gt; (Yet Another Resource Negotiator) 계층 추가&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;yarn-yet-another-resource-negotiator&#34;&gt;Yarn (Yet Another Resource Negotiator)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;HDFS 계층과 MR 계층 중간에 &lt;strong&gt;YARN&lt;/strong&gt; 을 구성해 &lt;strong&gt;리소스(자원)관리&lt;/strong&gt; 수행 (MapReduce - YARN - HDFS)&lt;/li&gt;
+&lt;li&gt;MapReduce이외의 데이터 처리 모듈이 하위의 HDFS를 공유할 수 있음 즉, 여러 Data Processing 지원&lt;/li&gt;
+&lt;li&gt;자원을 다양한 응용 프로그램에 효율적으로 할당하고 사용자 응용 프로그램을 효율적으로 스케줄링 함&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;애플리케이션마스터&lt;/strong&gt; (AM-Application Master)가 애플리케이션 별로 리소스를 관리함 작업을 관리
+&lt;ul&gt;
+&lt;li&gt;잡트래커 하나가 전체 시스템을 관리하는 형태에서 애프리케이션 별로 관리함&lt;/li&gt;
+&lt;li&gt;잡트래커+태스트트래커 -&amp;gt; 리소스매니저+노드매니저&lt;/li&gt;
+&lt;li&gt;시스템 리소스 관리와 잡 관리를 분리&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;클러스터의 자원을 컨테이너(Container)로 분할
+&lt;ul&gt;
+&lt;li&gt;컨테이너는 할당되는 CPU 코어 수와 메모리 용량으로 정의됨&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;실행 중인 컨테이너들을 모니터링 함
+&lt;ul&gt;
+&lt;li&gt;컨테이너가 자원(CPU, 메모리, 디스크, 네트워크 등)의 최대 할당량을 초과하지 않게 억제&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;클러스터의 자원을 컨테이너로 관리함으로써 분산 시스템을 전체적으로 원활하게 운영함&lt;/li&gt;
+&lt;li&gt;클러스터의 자원을 다수의 응용 프로그램에 공평한 방식으로 공유함&lt;/li&gt;
+&lt;li&gt;자원 관리자(Resource Manager)
+&lt;ul&gt;
+&lt;li&gt;다양한 응용 프로그램에 자원을 할당&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;응용 프로그램 마스터(Application Master)
+&lt;ul&gt;
+&lt;li&gt;프로세스의 실행을 모니터링&lt;/li&gt;
+&lt;li&gt;자원 관리자에게 자원을 요청&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;hdfs&#34;&gt;HDFS&lt;/h3&gt;
+&lt;p&gt;마스터 노드(네임 노드)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;파일의 메타 정보를 관리, 네임스페이스 관리
+&lt;ul&gt;
+&lt;li&gt;실제 데이터는 데이터 노드에 분산 저장&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;메모리상에서 처리해야 할 작업이 많음&lt;/li&gt;
+&lt;li&gt;클라이언트로부터 특정 파일 요구 발생 시 파일을 보관하고 있는 블록들에 대한 정보를 통해 실제 데이터가 보관된 데이터 노드의 위치를 알려줌&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;슬레이브 노드(데이터 노드)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;작업을 실제 데이터 작업을 수행하는 역할&lt;/li&gt;
+&lt;li&gt;대용향 디스크 요구&lt;/li&gt;
+&lt;li&gt;노드 간 블록 이동은 최소화하도록 구성&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;주키퍼zookeeper의-도입-배경--active-standby&#34;&gt;주키퍼(Zookeeper)의 도입 배경- Active-Standby&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Hadoop1.0은 네임노드와 세컨더리 네임노드가 동시에 다운될 경우 시스템 전체 장애가 발생하는SPOF(Single Point Of Failure) 문제를 가지고 있음&lt;/li&gt;
+&lt;li&gt;주키퍼는 이 문제를 해결하기 위한 방법으로 네임노드 고가용성(HA)가 가능하도록 구성&lt;/li&gt;
+&lt;li&gt;여러 개의 네임노드 중 하나가 Active 상태이고 나머지 네임노드는 Standby 상태로 대기함 즉, 리소스매니저 이중화로 구성&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;주키퍼zookeeper---coordination&#34;&gt;주키퍼(Zookeeper) - Coordination&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;분산 환경에서 노드 간에 조정자 역할을 수행하는 서비스&lt;/li&gt;
+&lt;li&gt;노드 간 정보 공유, 잠금, 이벤트 등의 기능 수행&lt;/li&gt;
+&lt;li&gt;여러 개의 노드에 작업을 분산시켜주는 부하 분산 기능 제공&lt;/li&gt;
+&lt;li&gt;서버에서 처리된 결과를 다른 서버에게 동기화 할 때 Lock 처리 수행&lt;/li&gt;
+&lt;li&gt;장애 상황 판단 및 복구 기능(서버 장애 시 대기 서버가 기존 서버를 대신 처리함)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>빅데이터 시스템이란</title>
+       <link>https://ynebula.github.io/posts/bigdata/what_is_bigdata_system_/</link>
+       <pubDate>Sat, 26 Dec 2020 16:05:06 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/bigdata/what_is_bigdata_system_/</guid>
+       <description>&lt;h3 id=&#34;빅데이터-시스템-개념&#34;&gt;빅데이터 시스템 개념&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/what_is_bigdata_system_01.jpg&#34; alt=&#34;alt text&#34; title=&#34;Bigdata System&#34;&gt;&lt;br&gt;
+빅데이터 시스템이란 단순히 파일 크기가 크다 파일을 처리한다는 의미가 아니다. 빅데이터 시스템이란 파일의 크기와 그 파일을 처리방식 모두 만족해야 한다.&lt;br&gt;
+즉 데이터 저장에 필요한 &lt;strong&gt;HDFS&lt;/strong&gt; 와 같은 &lt;strong&gt;분산파일시스템&lt;/strong&gt; 과 이 데이터를 처리하는 &lt;strong&gt;MapReduce&lt;/strong&gt; 와 같은 &lt;strong&gt;분산병렬처리프레임워크&lt;/strong&gt; 를 가지고 있어야 빅데이터 처리 시스템이라고 할 수 있다.&lt;br&gt;
+보통 수십 테라 이상의 크기의 테이터로 일반적인 DBMS로 처리하지 못하며, 서버 한 대로 처리할 수 없는 규모의 데이터를 말한다.&lt;br&gt;
+대표적인 시스템으로는 하둡(Hadoop)이 있다.&lt;/p&gt;
+&lt;h3 id=&#34;rdbms와-nosql의-비교-및-bigdata-필요성&#34;&gt;RDBMS와 NoSQL의 비교 및 Bigdata 필요성&lt;/h3&gt;
+&lt;p&gt;보통 일반적인 DBMS는 빠른 읽기에 최적화(R&amp;raquo;CUD)되어있어 CUD가 일어나면 인덱스 수정해야 하는 작업이 있다. 이는 데이터가 빈번히 생성/주정/삭제되는 시스템에 적합하지 않다.&lt;br&gt;
+반면 NoSQL은 빠른 쓰기에 최적화면 DB이다.&lt;br&gt;
+데이터의 사이즈가 수십 테라로 커지면서 CRUD 모두 처리가 필요했으며 Bigdata 기술이 두각 되었다. 빅데이터는 테이블이나 스키마 방식이 아닌 일반적인 파일로 관리(주로 키/밸류 방식)한다.
+빅데이터는 RDBMS나 NoSQL의 데이터 처리 방식(테이블/레코드)과 다르게 &lt;strong&gt;파일(Key/Value)&lt;/strong&gt; 로 처리합니다.&lt;/p&gt;
+&lt;h3 id=&#34;빅데이터의-특징---3v&#34;&gt;빅데이터의 특징 - 3V&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Volume: 데이터 볼륨 증가&lt;/li&gt;
+&lt;li&gt;Velocity: 데이터 생성의 속도가 빨라짐&lt;/li&gt;
+&lt;li&gt;Variety: 정형화, 반정형 및 비정형 데이터&lt;br&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/bigdata/img/what_is_bigdata_system_02.jpg&#34; alt=&#34;alt text&#34; title=&#34;3V&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;빅데이터-처리-기술의-요구사항&#34;&gt;빅데이터 처리 기술의 요구사항&lt;/h3&gt;
+&lt;p&gt;데이터 처리 방법&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;배치 처리(Batch Processing): 데이터 일괄처리&lt;/li&gt;
+&lt;li&gt;대화형 처리(Interactive Processing): 수 초 내에 답을 얻는 형태, Hive/Pig/Spark 대화형 모드&lt;/li&gt;
+&lt;li&gt;실시간 처리(Real-time Processing): 실시간 분석, 큰 메모리, 인-메모리 처리 기술 필요&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;결함 허용 시스템&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;다른 노드에 결함 된 내용만 재 수행&lt;/li&gt;
+&lt;li&gt;Multiple Region(물리적으로 다른 지역), Load Balancing(부하분산), Active/Standby, Data Mirroring(디스크 백업), Data Replication(데이터 백업)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;분산 처리/병렬 시스템(Yarn)&lt;/p&gt;
+&lt;p&gt;분산 파일 시스템(HDFS)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;데이터 복제 기술, Block Replication&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;스케일 아웃 방식의 확장성&lt;/p&gt;
+&lt;p&gt;기존 시스템과 연계성&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;정형데이터를 처리했던 RDB와 연계, 즉 빅데이터 처리 요구사항은 빅데이터 시스템에서 처리하고 이 결과를 RDB로 넘겨서 서비스&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;빅데이터 수집, 저장, 처리, 분석, 시각화 도구 등 다양한 도구 지원 필요 및 호환성 필요&lt;br&gt;
+대용량 데이터를 저 비용으로 처리&lt;/p&gt;
+&lt;h3 id=&#34;빅데이터-프로세스-과정&#34;&gt;빅데이터 프로세스 과정&lt;/h3&gt;
+&lt;p&gt;데이터 -&amp;gt; 수집 -&amp;gt; 저장 -&amp;gt; 처리 -&amp;gt; 분석 -&amp;gt; 표현&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;데이터: 내부데이터(파일, 데이터베이스), 외부데이터(공공DB, 소셜미디어, IOT센서)&lt;/li&gt;
+&lt;li&gt;수집: 정형(RDB, CSV), 반정형(HTML, XML, JSON, 웹로그), 비정형(이진파일, 이미지, 동영상, 텍스트)&lt;/li&gt;
+&lt;li&gt;저장: 데이터베이스(RDBMS, NoSQL DB)&lt;/li&gt;
+&lt;li&gt;처리: 배치, 실시간, 분산 병렬&lt;/li&gt;
+&lt;li&gt;분석: 통계, 데이터 마이닝, 텍스트 마이닝, 머신러닝&lt;/li&gt;
+&lt;li&gt;표현: 시간, 분포 관계, 비교, 공간&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;bigdata-처리-방식&#34;&gt;Bigdata 처리 방식&lt;/h3&gt;
+&lt;p&gt;서버의 수를 병렬로 추가하는 Scale out 방식으로 처리하고 하둡v2의 경우 10,000대까지 연결 가능하다. 처리 가능한 데이터 량 수십 PB까지 보통 DBMS는 수 테라바이트 정도의 크기까지 다룰 수 있다.&lt;/p&gt;
+&lt;p&gt;배치 처리&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;주기적 작업을 일괄적으로 수행하는 형식으로 답변을 얻기까지 일정 시간이 소요되는 처리 방식&lt;/li&gt;
+&lt;li&gt;대표적인 툴: 맵리듀스, 하이브, 피그&lt;/li&gt;
+&lt;li&gt;ETL(Extract, Transform, Load) -&amp;gt; 로드된 데이터를 분석&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;대화형 처리&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;원하는 질의 대해 수 초 내에 답을 얻는 형태&lt;/li&gt;
+&lt;li&gt;사용자와 시스템 간의 유져 인터페이스 또는 커맨드라인 인터페이스 필요&lt;/li&gt;
+&lt;li&gt;대표적인 툴: 하이브, 피그, 스파크&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;실시간 처리&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;수 초 미만 또는 1초 미만의 실시간 처리 및 이벤트성 응답으로 데이터가 수집되는 즉시 실시간 전처리, 실시간 계산, 실시간 패턴 분석을 처리&lt;/li&gt;
+&lt;li&gt;데이터 스트림 처리&lt;/li&gt;
+&lt;li&gt;대표적인 툴: 스톰(Storm), 스파크 스트리밍(Spark Streaming) - 인메모리 구조&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;분산-데이터의-문제점-및-해결-방법&#34;&gt;분산 데이터의 문제점 및 해결 방법&lt;/h3&gt;
+&lt;p&gt;문제점: 통상 데이터를 분산하면 여러 개의 시스템 중 어디에 파일의 위치와 일부 시스템/네트워크에 장애의 대한 문제점을 갖고 있다.&lt;/p&gt;
+&lt;p&gt;해결책: 분산파일시스템&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;고가용성: 동일한 정보를 여러 군데 중복으로 저장해서 일부 데이터 유실 및 서버 장애에 대한 문제점을 해결할 수 있다(중복서/다중화(Redundancy)).&lt;/li&gt;
+&lt;li&gt;병렬처리방식: 작업을 나눠 동시에 처리하는 방식으로 처리 속도를 높일 수 있습니다(작업의 분업화).&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Zookeeper 설치</title>
+       <link>https://ynebula.github.io/posts/zookeeper/zookeeper_install_ubuntu/</link>
+       <pubDate>Sun, 22 Nov 2020 14:23:34 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/zookeeper/zookeeper_install_ubuntu/</guid>
+       <description>&lt;h3 id=&#34;설치-환경&#34;&gt;설치 환경&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Zookeeper 버전: zookeeper-3.5.8&lt;/li&gt;
+&lt;li&gt;운영체제: ubuntu-18.04.4-desktop-amd64&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;사전-작업&#34;&gt;사전 작업&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;레파지토리 최신화&lt;/li&gt;
+&lt;li&gt;sudo apt-get update&lt;/li&gt;
+&lt;li&gt;sudo apt-get upgrade&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;java-설치&#34;&gt;Java 설치&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://ynebula.github.io/posts/java/java8_install_on_ubuntu/&#34;&gt;Java 설치 참조 링크&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;adduser zookeeper&lt;/p&gt;
+&lt;h3 id=&#34;zookeeper-다운로드&#34;&gt;Zookeeper 다운로드&lt;/h3&gt;
+&lt;p&gt;Download: &lt;a href=&#34;http://apache.tt.co.kr/zookeeper/stable/&#34;&gt;http://apache.tt.co.kr/zookeeper/stable/&lt;/a&gt;
+wget &lt;a href=&#34;http://apache.tt.co.kr/zookeeper/stable/apache-zookeeper-3.5.8-bin.tar.gz&#34;&gt;http://apache.tt.co.kr/zookeeper/stable/apache-zookeeper-3.5.8-bin.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;sudo mv apache-zookeeper-3.5.8-bin /usr/local/
+sudo chown -R zookeeper:zookeeper apache-zookeeper-3.5.8-bin/
+sudo ln -s apache-zookeeper-3.5.8-bin/ zookeeper&lt;/p&gt;
+&lt;h3 id=&#34;환결-설정&#34;&gt;환결 설정&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;zookeeper 유져의 .profile에 home 디렉토리를 설정합니다.&lt;/li&gt;
+&lt;li&gt;ZOOKEEPER_HOME=/usr/local/zookeeper&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;로그-디렉토리-생성&#34;&gt;로그 디렉토리 생성&lt;/h3&gt;
+&lt;p&gt;주키퍼는 zoo.cfg에 설정한 데이터 디렉토리에 지노드의 복사본인 스냅샷과 트랜잭션 로그들이 저장됩니다.
+지노드에 변경사항이 발생하면, 이 변경사항은 트랜잭션 로그에 추가됩니다.
+그리고 로그가 어느정도 커지면, 현재 모든 지노드의 상태 스냅샷이 파일시스템에 저장됩니다.
+앙상블 내 주키퍼 노드를 구분하기 위해서 ID를 만듭니다. 주키퍼에서는 &lt;strong&gt;myid&lt;/strong&gt; 라고 부르며 정수 형태로 만들어주면 됩니다.
+방금 만든 /data 디렉토리 하단에 myid라는 파일을 만들고 내용은 1이라고 입력합니다.
+여기서 myid는 주키퍼의 설정 파일에서 사용하게 되며, 예제 2-2의 zoo.cfg파일을 다루면서 다시 설명하겠습니다.
+다른 주키퍼 서버들에도 myid 파일을 만들고 숫자를 입력합니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;sudo mkdir /var/log/zookeeper&lt;/li&gt;
+&lt;li&gt;sudo chown zookeeper:zookeeper /var/log/zookeeper&lt;/li&gt;
+&lt;li&gt;sudo su zookeeper&lt;/li&gt;
+&lt;li&gt;echo 1 &amp;gt; /var/log/zookeeper/myid&lt;/li&gt;
+&lt;li&gt;echo 2 &amp;gt; /var/log/zookeeper/myid&lt;/li&gt;
+&lt;li&gt;echo 3 &amp;gt; /var/log/zookeeper/myid&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;zoo-설정파일-조정&#34;&gt;zoo 설정파일 조정&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;cp zoo_sample.cfg zoo.cfg 
+75  vi zoo.cfg
+&lt;h1 id=&#34;clustered-multi-server-setup&#34;&gt;Clustered (Multi-Server) Setup&lt;/h1&gt;
+&lt;h1 id=&#34;ref-httpszookeeperapacheorgdoccurrentzookeeperadminhtmlsc_singleanddevsetup&#34;&gt;Ref: &lt;a href=&#34;https://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_singleAndDevSetup&#34;&gt;https://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_singleAndDevSetup&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;server.1=zk1:2888:3888
+#server.2=zk2:2888:3888
+#server.3=zk3:2888:3888&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;tickTime=2000
+initLimit=10
+syncLimit=5
+clientPort=2181
+dataDir=/var/log/zookeeper
+server.1=zk1:2888:3888
+server.2=zk2:2888:3888
+#server.3=zk3:2888:3888&lt;/p&gt;
+&lt;p&gt;tickTime: 주키퍼가 사용하는 시간에 대한 기본 측정 단위(밀리초)
+initLimit: 팔로워가 리더와 초기에 연결하는 시간에 대한 타임아웃 tick의 수
+syncLimit: 팔로워가 리더와 동기화 하는 시간에 대한 타임 아웃 tick의 수(주키퍼에 저장된 데이터가 크면 수를 늘려야 함)
+dataDir= 주키퍼의 트랜잭션 로그와 스냅샷이 저장되는 데이터 저장 경로
+clientPort: 주키퍼 사용 TCP포트
+server.x: 주키퍼 앙상블 구성을 위한 서버 설절이며, server.myid 형식으로 사용함&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;myid와 호스트 이름 또는 ID주소:포트번호&lt;/li&gt;
+&lt;li&gt;포트번호 2888, 3888은 기본 포트이며 앙상블 내 노드끼리 연결하는데 사용하고, 리더 선출에 사용함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;zoo-실행&#34;&gt;zoo 실행&lt;/h3&gt;
+&lt;p&gt;/usr/local/zookeeper/bin/zkServer.sh start&lt;/p&gt;
+&lt;p&gt;ps -edf |grep zookeeper&lt;/p&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Java8 설치</title>
+       <link>https://ynebula.github.io/posts/java/java8_install_on_ubuntu/</link>
+       <pubDate>Tue, 17 Nov 2020 12:28:58 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/java/java8_install_on_ubuntu/</guid>
+       <description>&lt;h3 id=&#34;설치-환경&#34;&gt;설치 환경&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Java 버전: 8&lt;/li&gt;
+&lt;li&gt;운영체제: ubuntu-18.04.4-desktop-amd64&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;사전-작업&#34;&gt;사전 작업&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;패키지 새 번전 반영을 위해 레파지토리 최신화&lt;br&gt;
+새 버전 확인: sudo apt-get update&lt;br&gt;
+최신 버전으로 업그래이드: sudo apt-get upgrade&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;openjdk-설치&#34;&gt;OpenJDK 설치&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;sudo apt-get install openjdk-8-jdk&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;oracle-jdk-설치&#34;&gt;Oracle JDK 설치&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;사전 작업으로 rpm을 deb으로 변환하는 Alien를 설치합니다.
+&lt;ul&gt;
+&lt;li&gt;명령어: sudo apt-get install alien&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Oracle Java 라이센스 정책 변경에 따라, 오라클 사이트에 접속해 rpm을 다운 받아 설치를 진행합니다.
+&lt;ul&gt;
+&lt;li&gt;다운로드: &lt;a href=&#34;https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html&#34;&gt;Java SE 8 Archive Downloads (JDK 8u202 and earlier)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;rpm파일을 deb파일로 변환하여 설치합니다.
+&lt;ul&gt;
+&lt;li&gt;sudo alien -c jdk-8u202-linux-x64.rpm&lt;/li&gt;
+&lt;li&gt;sudo dpkg -i jdk1.8_1.8.0202-1_amd64.deb&lt;/li&gt;
+&lt;li&gt;sudo alien -i jdk-8u202-linux-x64.rpm&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;java-버전-확인&#34;&gt;Java 버전 확인&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;java -version&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;사용하는-java-변경-명령어&#34;&gt;사용하는 Java 변경 명령어&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;사용하고자 하는 Java 버전이 아닐 경우 사용합니다.&lt;br&gt;
+sudo update-alternatives &amp;ndash;set java /usr/lib/jvm/jdk1.8.0_version/bin/java&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;비고&#34;&gt;비고&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;2019년 Oracle의 Java 라이센스 정책 변경으로 과거 apt-get을 사용해 설치하면 다음과 같은 에러 메시지 리턴 받고 설치가 안됩니다.&lt;/li&gt;
+&lt;li&gt;명령어: sudo apt-get install oracle-java8-installer  
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;에러 메시지&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;sudo apt-get install oracle-java8-installer&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Error Message&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ynebula@ubuntu:~$ sudo apt-get install oracle-java8-installer&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Reading package lists&amp;hellip; Done&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Building dependency tree&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Reading state information&amp;hellip; Done&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Package oracle-java8-installer is not available, but is referred to by another package.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;This may mean that the package is missing, has been obsoleted, or&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;is only available from another source&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;E: Package &amp;lsquo;oracle-java8-installer&amp;rsquo; has no installation candidate&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>하둡(Hadoop) 가상 분산 모드 설치</title>
+       <link>https://ynebula.github.io/posts/bigdata/distributed_mode_install/</link>
+       <pubDate>Mon, 16 Nov 2020 11:39:12 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/bigdata/distributed_mode_install/</guid>
+       <description>&lt;h3 id=&#34;사전-작업&#34;&gt;사전 작업&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;레파지토리 최신화(패키지들의 새로운 버젼이 있는지 확인하고 최신 버전으로 업그래이드)&lt;/li&gt;
+&lt;li&gt;sudo apt-get update&lt;/li&gt;
+&lt;li&gt;sudo apt-get upgrade&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;java-설치&#34;&gt;Java 설치&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://ynebula.github.io/posts/java/java8_install_on_ubuntu/&#34;&gt;Java 설치 참조 링크&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;mariadb&#34;&gt;MariaDB&lt;/h3&gt;
+&lt;h4 id=&#34;mariadb-설치&#34;&gt;MariaDB 설치&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;sudo apt-get install -y mariadb-server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;mysql-사용자-확인&#34;&gt;mysql 사용자 확인&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;cat /etc/passwd 를 수행해 mysql 유져를 확인합니다.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;mariadb-접속&#34;&gt;MariaDB 접속&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Unix Socket 방식으로 DB에 접속합니다.&lt;/li&gt;
+&lt;li&gt;sudo mysql&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;기타&#34;&gt;기타&lt;/h4&gt;
+&lt;h4 id=&#34;db-재시작-명령어&#34;&gt;DB 재시작 명령어&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;service mysql restart&lt;/li&gt;
+&lt;li&gt;/etc/init.d/mysql restart&lt;/li&gt;
+&lt;li&gt;mysql.server restart&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;utf8mb4-인코딩-확인&#34;&gt;utf8mb4 인코딩 확인&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;참고자료: &lt;a href=&#34;https://blog.lael.be/post/917&#34;&gt;utf8mb4 언어셋 소개 및 표현범위&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;show variables like &amp;lsquo;c%&#39;;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;서비스-확인&#34;&gt;서비스 확인&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;sudo service &amp;ndash;status-all |grep mysql&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;인증방법-unix-socket-방식으로-변경&#34;&gt;인증방법 Unix Socket 방식으로 변경&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;원문: &lt;a href=&#34;https://mariadb.org/authentication-in-mariadb-10-4/&#34;&gt;Authentication from MariaDB 10.4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;MariaDB 는 10.0 부터 인증 방식을 Unix Socket방식으로 변경했습니다. Unix Socket방식은 mysql 사용자와, 시스템 사용자를 일치시키는 방식입니다. 예전 인증방법은 두 root가 분리되어 있을 때는, mysql 사용자 root 를 명시하고 로그인 했습니다.
+&lt;ul&gt;
+&lt;li&gt;$ mysql -u root -p&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Unix Socket 방식은 이렇다. sudo 로서 root 권한이 있다는 사실만 증명하면, mysql 에선 다른 인증을 하지 않습니다.
+&lt;ul&gt;
+&lt;li&gt;$ sudo mysql&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;만약, Unix Socket 을 사용하여, mysql 이라는 사용자로 mysql에 접근하려면 다음 명령어를 사용해야 합니다.
+&lt;ul&gt;
+&lt;li&gt;$ sudo -u mysql mysql -u mysql&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;하둡&#34;&gt;하둡&lt;/h3&gt;
+&lt;p&gt;버전: 2.9.2&lt;/p&gt;
+&lt;h4 id=&#34;사전작업&#34;&gt;사전작업&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;키젠 설정
+&lt;ul&gt;
+&lt;li&gt;hadoop 계정에 해줘야 함&lt;/li&gt;
+&lt;li&gt;ssh-keygen -t rsa&lt;/li&gt;
+&lt;li&gt;cat ~/.ssh/id_rsa.pub &amp;raquo; ~/.ssh/authorized_keys&lt;/li&gt;
+&lt;li&gt;chmod 0660 ~/.ssh/authorized_keys&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SSH 서버 설치
+&lt;ul&gt;
+&lt;li&gt;sudo apt-get install openssh-server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;바이너리-파일-다운로드-및-설치&#34;&gt;바이너리 파일 다운로드 및 설치&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://hadoop.apache.org/releases.html&#34;&gt;하둡 다운로드 링크&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;위치변경: mv hadoop-2.9.2 /usr/local/hadoop-2.9.2&lt;/li&gt;
+&lt;li&gt;소유권한 변경: sudo chown -R hadoop:hadoop hadoop-2.9.2/&lt;/li&gt;
+&lt;li&gt;심볼링크: sudo ln -s /usr/local/hadoop-2.9.2 /usr/local/hadoop&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;bashrc-변경&#34;&gt;.bashrc 변경&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;JAVA_HOME=/usr/java/default&lt;/li&gt;
+&lt;li&gt;HADOOP_HOME=/usr/local/hadoop&lt;/li&gt;
+&lt;li&gt;PATH=$PATH:$HADOOP_HOME/bin&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;hadoop-envsh-수정&#34;&gt;hadoop-env.sh 수정&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;export JAVA_HOME=/usr/java/default&lt;/li&gt;
+&lt;li&gt;export HADOOP_PID_DIR=/usr/local/hadoop/pids&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;masters-slaves-수정&#34;&gt;masters, slaves 수정&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;네임노드 HA를 구성할 경우 스탠바이 네임노드가 보조네임노드의 기능을 대체한다. 하지만 가상 분산 모드로는 네임노드 HA를 구성할 수 없기 때문에 보조네임노드를 반드시 실행해야 한다. 또한 slaves 파일에는 데이터노드 호스트 목록을 설정해야 한다. 가상 분산 모드에서는 다음과 같이 설정한다. vi에디터로 masters 파일을 생성하고 localhost를 기입하고 저장합니다. slaves파일을 생성하고 데이터노드 호스트 목록을 기입하고 저장합니다.&lt;/li&gt;
+&lt;li&gt;masters -&amp;gt; localhost&lt;/li&gt;
+&lt;li&gt;slaves -&amp;gt; datanode01, datanode02&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;하둡2-수행&#34;&gt;하둡2 수행&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;네임노드를 초기화하고 모든 데몬을 수행합니다.
+&lt;ul&gt;
+&lt;li&gt;/usr/local/hadoop/bin/hdfs namenode -format&lt;/li&gt;
+&lt;li&gt;/usr/local/hadoop/sbin/start-all.sh (deprecated 예정)&lt;/li&gt;
+&lt;li&gt;/usr/local/hadoop/sbin/stop-all.sh (deprecated 예정)&lt;/li&gt;
+&lt;li&gt;DFS 시작 /usr/local/hadoop/sbin/start-dfs.sh&lt;/li&gt;
+&lt;li&gt;얀 시작 /usr/local/hadoop/sbin/start-yarn.sh&lt;/li&gt;
+&lt;li&gt;맵리듀스 히스토리 서버 시작 /usr/local/hadoop/sbin/mr-jobhistory-daemon.sh start historyserver&lt;/li&gt;
+&lt;li&gt;웹프록시 서버 시작 /usr/local/hadoop/sbin/yarn-daemon.sh start proxyserver&lt;/li&gt;
+&lt;li&gt;DFS 종료 /usr/local/hadoop/sbin/stop-dfs.sh&lt;/li&gt;
+&lt;li&gt;얀 종료 /usr/local/hadoop/sbin/stop-yarn.sh&lt;/li&gt;
+&lt;li&gt;맵리듀스 히스토리 서버 종료 /usr/local/hadoop/sbin/mr-jobhistory-daemon.sh stop historyserver&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;hdfsyarn-화면-접속&#34;&gt;HDFS/Yarn 화면 접속&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;http://127.0.0.1:50070&lt;/li&gt;
+&lt;li&gt;http://127.0.0.1:8088&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;예제-실행&#34;&gt;예제 실행&lt;/h4&gt;
+&lt;p&gt;HDFS에 파일을 저장하고 얀을 기반으로 맵리듀스 잡을 실행해 보겠습니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;hadoop-env.sh를 HDFS에 저장
+&lt;ul&gt;
+&lt;li&gt;./hdfs dfs -mkdir /user&lt;/li&gt;
+&lt;li&gt;./hdfs dfs -mkdir /user/hadoop&lt;/li&gt;
+&lt;li&gt;./hdfs dfs -mkdir /user/hadoop/conf&lt;/li&gt;
+&lt;li&gt;./hdfs dfs -put /usr/local/hadoop/etc/hadoop/hadoop-env.sh /user/hadoop/conf/&lt;/li&gt;
+&lt;li&gt;./hdfs dfs -ls /user/hadoop/conf/&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;WordCount 실행
+&lt;ul&gt;
+&lt;li&gt;./yarn jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.9.2.jar wordcount /user/hadoop/conf /user/hadoop/output&lt;/li&gt;
+&lt;li&gt;./hdfs dfs -cat /user/hadoop/output/part-r-00000&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;비고&#34;&gt;비고&lt;/h4&gt;
+&lt;h4 id=&#34;에러1&#34;&gt;에러1&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;메시지 0.0.0.0: ssh: connect to host 0.0.0.0 port 22: Connection refused
+localhost: ssh: connect to host localhost port 22: Connection refused&lt;/li&gt;
+&lt;li&gt;원인 ssh 서버가 설치돼 있지 않아 발생함&lt;/li&gt;
+&lt;li&gt;해결 openssh-server 설치&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;에러2&#34;&gt;에러2&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;cat: /usr/local/hadoop/slaves: No such file or directory
+cat: /usr/local/hadoop/slaves: No such file or directory
+Starting secondary namenodes [0.0.0.0]
+The authenticity of host &amp;lsquo;0.0.0.0 (0.0.0.0)&amp;rsquo; can&amp;rsquo;t be established.
+ECDSA key fingerprint is SHA256:kXhOQgozNkCxUEeojqJ/4rb9Cx7lmU4yDuEgT2Aw5YQ.&lt;/li&gt;
+&lt;li&gt;원인&lt;/li&gt;
+&lt;li&gt;해결 rsa 키 생성&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Hugo 설치(Install) &amp; 마크다운(Markdown)</title>
+       <link>https://ynebula.github.io/posts/hugo/hugo-install-markdown/</link>
+       <pubDate>Sat, 14 Nov 2020 12:30:39 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/hugo/hugo-install-markdown/</guid>
+       <description>&lt;h3 id=&#34;참고사이트&#34;&gt;참고사이트&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://gohugo.io/getting-started/installing&#34;&gt;Install Hugo Link&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://gohugo.io/getting-started/quick-start/&#34;&gt;Quick Start Link&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;설치-환경&#34;&gt;설치 환경&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Windows 10, Github&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;github-설치&#34;&gt;Github 설치&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://git-scm.com/download/win&#34;&gt;Github Download Link&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;download--install&#34;&gt;Download &amp;amp; Install&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Windows 환경 Hugo 설치는 Binary 파일을 다운로드 받고 시스템 환경 변수에 등록만 하면 됩니다. &lt;a href=&#34;https://github.com/gohugoio/hugo/releases&#34;&gt;Hugo Download Link&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;C:\Hugo\bin 디렉토리 생성 후 다운로드 받은 파일을 bin 디렉토리 안에 넣습니다.&lt;br&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoInstall.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo Binary File Location&#34;&gt;&lt;/li&gt;
+&lt;li&gt;Hugo 바이너리를 시스템 환경 변수에 등록합니다.&lt;br&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoEnvVarSetting.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo Enviroment Variable Setting&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;create-a-new-site&#34;&gt;Create a New Site&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Hugo 운영할 사이트를 생성합니다.&lt;/li&gt;
+&lt;li&gt;명령어: hugo new site quickstart&lt;/li&gt;
+&lt;li&gt;위 명령어를 수행하면 quickstart 디렉토리가 생성되고 다음 그림과 같이 생성됩니다.&lt;br&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoNewSite.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo New Site&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;add-a-theme--config&#34;&gt;Add a Theme $ Config&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://themes.gohugo.io/&#34;&gt;Hugo Theme&lt;/a&gt; 에서 마음에 드는 테마를 선택해 다음이 명령어를 수행합니다. 저는 심플한 디자인을 좋아해서 Kiera를 사용했습니다.&lt;/li&gt;
+&lt;li&gt;git init&lt;/li&gt;
+&lt;li&gt;git submodule add &lt;a href=&#34;https://github.com/funkydan2/hugo-kiera.git&#34;&gt;https://github.com/funkydan2/hugo-kiera.git&lt;/a&gt; themes/hugo-kiera
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoTheme.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo Theme&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;config-setting&#34;&gt;Config Setting&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;exampleSite 디렉토리에서 config.toml파일을 참고해서 수정하길 권장드리며, config 파일을 열어 운영 사이트에 맞게 수정합니다. 
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoSettingConfig.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo Setting Config&#34;&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoSettingConfig2.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo Setting Config&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;add-some-content&#34;&gt;Add Some Content&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;다음 명령어를 수행하면 &amp;ldquo;content\posts\my-first-post.md&amp;rdquo; 파일이 생성됩니다. 파일을 열어 편집합니다.&lt;/li&gt;
+&lt;li&gt;hugo new posts/my-first-post.md
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoFirstPosting.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo First Posting&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;start-the-hugo-server&#34;&gt;Start the Hugo server&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Hugo 서버를 시작하고 http://localhost:1313/ 로 접속합니다.&lt;/li&gt;
+&lt;li&gt;hugo server -D
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoWebPage.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo Web Page&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;hugo-build--github-clone&#34;&gt;Hugo build &amp;amp; Github clone&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;hugo 빌드를 수행하면 public 디렉토리가 생성됩니다. 생성된 public 디렉토리에 접근해 git clone을 수행합니다(force로 수행해야 함).&lt;/li&gt;
+&lt;li&gt;hugo -D
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/hugo/img/HugoPublic.png&#34; alt=&#34;alt text&#34; title=&#34;Hugo Public Directory&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;hugo-마크다운&#34;&gt;Hugo 마크다운&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Hugo 마크다운 문법을 사용합니다.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://gohugo.io/content-management/formats/#learn-markdown&#34;&gt;Hugo Learn Markdown&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://ccl.cckorea.org/syntax/&#34;&gt;Hugo Learn Markdown&lt;/a&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Left-Aligned&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Center Aligned&lt;/th&gt;
+&lt;th style=&#34;text-align:right&#34;&gt;Right Aligned&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;col 3 is&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;some wordy text&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;$1600&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;col 2 is&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;centered&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;$12&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;zebra stripes&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;are neat&lt;/td&gt;
+&lt;td style=&#34;text-align:right&#34;&gt;$1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;열병합&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Column 1&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Column 2&lt;/th&gt;
+&lt;th&gt;Column 3&lt;/th&gt;
+&lt;th&gt;Column 4&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;No span&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Span across three columns&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+     </item>
+   
+ </channel>
+</rss>
