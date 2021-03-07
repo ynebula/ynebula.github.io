@@ -46,8 +46,8 @@ mkdir ~/data/zookeeper&lt;/p&gt;
 &lt;p&gt;cp zoo_sample.cfg zoo.cfg 
 vi zoo.cfg&lt;/p&gt;
 &lt;h1 id=&#34;clustered-multi-server-setup&#34;&gt;Clustered (Multi-Server) Setup&lt;/h1&gt;
-&lt;h1 id=&#34;ref-httpszookeeperapacheorgdoccurrentzookeeperadminhtmlsc_singleanddevsetup&#34;&gt;Ref: &lt;a href=&#34;https://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_singleAndDevSetup&#34;&gt;https://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_singleAndDevSetup&lt;/a&gt;&lt;/h1&gt;
-&lt;p&gt;server.1=zk1:2888:3888
+&lt;p&gt;Ref: &lt;a href=&#34;https://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_singleAndDevSetup&#34;&gt;https://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_singleAndDevSetup&lt;/a&gt;
+server.1=zk1:2888:3888
 #server.2=zk2:2888:3888
 #server.3=zk3:2888:3888
 tickTime: 주키퍼가 사용하는 시간에 대한 기본 측정 단위(밀리초)
