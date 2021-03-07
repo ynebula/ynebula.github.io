@@ -155,13 +155,28 @@ mkdir zookeeper</p>
 mkdir ~/data/zookeeper</p>
 <h2 id="zoocfg-설정">zoo.cfg 설정</h2>
 <p>cp zoo_sample.cfg zoo.cfg 
-vi zoo.cfg</p>
-<h1 id="clustered-multi-server-setup">Clustered (Multi-Server) Setup</h1>
-<p>Ref: <a href="https://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_singleAndDevSetup">https://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_singleAndDevSetup</a>
-server.1=zk1:2888:3888
-#server.2=zk2:2888:3888
-#server.3=zk3:2888:3888
-tickTime: 주키퍼가 사용하는 시간에 대한 기본 측정 단위(밀리초)
+v3i zoo.cfg</p>
+<h2 id="clustered-multi-server-setup">Clustered (Multi-Server) Setup</h2>
+<p>Ref: <a href="https://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_singleAndDevSetup">https://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_singleAndDevSetup</a></p>
+<table>
+<thead>
+<tr>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">server.1=zk1:2888:3888</td>
+</tr>
+<tr>
+<td style="text-align:center">#server.2=zk2:2888:3888</td>
+</tr>
+<tr>
+<td style="text-align:center">#server.3=zk3:2888:3888</td>
+</tr>
+</tbody>
+</table>
+<p>tickTime: 주키퍼가 사용하는 시간에 대한 기본 측정 단위(밀리초)
 initLimit: 팔로워가 리더와 초기에 연결하는 시간에 대한 타임아웃 tick의 수
 syncLimit: 팔로워가 리더와 동기화 하는 시간에 대한 타임 아웃 tick의 수(주키퍼에 저장된 데이터가 크면 수를 늘려야 함)
 dataDir= 주키퍼의 트랜잭션 로그와 스냅샷이 저장되는 데이터 저장 경로
