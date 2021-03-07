@@ -6,10 +6,267 @@
    <description>Recent content in Posts on Bigdata Engineer &amp; Analyst Story</description>
    <generator>Hugo -- gohugo.io</generator>
    <copyright>Copyright &amp;copy; 2020 - Sungwoon Yoon</copyright>
-   <lastBuildDate>Mon, 01 Mar 2021 16:09:45 +0900</lastBuildDate>
+   <lastBuildDate>Sun, 07 Mar 2021 15:28:25 +0900</lastBuildDate>
    
        <atom:link href="https://ynebula.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
    
+   
+     <item>
+       <title>Kafka Install</title>
+       <link>https://ynebula.github.io/posts/kafka/kafka-install/</link>
+       <pubDate>Sun, 07 Mar 2021 15:28:25 +0900</pubDate>
+       
+       <guid>https://ynebula.github.io/posts/kafka/kafka-install/</guid>
+       <description>&lt;p&gt;&lt;a href=&#34;https://www.joinc.co.kr/w/man/12/Kafka/QuickStart&#34;&gt;https://www.joinc.co.kr/w/man/12/Kafka/QuickStart&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;사전-작업&#34;&gt;사전 작업&lt;/h1&gt;
+&lt;p&gt;sudo apt-get update
+sudo apt-get upgrade&lt;/p&gt;
+&lt;h3 id=&#34;java-설치&#34;&gt;JAVA 설치&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://ynebula.github.io/posts/java/java8_install_on_ubuntu/&#34;&gt;https://ynebula.github.io/posts/java/java8_install_on_ubuntu/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ZooKeeper 설치: 
+설치 가이드&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://oboki.net/workspace/bigdata/zookeeper/zookeeper-3-x-%EC%84%A4%EC%B9%98/&#34;&gt;https://oboki.net/workspace/bigdata/zookeeper/zookeeper-3-x-%EC%84%A4%EC%B9%98/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://zookeeper.apache.org/doc/r3.4.6/zookeeperAdmin.html#sc_zkMulitServerSetup&#34;&gt;https://zookeeper.apache.org/doc/r3.4.6/zookeeperAdmin.html#sc_zkMulitServerSetup&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;설치파일-다운로드&#34;&gt;설치파일 다운로드&lt;/h2&gt;
+&lt;p&gt;Download: &lt;a href=&#34;http://apache.tt.co.kr/zookeeper/stable/&#34;&gt;http://apache.tt.co.kr/zookeeper/stable/&lt;/a&gt;
+wget &lt;a href=&#34;http://apache.tt.co.kr/zookeeper/stable/apache-zookeeper-3.5.8-bin.tar.gz&#34;&gt;http://apache.tt.co.kr/zookeeper/stable/apache-zookeeper-3.5.8-bin.tar.gz&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;zookeeper-home-설정&#34;&gt;zookeeper home 설정&lt;/h2&gt;
+&lt;p&gt;vi .profile 
+source .profile
+echo $ZOOKEEPER_HOME&lt;/p&gt;
+&lt;h2 id=&#34;data-dir-생성&#34;&gt;data dir 생성&lt;/h2&gt;
+&lt;p&gt;sudo mkdir data
+sudo chmod 777 data
+mkdir zookeeper&lt;/p&gt;
+&lt;p&gt;mkdir ~/data
+mkdir ~/data/zookeeper&lt;/p&gt;
+&lt;h2 id=&#34;zoocfg-설정&#34;&gt;zoo.cfg 설정&lt;/h2&gt;
+&lt;p&gt;cp zoo_sample.cfg zoo.cfg 
+vi zoo.cfg&lt;/p&gt;
+&lt;h1 id=&#34;clustered-multi-server-setup&#34;&gt;Clustered (Multi-Server) Setup&lt;/h1&gt;
+&lt;h1 id=&#34;ref-httpszookeeperapacheorgdoccurrentzookeeperadminhtmlsc_singleanddevsetup&#34;&gt;Ref: &lt;a href=&#34;https://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_singleAndDevSetup&#34;&gt;https://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_singleAndDevSetup&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;server.1=zk1:2888:3888
+#server.2=zk2:2888:3888
+#server.3=zk3:2888:3888
+tickTime: 주키퍼가 사용하는 시간에 대한 기본 측정 단위(밀리초)
+initLimit: 팔로워가 리더와 초기에 연결하는 시간에 대한 타임아웃 tick의 수
+syncLimit: 팔로워가 리더와 동기화 하는 시간에 대한 타임 아웃 tick의 수(주키퍼에 저장된 데이터가 크면 수를 늘려야 함)
+dataDir= 주키퍼의 트랜잭션 로그와 스냅샷이 저장되는 데이터 저장 경로
+clientPort: 주키퍼 사용 TCP포트
+server.x: 주키퍼 앙상블 구성을 위한 서버 설절이며, server.myid 형식으로 사용함&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;myid와 호스트 이름 또는 ID주소:포트번호&lt;/li&gt;
+&lt;li&gt;포트번호 2888, 3888은 기본 포트이며 앙상블 내 노드끼리 연결하는데 사용하고, 리더 선출에 사용함&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;zookeeper-수행-및-상태-확인&#34;&gt;zookeeper 수행 및 상태 확인&lt;/h2&gt;
+&lt;p&gt;./zkServer.sh start
+./zkServer.sh status&lt;/p&gt;
+&lt;h3 id=&#34;cli로-확인&#34;&gt;CLI로 확인&lt;/h3&gt;
+&lt;p&gt;zkCli.sh -server localhost:2181&lt;/p&gt;
+&lt;p&gt;주키퍼 시스템 데몬에 등록
+여러 프로세스를 systemd에 등록해 관리하면 관리자 필요에 따라, 자동 또는 수동으로 서비스를 시작할 수 있습니다.
+서버 부팅시 주키퍼를 자동 시작하기 위해서는 systemd에 등록하겠습니다.
+server.service 등록
+sudo vi /etc/systemd/system/zookeeper-server.service
+[Unit]
+Description=zookeeper-server
+After=network.target&lt;/p&gt;
+&lt;p&gt;[Service]
+Type=forking
+User=root
+Group=root
+SyslogIdentifier=zookeeper-server
+WorkingDirectory=/usr/local/zookeeper
+Restart=always
+RestartSec=0s
+ExecStart=/usr/local/zookeeper/bin/zkServer.sh start
+ExecStop=/usr/local/zookeeper/bin/zkServer.sh stop&lt;/p&gt;
+&lt;p&gt;[Install]
+WantedBy=multi-user.target&lt;/p&gt;
+&lt;p&gt;systemd 재시작
+sudo systemctl daemon-reload&lt;/p&gt;
+&lt;p&gt;주키퍼 서비스 시작 및 중지
+sudo systemctl start zookeeper-server.service
+sudo systemctl stop zookeeper-server.service&lt;/p&gt;
+&lt;p&gt;서버 부팅시 주키퍼 자동 시작
+서버 부팅할 때 자동으로 실행하려면 다음 명령어를 수행해야 합니다.
+sudo systemctl enable zookeeper-server.service
+Created symlink /etc/systemd/system/multi-user.target.wants/zookeeper-server.service → /etc/systemd/system/zookeeper-server.service.&lt;/p&gt;
+&lt;p&gt;비고) enable 등록시 Install 섹션을 등록하지 않으면 발생합니다.
+[Install]
+WantedBy=multi-user.target&lt;/p&gt;
+&lt;p&gt;The unit files have no installation config (WantedBy, RequiredBy, Also, Alias
+settings in the [Install] section, and DefaultInstance for template units).
+This means they are not meant to be enabled using systemctl.
+Possible reasons for having this kind of units are:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A unit may be statically enabled by being symlinked from another unit&amp;rsquo;s
+.wants/ or .requires/ directory.&lt;/li&gt;
+&lt;li&gt;A unit&amp;rsquo;s purpose may be to act as a helper for some other unit which has
+a requirement dependency on it.&lt;/li&gt;
+&lt;li&gt;A unit may be started when needed via activation (socket, path, timer,
+D-Bus, udev, scripted systemctl call, &amp;hellip;).&lt;/li&gt;
+&lt;li&gt;In case of template units, the unit is meant to be enabled with some
+instance name specified.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;주키퍼 서비스 확인
+sudo systemctl status zookeeper-server.service
+● zookeeper-server.service - zookeeper-server
+Loaded: loaded (/etc/systemd/system/zookeeper-server.service; static; vendor preset: enabled)
+Active: active (running) since Fri 2020-10-16 20:49:13 PDT; 6s ago
+Process: 2555 ExecStop=/usr/local/zookeeper/bin/zkServer.sh stop (code=exited, status=0/SUCCESS)
+Process: 2579 ExecStart=/usr/local/zookeeper/bin/zkServer.sh start (code=exited, status=0/SUCCESS)
+Main PID: 2595 (java)
+Tasks: 27 (limit: 9465)
+CGroup: /system.slice/zookeeper-server.service
+└─2595 java -Dzookeeper.log.dir=/usr/local/zookeeper/bin/../logs -Dzookeeper.log.file=zookeeper-root-server-ubuntu.log -Dzookeeper.root.logger=INFO,CONSOLE -XX:+HeapDumpO&lt;/p&gt;
+&lt;p&gt;Oct 16 20:49:12 ubuntu systemd[1]: Starting zookeeper-server&amp;hellip;
+Oct 16 20:49:12 ubuntu zookeeper-server[2579]: /usr/bin/java
+Oct 16 20:49:12 ubuntu zookeeper-server[2579]: ZooKeeper JMX enabled by default
+Oct 16 20:49:12 ubuntu zookeeper-server[2579]: Using config: /usr/local/zookeeper/bin/../conf/zoo.cfg
+Oct 16 20:49:13 ubuntu zookeeper-server[2579]: Starting zookeeper &amp;hellip; STARTED
+Oct 16 20:49:13 ubuntu systemd[1]: Started zookeeper-server.
+lines 1-16/16 (END)&lt;/p&gt;
+&lt;p&gt;Kafa 설치
+Ref: &lt;a href=&#34;https://zzsza.github.io/data/2018/07/24/apache-kafka-install/&#34;&gt;https://zzsza.github.io/data/2018/07/24/apache-kafka-install/&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;다운로드 
+Download: &lt;a href=&#34;https://www.apache.org/dyn/closer.cgi?path=/kafka/2.6.0/kafka_2.13-2.6.0.tgz&#34;&gt;https://www.apache.org/dyn/closer.cgi?path=/kafka/2.6.0/kafka_2.13-2.6.0.tgz&lt;/a&gt;
+wget &lt;a href=&#34;https://downloads.apache.org/kafka/2.6.0/kafka_2.13-2.6.0.tgz&#34;&gt;https://downloads.apache.org/kafka/2.6.0/kafka_2.13-2.6.0.tgz&lt;/a&gt;
+/usr/local 하위에&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;심볼릭 링크&lt;br&gt;
+sudo ln -s zookeeper-3.5.8/ zookeeper&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;환경설정에 필요한 서버별 브로커 아이디, 카프카 저장 디렉토리, 주키퍼 정보
+서버별 브로터 아이디 설정
+카프카 서버들의 아이디를 설정
+kafka1    broker.id=1&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;저장 디렉토리 설정
+카프카는 다른 메시지 큐 서비스와 달리 컨슈머가 메시지를 가져가더라도 저장된 데이터를 임시로 보관하는 기능이 있습니다.
+디스크가 여러 개인 서버의 경우 각 디스크의 수만큼 디렉토리를 만들어줘야 각 디스크 별로 I/O를 분산할 수 있습니다.
+여기서는 데이터 저장 디렉토리를 1개로 설정하겠습니다.
+mkdir /var/data/kafka1&lt;/p&gt;
+&lt;p&gt;카프카가 바라보는 주키퍼 정보 설정
+zookeeper.connect=zk1:2181
+주키퍼 앙상블의 호스트 이름과 포트 정보만 입력하면 주키퍼 지노드의 최상위 경로를 사용하게 됩니다. 
+이렇게 최상위 경로를 사용하게 되면, 하나의 주키퍼 앙상블 세트와 하나의 애플리케이션만 사용할 수 있게 됩니다. 
+왜냐하면 서로 다른 애플리케이션에서 동일한 지노드를 사용하게 될 경우 데이터 충돌이 발생할 수 있습니다. 
+하나의 주키퍼 앙상블 세트와 하나의 애플리케이션만 사용하는 방법이 잘못된 방법은 아니지만, 약간의 설정을 변경해 하나의 주키퍼 앙상블 세트를 여러 개의 애플리케이션에서 공용으로 사용할 수 있는 방법이 있습니다. 
+바로 주키퍼의 최상위 경로를 사용하는 것이 아니라 지노드를 구분해서 사용하는 방법입니다.&lt;/p&gt;
+&lt;p&gt;주키퍼의 최상위 경로에 하위 노드로 지노드를 생성하게 되면 주키퍼 앙상블 한 세트로 여러 개의 애플리케이션들을 사용할 수 있습니다.
+zookeeper.connect=zk1:2181/kafka1&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;환경설정
+broker.id 수정
+broker.id=1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;log.dirs 수정
+log.dir=/var/data/kafka1&lt;/p&gt;
+&lt;p&gt;주키퍼 정보 설정
+zookeeper.connect=zk1:2181/kafka1&lt;/p&gt;
+&lt;p&gt;카프타 브로커 서버와 주키퍼 서버와 통신 여부 확인
+nc -v zk1 2181
+nc는 TCP, UDP를 이용해 네트워크 연결에 읽고 쓰는 네트워킹 테스트 도구&lt;/p&gt;
+&lt;p&gt;카프카 실행
+$KAFKA_HOME/bin/kafka-server-start.sh /usr/local/kafka/config/server.properties &amp;amp;&lt;/p&gt;
+&lt;p&gt;카프카 시스템 데몬에 등록
+server.service 등록
+sudo vi /etc/systemd/system/kafka-server.service
+[Unit]
+Description=kafka-server
+After=network.target&lt;/p&gt;
+&lt;p&gt;[Service]
+Type=forking
+User=root
+Group=root
+SyslogIdentifier=kafka-server
+WorkingDirectory=/usr/local/kafka
+Restart=always
+RestartSec=0s
+ExecStart=/usr/local/kafka/bin/zkServer.sh start
+ExecStop=/usr/local/kafka/bin/zkServer.sh stop&lt;/p&gt;
+&lt;p&gt;[Install]
+WantedBy=multi-user.target&lt;/p&gt;
+&lt;p&gt;systemd 재시작
+sudo systemctl daemon-reload&lt;/p&gt;
+&lt;p&gt;주키퍼 서비스 시작 및 중지
+sudo systemctl start kafka-server.service
+sudo systemctl stop kafka-server.service&lt;/p&gt;
+&lt;p&gt;서버 부팅시 주키퍼 자동 시작
+서버 부팅할 때 자동으로 실행하려면 다음 명령어를 수행해야 합니다.
+sudo systemctl enable kafka-server.service
+Created symlink /etc/systemd/system/multi-user.target.wants/kafka-server.service → /etc/systemd/system/kafka-server.service.&lt;/p&gt;
+&lt;p&gt;카프카 &amp;amp; 주키퍼 프로세스 확인&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;systemctl 확인
+systemctl status zookeeper-server.service
+systemctl status kafka-server.service&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;TCP포트 확인
+프로세스의 리스닝 상태인지 확인합니다. 포트가 리스닝 상태라는 의미는 애플리케이션이 TCP를 실행중이고 다른 컴퓨터와 연결을 기다린다는 것, 즉 수신 대기 상태입니다.
+주키퍼 포트: 2181
+카프카 기본 포트: 9092
+netstat -ntlp |grep 2181
+netstat -ntlp |grep 9092&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;주키퍼 지노드를 이용한 카프카 정보 확인
+zkCli.sh를 수행하고 ls /를 수행하여 다음 메시지를 확인합니다.
+$ZOOKEEPER_HOME/bin/zkCli.sh
+[zk: localhost:2181(CONNECTED) 0] ls /
+출력
+[kafka1, zookeeper]
+카프카에서 사용하는 주키퍼의 지노드 중 브로커 정보들이 있는 지노드를 확인
+카프카 환경설정 파일에서 입력한 broker.id 번호 리스트를 확인할 수 있습니다
+[zk: localhost:2181(CONNECTED) 6] ls /kafka1/brokers/ids
+출력
+[1]&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;카프카 로그 확인
+cat /usr/local/kafkak/logs/server.log&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;카프카 시작하기
+카프카에서 제공해주는 명령어를 이용해 직접 카프카에 토픽도 만들어보고 만든 토픽에 메시지를 보내고, 토픽에 메시지를 가져오는 예제를 설명&amp;hellip;
+카프카 클러스터 중 서버 한대에 접속해 카프카 토픽을 생성합니다.
+토픽이름: topic
+토픽을 생성하기 위해 카프카에서 제공하는 명령어는 kafka-topics.sh로서, &amp;ndash;zookeeper 옵션에 주키퍼 정보를 추가하고, 
+&amp;ndash;zookeeper 옵션에 주키퍼 정보를 추가하고
+&amp;ndash;replication-factor 옵션은 1
+&amp;ndash;partition 옵션은 1
+&amp;ndash;topic 옵션은 만들고자 하는 토픽 이름을 입력
+&amp;ndash;create 옵션을 주면 토픽이 생성됩니다.&lt;/p&gt;
+&lt;p&gt;토픽생성
+/usr/local/kafka/bin/kafka-topics.sh&lt;br&gt;
+&amp;ndash;zookeeper zk1:2181/kafka1&lt;br&gt;
+&amp;ndash;replication-factor 1&lt;br&gt;
+&amp;ndash;partitions 1&lt;br&gt;
+&amp;ndash;topic topic&lt;br&gt;
+&amp;ndash;create&lt;/p&gt;
+&lt;p&gt;카프카에 토픽이 성공적으로 만들어졌습니다. 이제 카프카는 프로듀서로부터 메시지를 받을 준비가 되었습니다.&lt;/p&gt;
+&lt;p&gt;메시지 퍼블리싱
+메시지를 퍼블리싱하는 명령어 역시 카프카에서 제공하는 kafka-console-producer.sh 이며, &amp;ndash;broker-list 옵션으로 카프카를 설치한 서버를 입력하고, &amp;ndash;topic 옵션에는 토픽 이름을 입력하면 됩니다.
+/usr/local/kafka/bin/kafka-console-producer.sh&lt;br&gt;
+&amp;ndash;broker-list kafka1:9092&lt;br&gt;
+&amp;ndash;topic topic&lt;/p&gt;
+&lt;p&gt;메시지 가져오기
+/usr/local/kafka/bin/kafka-console-consumer.sh&lt;br&gt;
+&amp;ndash;bootstrap-server kafka1:9092&lt;br&gt;
+&amp;ndash;topic topic&lt;br&gt;
+&amp;ndash;from-beginning&lt;/p&gt;
+</description>
+     </item>
    
      <item>
        <title>Mongodb_replica_set</title>
@@ -1159,6 +1416,8 @@ server.x: 주키퍼 앙상블 구성을 위한 서버 설절이며, server.myid 
 &lt;li&gt;사용하고자 하는 Java 버전이 아닐 경우 사용합니다.&lt;br&gt;
 sudo update-alternatives &amp;ndash;set java /usr/lib/jvm/jdk1.8.0_version/bin/java&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3 id=&#34;심볼릭-링크가-연결되어-있는-원본의-파일명-확인&#34;&gt;심볼릭 링크가 연결되어 있는 원본의 파일명 확인&lt;/h3&gt;
+&lt;p&gt;readlink -f /usr/bin/javac&lt;/p&gt;
 &lt;h3 id=&#34;비고&#34;&gt;비고&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;2019년 Oracle의 Java 라이센스 정책 변경으로 과거 apt-get을 사용해 설치하면 다음과 같은 에러 메시지 리턴 받고 설치가 안됩니다.&lt;/li&gt;

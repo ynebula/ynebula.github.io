@@ -188,6 +188,8 @@
 <li>사용하고자 하는 Java 버전이 아닐 경우 사용합니다.<br>
 sudo update-alternatives &ndash;set java /usr/lib/jvm/jdk1.8.0_version/bin/java</li>
 </ul>
+<h3 id="심볼릭-링크가-연결되어-있는-원본의-파일명-확인">심볼릭 링크가 연결되어 있는 원본의 파일명 확인</h3>
+<p>readlink -f /usr/bin/javac</p>
 <h3 id="비고">비고</h3>
 <ul>
 <li>2019년 Oracle의 Java 라이센스 정책 변경으로 과거 apt-get을 사용해 설치하면 다음과 같은 에러 메시지 리턴 받고 설치가 안됩니다.</li>
