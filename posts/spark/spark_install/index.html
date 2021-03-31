@@ -1,0 +1,288 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>Spark/Scala/PySpark 설치 - Bigdata Engineer &amp; Analyst Story</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Kiera: A Hugo theme for creative and technical writing." />
+<meta name="author" content="Sungwoon Yoon" /><meta property="og:title" content="Spark/Scala/PySpark 설치" />
+<meta property="og:description" content="JDK on Windows First, make sure you have the Java 8 JDK (or Java 11 JDK) installed. Path에 빈 칸이 없어야 한다. 그래서 C:\Java 로 설치한다. =&gt; 이거 다시 테스트 해봐야 함&hellip; 프로그램 파일 밑에 설치" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ynebula.github.io/posts/spark/spark_install/" />
+<meta property="article:published_time" content="2021-03-13T18:06:35+09:00" />
+<meta property="article:modified_time" content="2021-03-13T18:06:35+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Spark/Scala/PySpark 설치"/>
+<meta name="twitter:description" content="JDK on Windows First, make sure you have the Java 8 JDK (or Java 11 JDK) installed. Path에 빈 칸이 없어야 한다. 그래서 C:\Java 로 설치한다. =&gt; 이거 다시 테스트 해봐야 함&hellip; 프로그램 파일 밑에 설치"/>
+
+<meta name="generator" content="Hugo 0.78.1" />
+    
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://ynebula.github.io/fontawesome/css/all.min.css" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  
+  
+  <link rel="stylesheet" type="text/css" href="https://ynebula.github.io/css/styles.css" /></head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://ynebula.github.io/">Bigdata Engineer &amp; Analyst Story</a>
+            </h1>
+
+      <ul id="social-media">
+             <li>
+               <a href="https://www.facebook.com/username" title="Facebook">
+               <i class="fab fa-facebook fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://github.com/ynebula" title="GitHub">
+               <i class="fab fa-github fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://linkedin.com/in/%EC%84%B1%EC%9A%B4-%EC%9C%A4-a9bb30135/" title="LinkedIn">
+               <i class="fab fa-linkedin fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://www.instagram.com/sungwoon.yoon" title="Instagram">
+               <i class="fab fa-instagram fa-lg"></i>
+               </a>
+             </li>
+      </ul>
+      
+      <p><em>A Hugo theme for creative and technical writing</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://ynebula.github.io/tags">
+                <i class="fa-li fa  fa-lg"></i><span>Tags</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://ynebula.github.io/categories">
+                <i class="fa-li fa  fa-lg"></i><span>Categories</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Spark/Scala/PySpark 설치</h1>
+
+    
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2021-03-13T18:06:35&#43;09:00">Mar 13, 2021</time>
+        </li>
+        
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="https://ynebula.github.io/categories/install">Install</a>
+                
+            </em>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="https://ynebula.github.io/tags/spark">#Spark</a>
+                
+                    , 
+                    <a href="https://ynebula.github.io/tags/scala">#Scala</a>
+                
+                    , 
+                    <a href="https://ynebula.github.io/tags/pyspark">#PySpark</a>
+                
+            </em>
+        </li>
+        
+
+        <li>One minute read</li>
+    </ul>
+</aside>
+
+    
+
+    
+<div class="featured_image">
+    <a href="https://ynebula.github.io/posts/spark/spark_install/" title="Spark/Scala/PySpark 설치">
+        <img src="">
+    </a>
+</div>
+
+
+
+    <h2 id="jdk-on-windows">JDK on Windows</h2>
+<p>First, make sure you have the Java 8 JDK (or Java 11 JDK) installed.
+Path에 빈 칸이 없어야 한다.
+그래서 C:\Java 로 설치한다.
+=&gt; 이거 다시 테스트 해봐야 함&hellip; 프로그램 파일 밑에 설치</p>
+<h2 id="install-spark-on-windows">Install Spark on Windows</h2>
+<p>Package 확인: brew search spark
+설치: brew install apache-spark
+확인: brew list |grep scala
+환경변수 설정: SPARK_HOME 및 Path 설정</p>
+<h2 id="spark-test">Spark Test</h2>
+<p>spark-shell을 사용해 scala
+pyspark을 사용해 python 
+spark-submit</p>
+<h2 id="install-scala">Install Scala</h2>
+<p>Scala와 Spark 버전을 맞춰야 빌드된다. 버전은 다음 사이트에서 확인할 수 있다.
+<a href="https://mvnrepository.com/artifact/org.apache.spark/spark-core_2.12/3.1.1">https://mvnrepository.com/artifact/org.apache.spark/spark-core_2.12/3.1.1</a> 
+<img src="https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/scalaInstall_01" alt="alt text" title="Install Scala"></p>
+<p>on Windows
+<a href="https://www.scala-lang.org/download/">https://www.scala-lang.org/download/</a></p>
+<p>on Mac
+설치: brew install scala
+확인: brew list |grep scala</p>
+<p>[Setup Scala with IntellJ]</p>
+<p><a href="https://medium.com/@Sushil_Kumar/setting-up-spark-with-scala-development-environment-using-intellij-idea-b22644f73ef1">https://medium.com/@Sushil_Kumar/setting-up-spark-with-scala-development-environment-using-intellij-idea-b22644f73ef1</a></p>
+<h2 id="setup-pyspark-with-intellj">Setup PySpark with IntellJ]</h2>
+<h4 id="빈-프로젝트-생성">빈 프로젝트 생성</h4>
+<p><img src="https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/pysparkSetup_01" alt="alt text" title="Create Project"> 
+<img src="https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/pysparkSetup_03" alt="alt text" title="Create Project"></p>
+<h4 id="project-sdk-설정---python-plugin-설치">Project SDK 설정 - Python Plugin 설치</h4>
+<p><img src="https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/pysparkSetup_02" alt="alt text" title="Install Python Plugin"></p>
+<h4 id="pyspark-lib-import">PySpark LIB Import</h4>
+<p>다음 화면에 접근해서 PySpark Lib를 추가한다.</p>
+<h5 id="화면-접근-project-structure---module---add">화면 접근: Project Structure - Module - Add</h5>
+<p>Import PySpark
+<img src="https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/pysparkSetup_04" alt="alt text" title="Import PySpark Lib"></p>
+<p>Import py4j
+<img src="https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/pysparkSetup_05" alt="alt text" title="Install py4j Package"></p>
+<p>다음 소스를 구현해서 PySpark을 수행합니다.
+<img src="https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/pysparkSetup_05" alt="alt text" title="PySpark Test"></p>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://ynebula.github.io/posts/kafka/kafka-install/"><i class="fa fa-chevron-circle-left"></i> Kafka Install</a>
+        </li>
+        
+        
+    </ul>
+</section>
+  
+    
+    
+        <section class="comments-block">
+      <button id="show-comments" style="display: none;"><i class="fa fa-comments"></i> Add/View Comments</button>
+</section>
+
+<section id="disqus_thread"></section>
+
+<script>
+      (function () {
+            
+            
+            if (window.location.hostname == "localhost")
+                  return;
+
+            var disqus_loaded = false;
+            var disqus_shortname = 'myShortName';
+            var disqus_button = document.getElementById("show-comments");
+
+            var disqus_autoload =  null ;
+            var disable_comment =  null ;
+
+            if (disable_comment)
+                  return;
+
+            disqus_button.style.display = "";
+
+            if (disqus_autoload){
+                  disqus();
+            }else{
+                  disqus_button.addEventListener("click", disqus, false);
+            }
+
+            function disqus() {
+
+                  if (!disqus_loaded) {
+                        disqus_loaded = true;
+
+                        var e = document.createElement("script");
+                        e.type = "text/javascript";
+                        e.async = true;
+                        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                        (document.getElementsByTagName("head")[0] ||
+                              document.getElementsByTagName("body")[0])
+                        .appendChild(e);
+
+                        
+                        document.getElementById("show-comments").style.display = "none";
+                  }
+            }
+
+            
+            var hash = window.location.hash.substr(1);
+            if (hash.length > 8) {
+                  if (hash.substring(0, 8) == "comment-") {
+                        disqus();
+                  }
+            }
+
+            
+            if (/bot|google|baidu|bing|msn|duckduckgo|slurp|yandex/i.test(navigator.userAgent)) {
+                  disqus();
+            }
+      })();
+</script>
+
+    
+  
+
+
+
+
+
+</main>
+    <footer>
+        <h6>Copyright © 2020 - Sungwoon Yoon |
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://ynebula.github.io/index.xml">Subscribe </a></h6>
+    </footer>
+</div>
+<script src="https://ynebula.github.io/js/scripts.js"></script>
+
+
+</body>
+
+</html>
+

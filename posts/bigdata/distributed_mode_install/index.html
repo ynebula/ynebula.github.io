@@ -3,11 +3,11 @@
 <html lang="en">
 
 <head>
-  <title>하둡(Hadoop) 가상 분산 모드 설치 - Bigdata Engineer &amp; Analyst Story</title>
+  <title>하둡(Hadoop) 싱글/가상분산 모드 설치 - Bigdata Engineer &amp; Analyst Story</title>
   <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="Kiera: A Hugo theme for creative and technical writing." />
-<meta name="author" content="Sungwoon Yoon" /><meta property="og:title" content="하둡(Hadoop) 가상 분산 모드 설치" />
+<meta name="author" content="Sungwoon Yoon" /><meta property="og:title" content="하둡(Hadoop) 싱글/가상분산 모드 설치" />
 <meta property="og:description" content="사전 작업  레파지토리 최신화(패키지들의 새로운 버젼이 있는지 확인하고 최신 버전으로 업그래이드) sudo apt-get update sudo apt-get upgrade  Java 설치 Java 설치 참조 링크
 MariaDB MariaDB 설치  sudo apt-get install -y mariadb-server  mysql 사용자 확인  cat /etc/passwd 를 수행해 mysql 유져를 확인합니다." />
 <meta property="og:type" content="article" />
@@ -16,7 +16,7 @@ MariaDB MariaDB 설치  sudo apt-get install -y mariadb-server  mysql 사용자 
 <meta property="article:modified_time" content="2020-11-16T11:39:12+09:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="하둡(Hadoop) 가상 분산 모드 설치"/>
+<meta name="twitter:title" content="하둡(Hadoop) 싱글/가상분산 모드 설치"/>
 <meta name="twitter:description" content="사전 작업  레파지토리 최신화(패키지들의 새로운 버젼이 있는지 확인하고 최신 버전으로 업그래이드) sudo apt-get update sudo apt-get upgrade  Java 설치 Java 설치 참조 링크
 MariaDB MariaDB 설치  sudo apt-get install -y mariadb-server  mysql 사용자 확인  cat /etc/passwd 를 수행해 mysql 유져를 확인합니다."/>
 
@@ -92,7 +92,7 @@ MariaDB MariaDB 설치  sudo apt-get install -y mariadb-server  mysql 사용자 
 
 <article>
 
-    <h1>하둡(Hadoop) 가상 분산 모드 설치</h1>
+    <h1>하둡(Hadoop) 싱글/가상분산 모드 설치</h1>
 
     
       <aside>
@@ -112,6 +112,9 @@ MariaDB MariaDB 설치  sudo apt-get install -y mariadb-server  mysql 사용자 
                     , 
                     <a href="https://ynebula.github.io/categories/hadoop">Hadoop</a>
                 
+                    , 
+                    <a href="https://ynebula.github.io/categories/install">Install</a>
+                
             </em>
         </li>
         
@@ -126,9 +129,6 @@ MariaDB MariaDB 설치  sudo apt-get install -y mariadb-server  mysql 사용자 
                     , 
                     <a href="https://ynebula.github.io/tags/hadoop">#Hadoop</a>
                 
-                    , 
-                    <a href="https://ynebula.github.io/tags/install">#Install</a>
-                
             </em>
         </li>
         
@@ -141,7 +141,7 @@ MariaDB MariaDB 설치  sudo apt-get install -y mariadb-server  mysql 사용자 
 
     
 <div class="featured_image">
-    <a href="https://ynebula.github.io/posts/bigdata/distributed_mode_install/" title="하둡(Hadoop) 가상 분산 모드 설치">
+    <a href="https://ynebula.github.io/posts/bigdata/distributed_mode_install/" title="하둡(Hadoop) 싱글/가상분산 모드 설치">
         <img src="">
     </a>
 </div>
@@ -205,7 +205,7 @@ MariaDB MariaDB 설치  sudo apt-get install -y mariadb-server  mysql 사용자 
 </ul>
 </li>
 </ul>
-<h3 id="하둡">하둡</h3>
+<h2 id="하둡">하둡</h2>
 <p>버전: 2.9.2</p>
 <h4 id="사전작업">사전작업</h4>
 <ul>
@@ -288,13 +288,14 @@ MariaDB MariaDB 설치  sudo apt-get install -y mariadb-server  mysql 사용자 
 </ul>
 </li>
 </ul>
-<h4 id="비고">비고</h4>
+<h2 id="비고">비고</h2>
 <h4 id="에러1">에러1</h4>
 <ul>
 <li>메시지 0.0.0.0: ssh: connect to host 0.0.0.0 port 22: Connection refused
 localhost: ssh: connect to host localhost port 22: Connection refused</li>
 <li>원인 ssh 서버가 설치돼 있지 않아 발생함</li>
 <li>해결 openssh-server 설치</li>
+<li>open ssh server 생성 in mac</li>
 </ul>
 <h4 id="에러2">에러2</h4>
 <ul>

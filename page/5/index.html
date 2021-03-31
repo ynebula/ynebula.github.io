@@ -11,7 +11,7 @@
 <meta property="og:description" content="Kiera: A Hugo theme for creative and technical writing." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ynebula.github.io/" />
-<meta property="og:updated_time" content="2021-03-07T15:28:25+09:00" />
+<meta property="og:updated_time" content="2021-03-13T18:06:35+09:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Bigdata Engineer &amp; Analyst Story"/>
@@ -94,6 +94,59 @@
     
 
     <li class="first" >
+      <h1><a href="https://ynebula.github.io/posts/bigdata/hdfs/" title="하둡 분산 파일 시스템(Hdfs)">하둡 분산 파일 시스템(Hdfs)</a></h1>
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2021-01-03T22:33:30&#43;09:00">Jan 3, 2021</time>
+        </li>
+        
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="https://ynebula.github.io/categories/bigdata">Bigdata</a>
+                
+            </em>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="https://ynebula.github.io/tags/bigdata">#Bigdata</a>
+                
+                    , 
+                    <a href="https://ynebula.github.io/tags/hdfs">#HDFS</a>
+                
+            </em>
+        </li>
+        
+
+        <li>2 minutes read</li>
+    </ul>
+</aside>
+
+      
+<div class="featured_image">
+    <a href="https://ynebula.github.io/posts/bigdata/hdfs/" title="하둡 분산 파일 시스템(Hdfs)">
+        <img src="">
+    </a>
+</div>
+
+
+      <p>하둡 분산 파일 시스템  대용량 파일 읽기 및 쓰기 작업에 최적화된 파일 시스템 파일의 메타정보는 네임노드(마스터노드)가 관리하고 실제 블록 데이터는 데이터노드(작업노드)에서 분산 저장됨 분산 파일 시스템은 유져 입장에서는 하나로 보이지만 물리적으로 분산/쪼개져 있고 네임노드가 데이터 노드를 관리함 파일시스템 관점에서는 하나의 클러스터의 파일 시스템  네임노드  메타정보를 보관 SPOF(single point of failure) Active-standby 형태로 운영 Fsimage, Edit Log(변경로그) 메타정보 HDFS에 있는 각 블록의 파일위치, 사용자, 권한 등에 대한 정보 Fsimage 데이터노드에 저장된 블록들에 대한 정보 EditLog 블록정보에 대한 변경 사항  데이터노드  파일을 기본적으로 64M 혹은 128M 블록 단위로 나누어 여러 개의 데이터노드에 분산 저장함 복제본의 수는 시스템에서 설절하며, 디폴트 3  특징</p>
+      
+      <a href="https://ynebula.github.io/posts/bigdata/hdfs/">Read more…</a>
+      
+    </li>
+    
+
+    <li >
       <h1><a href="https://ynebula.github.io/posts/bigdata/yarn/" title="Yarn">Yarn</a></h1>
       <aside>
     <ul>
@@ -204,57 +257,6 @@
       <p>하둡 아키텍쳐 하둡은 분산파일시스템 HDFS(Hadoop Distributed File System)과 분산처리 기술인 MapReduce 기술이 결합된 기술이다.         하둡(Hadoop) = HDFS(Big file system) + MapReduce(분산처리 시스템)    하둡 클러스터 동작 방식 독립 모드(Standalone Mode)</p>
       
       <a href="https://ynebula.github.io/posts/bigdata/hadoop_architecture/">Read more…</a>
-      
-    </li>
-    
-
-    <li >
-      <h1><a href="https://ynebula.github.io/posts/bigdata/what_is_bigdata_system_/" title="빅데이터 시스템이란">빅데이터 시스템이란</a></h1>
-      <aside>
-    <ul>
-        <li>
-            <time class="post-date" datetime="2020-12-26T16:05:06&#43;09:00">Dec 26, 2020</time>
-        </li>
-        
-        
-        <li>
-            Categories:
-            <em>
-                
-                    
-                    <a href="https://ynebula.github.io/categories/bigdata">Bigdata</a>
-                
-            </em>
-        </li>
-        
-
-        
-        <li>
-            <em>
-                
-                    
-                    <a href="https://ynebula.github.io/tags/bigdata">#Bigdata</a>
-                
-            </em>
-        </li>
-        
-
-        <li>3 minutes read</li>
-    </ul>
-</aside>
-
-      
-<div class="featured_image">
-    <a href="https://ynebula.github.io/posts/bigdata/what_is_bigdata_system_/" title="빅데이터 시스템이란">
-        <img src="">
-    </a>
-</div>
-
-
-      <p>빅데이터 시스템 개념 빅데이터 시스템이란 단순히 파일 크기가 크다 파일을 처리한다는 의미가 아니다. 빅데이터 시스템이란 파일의 크기와 그 파일을 처리방식 모두 만족해야 한다.
-즉 데이터 저장에 필요한 HDFS 와 같은 분산파일시스템 과 이 데이터를 처리하는 MapReduce 와 같은 분산병렬처리프레임워크 를 가지고 있어야 빅데이터 처리 시스템이라고 할 수 있다.</p>
-      
-      <a href="https://ynebula.github.io/posts/bigdata/what_is_bigdata_system_/">Read more…</a>
       
     </li>
     
