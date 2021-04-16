@@ -62,19 +62,19 @@ spark-submit&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://medium.com/@Sushil_Kumar/setting-up-spark-with-scala-development-environment-using-intellij-idea-b22644f73ef1&#34;&gt;https://medium.com/@Sushil_Kumar/setting-up-spark-with-scala-development-environment-using-intellij-idea-b22644f73ef1&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;setup-pyspark-using-intellj-ide&#34;&gt;Setup PySpark using IntellJ IDE&lt;/h2&gt;
 &lt;p&gt;빈 프로젝트 생성
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/posts/spark/img/pysparkSetup_01.png&#34; alt=&#34;alt text&#34; title=&#34;Create Project&#34;&gt; 
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/posts/spark/img/pysparkSetup_03.png&#34; alt=&#34;alt text&#34; title=&#34;Create Project&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/pysparkSetup_01.png&#34; alt=&#34;alt text&#34; title=&#34;Create Project&#34;&gt; 
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/pysparkSetup_03.png&#34; alt=&#34;alt text&#34; title=&#34;Create Project&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Project SDK 설정 - Python Plugin 설치
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/posts/spark/img/pysparkSetup_02.png&#34; alt=&#34;alt text&#34; title=&#34;Install Python Plugin&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/pysparkSetup_02.png&#34; alt=&#34;alt text&#34; title=&#34;Install Python Plugin&#34;&gt;&lt;/p&gt;
 &lt;p&gt;PySpark LIB Import&lt;br&gt;
 다음 화면에 접근해서 PySpark Lib를 추가 
 화면 접근: Project Structure - Module - Add&lt;/p&gt;
 &lt;p&gt;Import PySpark
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/posts/spark/img/pysparkSetup_04.png&#34; alt=&#34;alt text&#34; title=&#34;Import PySpark Lib&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/pysparkSetup_04.png&#34; alt=&#34;alt text&#34; title=&#34;Import PySpark Lib&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Import py4j
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/posts/spark/img/pysparkSetup_05.png&#34; alt=&#34;alt text&#34; title=&#34;Install py4j Package&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/pysparkSetup_05.png&#34; alt=&#34;alt text&#34; title=&#34;Install py4j Package&#34;&gt;&lt;/p&gt;
 &lt;p&gt;다음 소스를 구현해서 PySpark을 수행합니다.
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/posts/spark/img/pysparkSetup_06.png&#34; alt=&#34;alt text&#34; title=&#34;PySpark Test&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/pysparkSetup_06.png&#34; alt=&#34;alt text&#34; title=&#34;PySpark Test&#34;&gt;&lt;/p&gt;
 </description>
      </item>
    
