@@ -19,44 +19,62 @@
        <guid>https://ynebula.github.io/posts/spark/spark_install/</guid>
        <description>&lt;h2 id=&#34;jdk-on-windows&#34;&gt;JDK on Windows&lt;/h2&gt;
 &lt;p&gt;First, make sure you have the Java 8 JDK (or Java 11 JDK) installed.
+&lt;a href=&#34;https://ynebula.github.io/posts/java/java8_install_on_ubuntu/&#34;&gt;https://ynebula.github.io/posts/java/java8_install_on_ubuntu/&lt;/a&gt;
 Path에 빈 칸이 없어야 한다.
 그래서 C:\Java 로 설치한다.
 =&amp;gt; 이거 다시 테스트 해봐야 함&amp;hellip; 프로그램 파일 밑에 설치&lt;/p&gt;
-&lt;h2 id=&#34;install-spark-on-windows&#34;&gt;Install Spark on Windows&lt;/h2&gt;
-&lt;p&gt;Package 확인: brew search spark
-설치: brew install apache-spark
-확인: brew list |grep scala
-환경변수 설정: SPARK_HOME 및 Path 설정&lt;/p&gt;
+&lt;h2 id=&#34;install-spark&#34;&gt;Install Spark&lt;/h2&gt;
+&lt;h4 id=&#34;on-windows&#34;&gt;on Windows&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Spark 사이트(&lt;a href=&#34;https://spark.apache.org/downloads.html&#34;&gt;https://spark.apache.org/downloads.html&lt;/a&gt;)에서 바이너리 파일 다운로드&lt;/li&gt;
+&lt;li&gt;C루트 디렉토리에 설치&lt;/li&gt;
+&lt;li&gt;환경변수에 SPARK_HOME 등록&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;on-mac&#34;&gt;on Mac&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Package 확인: brew search spark&lt;/li&gt;
+&lt;li&gt;설치: brew install apache-spark&lt;/li&gt;
+&lt;li&gt;확인: brew list |grep scala&lt;/li&gt;
+&lt;li&gt;환경변수 SPARK_HOME 및 Path 설정&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;spark-test&#34;&gt;Spark Test&lt;/h2&gt;
-&lt;p&gt;spark-shell을 사용해 scala
-pyspark을 사용해 python 
+&lt;p&gt;spark-shell을 사용해 scala&lt;br&gt;
+pyspark을 사용해 python&lt;br&gt;
 spark-submit&lt;/p&gt;
-&lt;h2 id=&#34;install-scala&#34;&gt;Install Scala&lt;/h2&gt;
-&lt;p&gt;Scala와 Spark 버전을 맞춰야 빌드된다. 버전은 다음 사이트에서 확인할 수 있다.
-&lt;a href=&#34;https://mvnrepository.com/artifact/org.apache.spark/spark-core_2.12/3.1.1&#34;&gt;https://mvnrepository.com/artifact/org.apache.spark/spark-core_2.12/3.1.1&lt;/a&gt; 
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/scalaInstall_01&#34; alt=&#34;alt text&#34; title=&#34;Install Scala&#34;&gt;&lt;/p&gt;
-&lt;p&gt;on Windows
-&lt;a href=&#34;https://www.scala-lang.org/download/&#34;&gt;https://www.scala-lang.org/download/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;on Mac
-설치: brew install scala
-확인: brew list |grep scala&lt;/p&gt;
-&lt;p&gt;[Setup Scala with IntellJ]&lt;/p&gt;
+&lt;h2 id=&#34;setup-scala-using-intellj-ide&#34;&gt;Setup Scala using IntellJ IDE&lt;/h2&gt;
+&lt;p&gt;주의점) Scala와 Spark 버전을 맞춰야 빌드됨 다음 사이트에서 버전 확인할 수 있음&lt;br&gt;
+&lt;a href=&#34;https://mvnrepository.com/artifact/org.apache.spark/spark-core_2.12/3.1.1&#34;&gt;https://mvnrepository.com/artifact/org.apache.spark/spark-core_2.12/3.1.1&lt;/a&gt;&lt;br&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/scalaInstall_01.png&#34; alt=&#34;alt text&#34; title=&#34;Install Scala&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;on-windows-1&#34;&gt;on Windows&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Scala 사이트(&lt;a href=&#34;https://www.scala-lang.org/download/&#34;&gt;https://www.scala-lang.org/download/&lt;/a&gt;)에서 바이너리 파일 다운로드&lt;/li&gt;
+&lt;li&gt;C루트 디렉토리에 설치&lt;/li&gt;
+&lt;li&gt;환경변수에 SCALA_HOME 등록&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;on-mac-1&#34;&gt;on Mac&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Package 확인: brew search scala&lt;/li&gt;
+&lt;li&gt;설치: brew install scala&lt;/li&gt;
+&lt;li&gt;확인: brew list |grep scala&lt;/li&gt;
+&lt;li&gt;환경변수 SCALA_HOME 및 Path 설정&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;setup-scala-plugin&#34;&gt;Setup Scala Plugin&lt;/h4&gt;
 &lt;p&gt;&lt;a href=&#34;https://medium.com/@Sushil_Kumar/setting-up-spark-with-scala-development-environment-using-intellij-idea-b22644f73ef1&#34;&gt;https://medium.com/@Sushil_Kumar/setting-up-spark-with-scala-development-environment-using-intellij-idea-b22644f73ef1&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;setup-pyspark-with-intellj&#34;&gt;Setup PySpark with IntellJ]&lt;/h2&gt;
-&lt;h4 id=&#34;빈-프로젝트-생성&#34;&gt;빈 프로젝트 생성&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/pysparkSetup_01&#34; alt=&#34;alt text&#34; title=&#34;Create Project&#34;&gt; 
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/pysparkSetup_03&#34; alt=&#34;alt text&#34; title=&#34;Create Project&#34;&gt;&lt;/p&gt;
-&lt;h4 id=&#34;project-sdk-설정---python-plugin-설치&#34;&gt;Project SDK 설정 - Python Plugin 설치&lt;/h4&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/pysparkSetup_02&#34; alt=&#34;alt text&#34; title=&#34;Install Python Plugin&#34;&gt;&lt;/p&gt;
-&lt;h4 id=&#34;pyspark-lib-import&#34;&gt;PySpark LIB Import&lt;/h4&gt;
-&lt;p&gt;다음 화면에 접근해서 PySpark Lib를 추가한다.&lt;/p&gt;
-&lt;h5 id=&#34;화면-접근-project-structure---module---add&#34;&gt;화면 접근: Project Structure - Module - Add&lt;/h5&gt;
+&lt;h2 id=&#34;setup-pyspark-using-intellj-ide&#34;&gt;Setup PySpark using IntellJ IDE&lt;/h2&gt;
+&lt;p&gt;빈 프로젝트 생성
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/posts/spark/img/pysparkSetup_01.png&#34; alt=&#34;alt text&#34; title=&#34;Create Project&#34;&gt; 
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/posts/spark/img/pysparkSetup_03.png&#34; alt=&#34;alt text&#34; title=&#34;Create Project&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Project SDK 설정 - Python Plugin 설치
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/posts/spark/img/pysparkSetup_02.png&#34; alt=&#34;alt text&#34; title=&#34;Install Python Plugin&#34;&gt;&lt;/p&gt;
+&lt;p&gt;PySpark LIB Import&lt;br&gt;
+다음 화면에 접근해서 PySpark Lib를 추가 
+화면 접근: Project Structure - Module - Add&lt;/p&gt;
 &lt;p&gt;Import PySpark
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/pysparkSetup_04&#34; alt=&#34;alt text&#34; title=&#34;Import PySpark Lib&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/posts/spark/img/pysparkSetup_04.png&#34; alt=&#34;alt text&#34; title=&#34;Import PySpark Lib&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Import py4j
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/pysparkSetup_05&#34; alt=&#34;alt text&#34; title=&#34;Install py4j Package&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/posts/spark/img/pysparkSetup_05.png&#34; alt=&#34;alt text&#34; title=&#34;Install py4j Package&#34;&gt;&lt;/p&gt;
 &lt;p&gt;다음 소스를 구현해서 PySpark을 수행합니다.
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/pysparkSetup_05&#34; alt=&#34;alt text&#34; title=&#34;PySpark Test&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/posts/spark/img/pysparkSetup_06.png&#34; alt=&#34;alt text&#34; title=&#34;PySpark Test&#34;&gt;&lt;/p&gt;
 </description>
      </item>
    
