@@ -11,7 +11,7 @@
 <meta property="og:description" content="Kiera: A Hugo theme for creative and technical writing." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ynebula.github.io/" />
-<meta property="og:updated_time" content="2021-03-13T18:06:35+09:00" />
+<meta property="og:updated_time" content="2021-07-11T19:09:52+09:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Bigdata Engineer &amp; Analyst Story"/>
@@ -94,6 +94,60 @@
     
 
     <li class="first" >
+      <h1><a href="https://ynebula.github.io/posts/bigdata/hbase/" title="Hbase">Hbase</a></h1>
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2021-01-17T19:38:06&#43;09:00">Jan 17, 2021</time>
+        </li>
+        
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="https://ynebula.github.io/categories/bigdata">Bigdata</a>
+                
+                    , 
+                    <a href="https://ynebula.github.io/categories/hbase">HBase</a>
+                
+            </em>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="https://ynebula.github.io/tags/bigdata">#Bigdata</a>
+                
+                    , 
+                    <a href="https://ynebula.github.io/tags/hbase">#HBase</a>
+                
+            </em>
+        </li>
+        
+
+        <li>One minute read</li>
+    </ul>
+</aside>
+
+      
+<div class="featured_image">
+    <a href="https://ynebula.github.io/posts/bigdata/hbase/" title="Hbase">
+        <img src="">
+    </a>
+</div>
+
+
+      <p>Hbase(NoSQL 데이터베이스)  컬럼 기반의 NoSQL 데이터베이스 컬럼 베이스(패밀리)로 구성된 스키마 없는 데이터베이스로서 조인, 인덱스가 없음 비정형/반정형 데이터에 대해 임의 액세스 및 일관성 제공 컬럼 베이스로 돼 있어서, 테이블은 n개의 컬럼 패밀리를 가질 수 있음  1개의 행: rowkey(유일한 인덱스, 기준 정렬) + 컬럼 패밀리    Hbase 데이터 관리 방법  create: 데이터베이스 생성 put: 데이터베이스에 데이터를 기록 get: 데이터베이스에서 데이터를 읽음 scan: 테이블의 여러 행에서 데이터를 가져옴   컬럼 패밀리를 구성: Personal과 Office로 나눔 상세 퀄리파이어 구성     값 의미     생성 create &lsquo;Contact&rsquo;, &lsquo;Personal&rsquo;, &lsquo;Office&rsquo;   데이터삽입 put &lsquo;Contact&rsquo;, &lsquo;1000&rsquo;, &lsquo;Personal:Name&rsquo;, &lsquo;John Dole&rsquo;    put &lsquo;Contact&rsquo;, &lsquo;1000&rsquo;, &lsquo;Personal:Phonne&rsquo;, &lsquo;1-425-000-0001&rsquo;    put &lsquo;Contact&rsquo;, &lsquo;1000&rsquo;, &lsquo;Office:Phone&rsquo;, &lsquo;1-425-000-0002&rsquo;    put &lsquo;Contact&rsquo;, &lsquo;1000&rsquo;, &lsquo;Office:Address&rsquo;, &lsquo;1111San Gabriel Dr&rsquo;   데이터 추출 scan &lsquo;Contacts&rsquo;    </p>
+      
+    </li>
+    
+
+    <li >
       <h1><a href="https://ynebula.github.io/posts/bigdata/oozie/" title="Oozie">Oozie</a></h1>
       <aside>
     <ul>
@@ -589,59 +643,6 @@ MariaDB MariaDB 설치  sudo apt-get install -y mariadb-server  mysql 사용자 
       
     </li>
     
-
-    <li >
-      <h1><a href="https://ynebula.github.io/posts/hugo/hugo-install-markdown/" title="Hugo 설치(Install) &amp; 마크다운(Markdown)">Hugo 설치(Install) &amp; 마크다운(Markdown)</a></h1>
-      <aside>
-    <ul>
-        <li>
-            <time class="post-date" datetime="2020-11-14T12:30:39&#43;09:00">Nov 14, 2020</time>
-        </li>
-        
-        
-        <li>
-            Categories:
-            <em>
-                
-                    
-                    <a href="https://ynebula.github.io/categories/hugo">Hugo</a>
-                
-            </em>
-        </li>
-        
-
-        
-        <li>
-            <em>
-                
-                    
-                    <a href="https://ynebula.github.io/tags/hugo">#Hugo</a>
-                
-                    , 
-                    <a href="https://ynebula.github.io/tags/install">#Install</a>
-                
-            </em>
-        </li>
-        
-
-        <li>2 minutes read</li>
-    </ul>
-</aside>
-
-      
-<div class="featured_image">
-    <a href="https://ynebula.github.io/posts/hugo/hugo-install-markdown/" title="Hugo 설치(Install) &amp; 마크다운(Markdown)">
-        <img src="">
-    </a>
-</div>
-
-
-      <p>참고사이트  Install Hugo Link Quick Start Link  설치 환경  Windows 10, Github  Github 설치  Github Download Link  Download &amp; Install  Windows 환경 Hugo 설치는 Binary 파일을 다운로드 받고 시스템 환경 변수에 등록만 하면 됩니다.</p>
-      
-      <a href="https://ynebula.github.io/posts/hugo/hugo-install-markdown/">Read more…</a>
-      
-    </li>
-    
   </ul>
 </section>
 
@@ -659,11 +660,14 @@ MariaDB MariaDB 설치  sudo apt-get install -y mariadb-server  mysql 사용자 
   <li class="page-item active">
     <a class="page-link" href="https://ynebula.github.io/page/2/">2</a>
   </li>
-  <li class="page-item disabled">
-    <a  class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+  <li class="page-item">
+    <a class="page-link" href="https://ynebula.github.io/page/3/">3</a>
   </li>
   <li class="page-item">
-    <a href="https://ynebula.github.io/page/2/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <a href="https://ynebula.github.io/page/3/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="https://ynebula.github.io/page/3/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
   </li>
 </ul>
 
