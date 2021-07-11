@@ -38,13 +38,15 @@ Path에 빈 칸이 없어야 한다.
 &lt;li&gt;환경변수 SPARK_HOME 및 Path 설정&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;spark-test&#34;&gt;Spark Test&lt;/h2&gt;
-&lt;p&gt;spark-shell을 사용해 scala&lt;br&gt;
-pyspark을 사용해 python&lt;br&gt;
-spark-submit&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;spark-shell: scala언어를 REPL환경에서 수행&lt;/li&gt;
+&lt;li&gt;pyspark을 사용해 python언어를 REPL 환경에서 수행&lt;/li&gt;
+&lt;li&gt;spark-submit: spark-submit은 클러스터에서 application을 수행&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;setup-scala-using-intellj-ide&#34;&gt;Setup Scala using IntellJ IDE&lt;/h2&gt;
-&lt;p&gt;주의점) Scala와 Spark 버전을 맞춰야 빌드됨 다음 사이트에서 버전 확인할 수 있음&lt;br&gt;
+&lt;p&gt;주의점) Scala와 Spark 버전을 맞춰야 빌드됨 다음 메이븐 사이트에서 버전 확인할 수 있음&lt;br&gt;
 &lt;a href=&#34;https://mvnrepository.com/artifact/org.apache.spark/spark-core_2.12/3.1.1&#34;&gt;https://mvnrepository.com/artifact/org.apache.spark/spark-core_2.12/3.1.1&lt;/a&gt;&lt;br&gt;
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/scalaInstall_01.png&#34; alt=&#34;alt text&#34; title=&#34;Install Scala&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/Install/scalaInstall_01.png&#34; alt=&#34;alt text&#34; title=&#34;Install Scala&#34;&gt;&lt;/p&gt;
 &lt;h4 id=&#34;on-windows-1&#34;&gt;on Windows&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;Scala 사이트(&lt;a href=&#34;https://www.scala-lang.org/download/&#34;&gt;https://www.scala-lang.org/download/&lt;/a&gt;)에서 바이너리 파일 다운로드&lt;/li&gt;
@@ -58,8 +60,41 @@ spark-submit&lt;/p&gt;
 &lt;li&gt;확인: brew list |grep scala&lt;/li&gt;
 &lt;li&gt;환경변수 SCALA_HOME 및 Path 설정&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;setup-scala-plugin&#34;&gt;Setup Scala Plugin&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&#34;https://medium.com/@Sushil_Kumar/setting-up-spark-with-scala-development-environment-using-intellij-idea-b22644f73ef1&#34;&gt;https://medium.com/@Sushil_Kumar/setting-up-spark-with-scala-development-environment-using-intellij-idea-b22644f73ef1&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;setup-scala-plugin-on-intellj-ide&#34;&gt;Setup Scala Plugin on IntellJ IDE&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://medium.com/@Sushil_Kumar/setting-up-spark-with-scala-development-environment-using-intellij-idea-b22644f73ef1&#34;&gt;https://medium.com/@Sushil_Kumar/setting-up-spark-with-scala-development-environment-using-intellij-idea-b22644f73ef1&lt;/a&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/Install/scalaInstall_02.png&#34; alt=&#34;alt text&#34; title=&#34;Setup Scala Plugin&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;wordcount-project&#34;&gt;WordCount Project&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Create New Project
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/Install/scalaInstall_03.png&#34; alt=&#34;alt text&#34; title=&#34;Setup Scala Plugin&#34;&gt;&lt;/li&gt;
+&lt;li&gt;Projecgt Structure
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/Install/scalaInstall_04.png&#34; alt=&#34;alt text&#34; title=&#34;Global libraries&#34;&gt;&lt;/li&gt;
+&lt;li&gt;Sync build.sbt
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;name := &amp;ldquo;ScalaTest&amp;rdquo;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;version := &amp;ldquo;0.1&amp;rdquo;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;scalaVersion := &amp;ldquo;2.12.12&amp;rdquo;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;libraryDependencies ++= Seq( &amp;ldquo;org.apache.spark&amp;rdquo; % &amp;ldquo;spark-core_2.12&amp;rdquo; % &amp;ldquo;3.1.2&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;li&gt;Source Code
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/Install/scalaInstall_05.png&#34; alt=&#34;alt text&#34; title=&#34;WordCount Source Code&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;setup-pyspark-using-intellj-ide&#34;&gt;Setup PySpark using IntellJ IDE&lt;/h2&gt;
 &lt;p&gt;빈 프로젝트 생성
 &lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/pysparkSetup_01.png&#34; alt=&#34;alt text&#34; title=&#34;Create Project&#34;&gt; 
