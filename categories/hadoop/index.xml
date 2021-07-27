@@ -127,7 +127,7 @@
 &lt;/ul&gt;
 &lt;h2 id=&#34;spark프로그래밍-모델&#34;&gt;Spark프로그래밍 모델&lt;/h2&gt;
 &lt;p&gt;History of Spark APIs
-&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/Spark_Structure/img_04.png&#34; alt=&#34;alt text&#34; title=&#34;History of Spark APIs&#34;&gt; 
+&lt;img src=&#34;https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/Spark_Structure/img_04.jpg&#34; alt=&#34;alt text&#34; title=&#34;History of Spark APIs&#34;&gt; 
 &lt;a href=&#34;https://medium.com/@ravi.g/sparks-structured-api-s-cdeb381f6407&#34;&gt;https://medium.com/@ravi.g/sparks-structured-api-s-cdeb381f6407&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;spark-처리-모델-rdd&#34;&gt;Spark 처리 모델 RDD&lt;/h2&gt;
 &lt;ul&gt;
