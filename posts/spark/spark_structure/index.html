@@ -1,0 +1,382 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>Spark Structure - Bigdata Engineer &amp; Analyst Story</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Kiera: A Hugo theme for creative and technical writing." />
+<meta name="author" content="Sungwoon Yoon" /><meta property="og:title" content="Spark Structure" />
+<meta property="og:description" content="Spark Structure https://spark.apache.org/docs/latest/cluster-overview.html
+Spark Components  Open Source Ecosystem - Spark  Spark Stack Structure  스파크는 기본적으로 RDD로 연산을 수행한다 인프라 계층 : 먼저 스파크가 기동하기 위한 인프라는 스파크가 독립적으로 기동할 수 있는 Standalone Scheudler가 있고 (그냥 스팍만 OS위에 깔아서 사용한다고 생각하면 된다)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ynebula.github.io/posts/spark/spark_structure/" />
+<meta property="article:published_time" content="2021-07-11T22:46:36+09:00" />
+<meta property="article:modified_time" content="2021-07-11T22:46:36+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Spark Structure"/>
+<meta name="twitter:description" content="Spark Structure https://spark.apache.org/docs/latest/cluster-overview.html
+Spark Components  Open Source Ecosystem - Spark  Spark Stack Structure  스파크는 기본적으로 RDD로 연산을 수행한다 인프라 계층 : 먼저 스파크가 기동하기 위한 인프라는 스파크가 독립적으로 기동할 수 있는 Standalone Scheudler가 있고 (그냥 스팍만 OS위에 깔아서 사용한다고 생각하면 된다)."/>
+
+<meta name="generator" content="Hugo 0.78.1" />
+    
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://ynebula.github.io/fontawesome/css/all.min.css" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  
+  
+  <link rel="stylesheet" type="text/css" href="https://ynebula.github.io/css/styles.css" /></head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://ynebula.github.io/">Bigdata Engineer &amp; Analyst Story</a>
+            </h1>
+
+      <ul id="social-media">
+             <li>
+               <a href="https://www.facebook.com/username" title="Facebook">
+               <i class="fab fa-facebook fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://github.com/ynebula" title="GitHub">
+               <i class="fab fa-github fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://linkedin.com/in/%EC%84%B1%EC%9A%B4-%EC%9C%A4-a9bb30135/" title="LinkedIn">
+               <i class="fab fa-linkedin fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://www.instagram.com/sungwoon.yoon" title="Instagram">
+               <i class="fab fa-instagram fa-lg"></i>
+               </a>
+             </li>
+      </ul>
+      
+      <p><em>A Hugo theme for creative and technical writing</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://ynebula.github.io/tags">
+                <i class="fa-li fa  fa-lg"></i><span>Tags</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://ynebula.github.io/categories">
+                <i class="fa-li fa  fa-lg"></i><span>Categories</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Spark Structure</h1>
+
+    
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2021-07-11T22:46:36&#43;09:00">Jul 11, 2021</time>
+        </li>
+        
+        
+
+        
+
+        <li>4 minutes read</li>
+    </ul>
+</aside>
+
+    
+
+    
+<div class="featured_image">
+    <a href="https://ynebula.github.io/posts/spark/spark_structure/" title="Spark Structure">
+        <img src="">
+    </a>
+</div>
+
+
+
+    <h2 id="spark-structure">Spark Structure</h2>
+<p><a href="https://spark.apache.org/docs/latest/cluster-overview.html">https://spark.apache.org/docs/latest/cluster-overview.html</a></p>
+<h4 id="spark-components">Spark Components</h4>
+<p><img src="https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/Spark_Structure/img_01.png" alt="alt text" title="Open Source Ecosystem"></p>
+<ul>
+<li>Open Source Ecosystem - Spark</li>
+</ul>
+<h2 id="spark-stack-structure">Spark Stack Structure</h2>
+<p><img src="https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/Spark_Structure/img_02.png" alt="alt text" title="Spark Stack Structure"></p>
+<ul>
+<li>스파크는 기본적으로 RDD로 연산을 수행한다</li>
+<li>인프라 계층 : 먼저 스파크가 기동하기 위한 인프라는 스파크가 독립적으로 기동할 수 있는 Standalone Scheudler가 있고 (그냥 스팍만 OS위에 깔아서 사용한다고 생각하면 된다). 또는 하둡 종합 플랫폼인 YARN 위에서 기동될 수 있고 또는 Docker 가상화 플랫폼인 Mesos 위에서 기동될 수 있다.</li>
+</ul>
+<h4 id="spark-core">Spark Core</h4>
+<ul>
+<li>메모리 기반의 분산 클러스터 컴퓨팅 환경 위에 스팍코어가 올라감</li>
+<li>스파크 전체의 기초가 되는 기초 분산 작업 처리를 수행
+<ul>
+<li>장애복구(클러스터 구조),</li>
+<li>네트워킹</li>
+<li>보안</li>
+<li>스케쥴링</li>
+<li>데이터 셔플링(shuffling) 등 기본 기능을 제공</li>
+</ul>
+</li>
+<li>RDD(Resilient Distributed Dataset)로 다양한 연산 및 변환(Transformation) 메소드를 제공</li>
+<li>스파크 코어는 HDFS, GlusterFS, 아마존 S3 등 다양한 파일 시스템에 접근 가능</li>
+<li>스파크 잡과 다른 스파크 컴포넌트에 필요한 기본 기능을 제공</li>
+</ul>
+<h4 id="spark-library">Spark Library</h4>
+<ul>
+<li>스파크 코어를 이용하여 특정한 기능의 목적에 맞춰진 라이브러리가 지원 됨</li>
+<li>Spark SQL: 빅데이타를 SQL로 핸들링</li>
+<li>Spark Streaming: 실시간으로 들어오는 데이타에 대한 리얼타임 스트리밍 처리</li>
+<li>MLib: 머신러닝</li>
+<li>GraphX: 그래프 데이타 프로세싱</li>
+</ul>
+<h4 id="spark-sql">Spark SQL</h4>
+<ul>
+<li>스파크와 하이브 SQL이 지원하는 SQL을 사용해 대규모 분산 정형 데이터 처리</li>
+<li>JSON파일, Parquet파일, RDB테이블, 하이브 테이블 등 다양한 정형 데이터 읽기 및 쓰기 가능</li>
+<li>DataFrame과 Dataset에 적용된 연산을 일정 시점에 RDD 연산으로 변환해 일반 스파크 잡으로 실행</li>
+</ul>
+<h4 id="spark-streaming">Spark Streaming</h4>
+<ul>
+<li>실시간 스트리밍 데이터를 처리하는 프레임워크</li>
+<li>HDFS, Kafka, Flume, ZeroMQ 와 더블어 커스텀 리소스도 사용 가능</li>
+<li>이산 스트림(Discretized Stream, DStream)방식으로 스트리밍 데이터를 표현하고, 가장 마지막 타임 윈도 안에 유입된 데이터를 RDD로 구성해 주기적으로 생성</li>
+<li>다른 스파크 컴포넌트와 함께 사용할 수 있어 실시간 데이터 처리를 머신러닝 작업, SQL작업, 그래프 연산 등을 통합 가능</li>
+</ul>
+<h4 id="spark-mllib">Spark MLlib</h4>
+<ul>
+<li>머신러닝 알고리즘 라이브러리</li>
+<li>RDD 또는 DataFrame의 데이터셋을 변환하는 머신러닝 모델을 구현</li>
+</ul>
+<h4 id="spark-graphx">Spark GraphX</h4>
+<ul>
+<li>그래프는 정점과 두 정점을 잇는 간선으로 구선된 데이터 구조</li>
+<li>그래프 데이터는 Vertex와 Edge로 구성</li>
+<li>그래프 RDD(EdgeRDD 및 VertexRDD) 형태의 그래프 구조를 만들 수 있는 기능을 제공</li>
+</ul>
+<h2 id="spark-동작-구조">Spark 동작 구조</h2>
+<h4 id="spark-cluster-structure">Spark Cluster Structure</h4>
+<p><img src="https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/Spark_Structure/img_03.png" alt="alt text" title="Spark Cluster Structure"> 
+스파크 프로그램은 일반적으로 &ldquo;Driver Program&quot;이라고 하는데, 이 Driver Program은 여러개의 병렬적인 작업으로 나눠져서 Spark의 Worker Node(서버)에 있는  Executor(프로세스)에서 실행된다.
+수행 방법</p>
+<ol>
+<li>SparkContext가 SparkClusterManager에 접속한다. 이 클러스터 메니져는 스팍 자체의 클러스터 메니져가 될 수 도 있고 Mesos,YARN 등이 될 수 있다(작업스케쥴링). 
+이 클러스터 메니저를 통해서 가용한 Excutor들을 할당 받는다</li>
+<li>Excutor를 할당 받으면, 각각의 Executor들에게 수행할 코드를 보낸다.</li>
+<li>다음으로 각 Excutor 안에서 Task에서 로직을 수행한다.</li>
+</ol>
+<h4 id="cluster-manager">Cluster Manager</h4>
+<ul>
+<li>클러스터에 1개 존재(백 존재 가능)</li>
+<li>여러 대의 서버로 구성된 클러스터 환경에서 다수의 Application이 함께 구동될 수 있게 Application간의 CPU나 메모리, 디스크와 같은 전반적인 컴퓨팅 자원 관리</li>
+<li>스케쥴링 담당(클러스터 매니저의 가장 중요한 역할)
+: 워커노드 작업 관리</li>
+<li>Cluster Manager Types
+: Standalone: 스파크가 독립적으로 작동할 수 있음
+: Apache Mesos: Hadoop MapReduce와 Service Applications을 수행하는 일반적인 클러스터 매니저
+: Hadoop YARN: Hadoop의 Resource Manager(하둡과 스파크는 상호 독립적)
+: Kubernetes: 오케스트레이션 도구. Automating Deployment, Scaling, Containerized Applications 관리를 위한 오픈소스 시스템</li>
+</ul>
+<h4 id="driver">Driver</h4>
+<ul>
+<li>사용자 코드를 실행, main()문과 같은 역할을 하는 프로세스</li>
+<li>SparkContext와 RDD 생성</li>
+<li>Transformation과 Action을 생성(RDD의 두가지 연산 방법)</li>
+</ul>
+<h4 id="sparkcontext">SparkContext</h4>
+<ul>
+<li>어떻게 클러스터에 접근할 수 있는지 알려주는 object</li>
+<li>Worker Node내 Excutor간 통신이 발생</li>
+<li>Driver는 Excutor에게 Task를 할당</li>
+<li>Excutor에서는 Task를 수행하고 종료시 Driver에게 결과 값을 주게됨</li>
+</ul>
+<h4 id="worker-node">Worker Node</h4>
+<ul>
+<li>실제 작업을 수행하는 노드</li>
+<li>Executor
+: 주어진 스파크 작업의 개별 태스크들을 실행하는 작업실행 프로세스
+: 애플리케이션에을 구성하는 작업을 실행 -&gt; 드라이버에 결과 전송
+: 사용자 프로그램에서 캐시하는 RDD를 저장하기 위한 메모리 저장소 제공</li>
+<li>Task
+: executor에 할당 되는 작업의 단위
+: 하나의 Excutor에 여러개 Task 있을 수 있음</li>
+</ul>
+<h2 id="spark프로그래밍-모델">Spark프로그래밍 모델</h2>
+<p>History of Spark APIs
+<img src="https://raw.githubusercontent.com/ynebula/ynebula.github.io/main/posts/spark/img/Spark_Structure/img_04.png" alt="alt text" title="History of Spark APIs"> 
+<a href="https://medium.com/@ravi.g/sparks-structured-api-s-cdeb381f6407">https://medium.com/@ravi.g/sparks-structured-api-s-cdeb381f6407</a></p>
+<h2 id="spark-처리-모델-rdd">Spark 처리 모델 RDD</h2>
+<ul>
+<li>스파크 내부에 존재하는 분산 데이터에 대한 모델로, 기본 데이터 구조, Immutable(변경이 불가능한 데이터 셋)</li>
+<li>단순히 &ldquo;값&quot;으로 표현되는 데이터만 가리키는 것이 아니라 데이터를 다루는 방법까지 포함하는 일종의 클래스와 같은 개념</li>
+<li>스파크에서 내부적으로 연산하는 데이터들은 모두 RDD타입으로 처리</li>
+<li>RDD는 대량의 데이터를 요소로 가지는 부산 컬렉션</li>
+<li>RDD는 여러 머신으로 구성된 클러스터 환경에서의 분산처리를 전제로 설계되었으며, 내부는 파티션이라는 단위로 구분</li>
+<li>RDD는 배열/리스트 등의 요소를 저장하며, 내부는 여러 개의 파티션(분산 처리 단위)으로 구분</li>
+<li>사용자는 HDFS 등의 분산 파일시스템에 있는 파일 내용을 RDD로 로드하고, RDD를 가공하는 형식(데이터를 변환)으로 대량의 데이터를 분산처리</li>
+</ul>
+<h2 id="rdd-연산">RDD 연산</h2>
+<h4 id="transformation">Transformation</h4>
+<ul>
+<li>주어진 스파크 작업의 개별 태스크들을 실행하는 작업 실행 프로세스</li>
+<li>기존의 RDD 내용이 바뀌는 것이 아니라 새로운 RDD가 생성</li>
+</ul>
+<h4 id="action">Action</h4>
+<ul>
+<li>RDD의 요소들을 이용해 어떤 결과값을 얻어내는 연산</li>
+<li>보통 return값이 RDD가 아닌 다른 타입의 데이터</li>
+</ul>
+<h4 id="partition">Partition</h4>
+<ul>
+<li>하나의 RDD는 여러 개의 파티션으로 나눠짐</li>
+<li>성능에 유효한 영향을 줌</li>
+<li>파티션 갯수, 파티셔너는 선택 가능</li>
+<li>기본 파티셔너(Hash, Range) 외에도 사용자가 정의한 파티셔너 사용 가능</li>
+</ul>
+<h2 id="dataframe">DataFrame</h2>
+<ul>
+<li>데이터프레임은 관계형 데이터베이스의 테이블에서 컬럼이름으로 구성된 변경 불가능한 분산 데이터 컬렉션이다.</li>
+<li>아파치 스파크 1.0에서 경험적 피처로서 SchemaRDD가 소개된 것처럼, SchemaRDD가 아파치 스파크 1.3버전에서 데이터프레임 이라는 이름으로 바뀌었다.</li>
+<li>스파크 데이터프레임은 구조적인 데이터로 작업을 쉽게 해준다</li>
+</ul>
+<h2 id="rddrilient-distributed-datasets">RDD(Rilient Distributed Datasets)</h2>
+<ul>
+<li>스파크의 기본 데이터 구조</li>
+<li>분산 데이터 컬렉션(데이터셋 - JVM기반에서 수행(Java로 구현됨))을 추상화한 객체인 RDD</li>
+<li>형식적으로 RDD는 읽기 전용으로 분할된 레코드의 모음</li>
+<li>RDD는 안정적인 저장장치나 다른 RDD의 데이터에 대한 결정로적 작동을 통해 생성될 수 있음</li>
+<li>RDD는 병렬로 작동할 수 있는 내결함성 요소의 집합</li>
+<li>RDD 만드는 방법
+: 드라이버 프로그램에서 기존 컬렉션을 병렬화
+: 공유 파일시스템, HDFS, HBase 또는 Hadoop 입력 포맷을 제공하는 데이터소스와 같은 외부 스토리지 시스템의 데이터셋을 참조</li>
+</ul>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://ynebula.github.io/posts/spark/spark_introduce/"><i class="fa fa-chevron-circle-left"></i> Spark 소개 및 특징</a>
+        </li>
+        
+        
+    </ul>
+</section>
+  
+    
+    
+        <section class="comments-block">
+      <button id="show-comments" style="display: none;"><i class="fa fa-comments"></i> Add/View Comments</button>
+</section>
+
+<section id="disqus_thread"></section>
+
+<script>
+      (function () {
+            
+            
+            if (window.location.hostname == "localhost")
+                  return;
+
+            var disqus_loaded = false;
+            var disqus_shortname = 'myShortName';
+            var disqus_button = document.getElementById("show-comments");
+
+            var disqus_autoload =  null ;
+            var disable_comment =  null ;
+
+            if (disable_comment)
+                  return;
+
+            disqus_button.style.display = "";
+
+            if (disqus_autoload){
+                  disqus();
+            }else{
+                  disqus_button.addEventListener("click", disqus, false);
+            }
+
+            function disqus() {
+
+                  if (!disqus_loaded) {
+                        disqus_loaded = true;
+
+                        var e = document.createElement("script");
+                        e.type = "text/javascript";
+                        e.async = true;
+                        e.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                        (document.getElementsByTagName("head")[0] ||
+                              document.getElementsByTagName("body")[0])
+                        .appendChild(e);
+
+                        
+                        document.getElementById("show-comments").style.display = "none";
+                  }
+            }
+
+            
+            var hash = window.location.hash.substr(1);
+            if (hash.length > 8) {
+                  if (hash.substring(0, 8) == "comment-") {
+                        disqus();
+                  }
+            }
+
+            
+            if (/bot|google|baidu|bing|msn|duckduckgo|slurp|yandex/i.test(navigator.userAgent)) {
+                  disqus();
+            }
+      })();
+</script>
+
+    
+  
+
+
+
+
+
+</main>
+    <footer>
+        <h6>Copyright © 2020 - Sungwoon Yoon |
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://ynebula.github.io/index.xml">Subscribe </a></h6>
+    </footer>
+</div>
+<script src="https://ynebula.github.io/js/scripts.js"></script>
+
+
+</body>
+
+</html>
+
